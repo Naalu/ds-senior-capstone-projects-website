@@ -6,7 +6,7 @@
 **Location:** LOCATION  
 **Present participants:** Rylan (ROLE), Chris (ROLE), Jack (ROLE)  
 **Missing participants:** NONE  
-**Project repo:** [GITHUB REPO URL](GITHUB REPO URL)  
+**Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
 
 ---
 
