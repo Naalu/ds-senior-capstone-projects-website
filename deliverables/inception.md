@@ -5,7 +5,7 @@ The concept of the project is to make a website that hosts and displays the caps
 
 ## 2. Initial value proposition and customer segments
 
-We are making a repository for capstone and similar projects for the Math and Statistics Department at NAU that features a web interface focused on being accessible for users and contributors that are generally academics without web development experience. 
+We help the Math and Statistics Department at NAU keep track and display capstone and similar projects by making a repository that features a web interface focused on being accessible for users and contributors that are generally academics without web development experience. 
 
 
 ## 3. Interviews summary
