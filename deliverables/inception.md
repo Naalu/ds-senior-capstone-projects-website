@@ -21,6 +21,30 @@ Representative quotes
 Assessment: Must have / Nice to have / Don’t care (how the interviewee sees the solution)
 Grading criteria (15 points): You should have at least the required number of interviews. For each interview, you should report the required information. The insight should be grounded on the interview and illustrated by the representative quotes.
 
+Who: B.S. Data Science student
+When: 2/1/2025
+1. Can you describe your experience with student research in the Mathematics & Statistics
+department?
+I personally have not done any formal student research for the department.
+3. How do you currently access or showcase research projects and presentations?
+GitHub was commonly used throughout my academic programs if there was a need for a digital hub, and I use it to host project for my resume. Although that was rarely needed has teacher just used the canvas environment.
+4. What difficulties do you face when finding past research or colloquia?
+Honestly, in B.S. DS area of the school I can not recall a time in the pasts years where I have been told about where past student research/projects are held.
+5. If a research showcase website existed, how likely would you be to use it? Why or why not?
+I might not have needed it my first 2 years of school but I would've found it very helpful when preparing for upperclassman projects and our capstone. Seeing others work and the type of professionalism that a students can achieve would be beneficial to my education.
+6. What features would be most valuable to you
+A clean environment and easy access to student capstone projects/or research.
+
+7. Have you ever tried to showcase your research online? If so, where?
+I have only ever upload projects to Github
+8. Would you want a dedicated portfolio for your research projects? Why or why not?
+Yes, if that was integrated into the BS DS program I think it would highly benefit every student.
+9. What would make submitting your research to a public repository easy or difficult?
+An easy upload system.
+10. Would this help when applying for jobs, internships, or graduate school?
+Yes, we could easily link this to our resume and showcase what we have done during our academic journey.
+11. Would you be more likely to submit research if the faculty approved it first
+Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area. 
 
 ## 4. Final value proposition and consumer segments
 Report the refined versions of these elements (the ones that you reached after the interviews).
