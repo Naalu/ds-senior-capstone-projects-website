@@ -21,7 +21,7 @@ Representative quotes
 Assessment: Must have / Nice to have / Don’t care (how the interviewee sees the solution)
 Grading criteria (15 points): You should have at least the required number of interviews. For each interview, you should report the required information. The insight should be grounded on the interview and illustrated by the representative quotes.
 
-## Who: B.S. Data Science student
+### Who: B.S. Data Science student
 When: 2/1/2025
 1. Can you describe your experience with student research in the Mathematics & Statistics
 department?
@@ -47,7 +47,7 @@ Yes, we could easily link this to our resume and showcase what we have done duri
 Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area.
 
 
-## Who: Dr. Robert Buscaglia
+### Who: Dr. Robert Buscaglia
 When: 1/31/2025
 
 1. Can you describe your experience with student research in the Mathematics & Statistics department?
