@@ -55,7 +55,8 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues.
 
 **Rylan:**
-- Fill out the non-interview section of the deliverable
+-
+Fill out the non-interview section of the deliverable
 Finish out interviews
 Finish up personal work on worksheets
 
