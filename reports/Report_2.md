@@ -56,12 +56,23 @@ List the tasks that need to be completed, assign them to team members, and link 
 
 **Rylan:**
 - Fill out the non-interview section of the deliverable
+Finish out interviews
+Finish up personal work on worksheets
 
 **Chris:**
 - 
+Finish out interviews
+Finish up personal work on worksheets
+
 **Jack:**
+-
+Finish out interviews
+Finish up personal work on worksheets
   
 **Ethan**
+-
+Finish out interviews
+Finish up personal work on worksheets
 
 ---
 
