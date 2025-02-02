@@ -1,4 +1,4 @@
-# Report for Week #X: SHORT WEEKLY TITLE
+# Report 2
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
