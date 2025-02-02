@@ -21,7 +21,7 @@ Representative quotes
 Assessment: Must have / Nice to have / Don’t care (how the interviewee sees the solution)
 Grading criteria (15 points): You should have at least the required number of interviews. For each interview, you should report the required information. The insight should be grounded on the interview and illustrated by the representative quotes.
 
-Who: B.S. Data Science student
+## Who: B.S. Data Science student
 When: 2/1/2025
 1. Can you describe your experience with student research in the Mathematics & Statistics
 department?
@@ -44,7 +44,39 @@ An easy upload system.
 10. Would this help when applying for jobs, internships, or graduate school?
 Yes, we could easily link this to our resume and showcase what we have done during our academic journey.
 11. Would you be more likely to submit research if the faculty approved it first
-Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area. 
+Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area.
+
+
+## Who: Dr. Robert Buscaglia
+When: 1/31/2025
+
+1. Can you describe your experience with student research in the Mathematics & Statistics department?
+I love student research and often helps students in that area. 
+
+2. How do you currently access or showcase research projects and presentations?
+Currently BS DS capstone projects are not hosted online but are some are hung up in Adel. Some research is online at the undergraduate symposia website. 
+
+3. What difficulties do you face when finding past research or colloquia?
+There is not a dedicated place for past research and colloquia for the department.
+
+4. If a research showcase website existed, how likely would you be to use it? Why or why not?
+Dr. B stated much enthusiasm for the idea and brought it up to the department to ask for their opinions on the topic. He's Going to get back to us with their comments. 
+
+5. What features would be most valuable to you?
+Different types of media available to upload was his biggest ask. 
+
+6. Do you reference past student projects when advising new students? If so, how do you find them?
+Yes, one of the first assignments in the BS DS Capstone is to look at past projects.
+
+7. Would you find it helpful to have a structured, department-wide research archive?
+As stated earlier Dr. B emphasized his enthusiasm for the project and is going to help us throughout the semester to make this idea come to light. 
+
+8. What level of oversight would you want for research submissions?
+He didn't comment too much on this but stated again the need for multiple media formats. 
+
+9. Would you be willing to approve or curate student submissions?
+Dr. B stated this could be possible but it would be up to the department. 
+
 
 ## 4. Final value proposition and consumer segments
 Report the refined versions of these elements (the ones that you reached after the interviews).
