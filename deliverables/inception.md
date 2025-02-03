@@ -22,35 +22,44 @@ Assessment: Must have / Nice to have / Don’t care (how the interviewee sees th
 Grading criteria (15 points): You should have at least the required number of interviews. For each interview, you should report the required information. The insight should be grounded on the interview and illustrated by the representative quotes.
 
 ### Interview 1
-B.S. Data Science student<br />
+B.S. Data Science student by Ethan<br />
 2/1/2025
 
 1. Can you describe your experience with student research in the Mathematics & Statistics
 department?<br />
 I personally have not done any formal student research for the department.
+
 3. How do you currently access or showcase research projects and presentations?<br />
 GitHub was commonly used throughout my academic programs if there was a need for a digital hub, and I use it to host project for my resume. Although that was rarely needed has teacher just used the canvas environment.
+
 4. What difficulties do you face when finding past research or colloquia?<br />
 Honestly, in B.S. DS area of the school I can not recall a time in the pasts years where I have been told about where past student research/projects are held.
+
 5. If a research showcase website existed, how likely would you be to use it? Why or why not?<br />
 I might not have needed it my first 2 years of school but I would've found it very helpful when preparing for upperclassman projects and our capstone. Seeing others work and the type of professionalism that a students can achieve would be beneficial to my education.
+
 6. What features would be most valuable to you?<br />
 A clean environment and easy access to student capstone projects/or research.
+
 7. Have you ever tried to showcase your research online? If so, where?<br />
 I have only ever upload projects to Github
+
 8. Would you want a dedicated portfolio for your research projects? Why or why not?<br />
 Yes, if that was integrated into the BS DS program I think it would highly benefit every student.
+
 9. What would make submitting your research to a public repository easy or difficult? <br />
 An easy upload system.
+
 10. Would this help when applying for jobs, internships, or graduate school?<br />
 Yes, we could easily link this to our resume and showcase what we have done during our academic journey.
+
 11. Would you be more likely to submit research if the faculty approved it first?<br />
 Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area.
 
-Assessment: Nice to have. The student seeed indifferent on some of the questions but if it is easy to use they showed interest in using the website. 
+Assessment: Nice to have. The student seemed indifferent on some of the questions but if it is easy to use they showed interest in using the website. 
 
 ### Interview 2
-Dr. Robert Buscaglia<br />
+Dr. Robert Buscaglia by Chris, Jack, and Rylan<br />
 1/31/2025
 
 1. Can you describe your experience with student research in the Mathematics & Statistics department?<br />
@@ -80,12 +89,11 @@ He didn't comment too much on this but stated again the need for multiple media 
 10. Would you be willing to approve or curate student submissions?<br />
 Dr. B stated this could be possible but it would be up to the department.
 
-
 Assessment: Must have. Dr. Buscaglia has show great interest in the idea and has offered a keen insight into the departments needs. Dr. B and the department are a clear audiance we are targeting and working with them will only help us create a better product. 
 
 ### Interview 3: 
 
-Igor Steinmacher by Rylan Harris via email
+Igor Steinmacher by Rylan via email
 1/31/2025
 
 1. What is your role in the department?<br />
@@ -112,6 +120,44 @@ Igor Steinmacher by Rylan Harris via email
 8. What level of oversight would you want for research submissions? Do you want direct control, or would you prefer a submission-approval method?<br />
     If we are talking about the proposals from the community: Submission approval is the way to go (with interaction with the submitters)for us because we have multiple rounds of polishing and adjusting to have a final version of the proposals aligned with our goals (it is an iterative and incremental approach).
 
+The customer segment I'm targetting here is those that act as administrators/maintenance for the website. Clearly, some of my questions were a bit confusing but the core of the feedback that I took away is that he would like to have a web interface so that he doesn't have to manually manage the projects and add them into the html. It also appeared that having an avenue for interested third party sponsors to reach out would be helpful as well. Though he the knowledge to edit the website himself, he still voiced interest in having a web interface to improve ease of use. Because they already have a similar website, our solution would be a "nice to have" for the added accessibility.
+
+### Interview 4
+B.S. Data Science student<br />
+2/1/2025
+
+1. Can you describe your experience with student research in the Mathematics & Statistics
+department?<br />
+I'm currently in my capstone but I haven't done much with student research.
+
+3. How do you currently access or showcase research projects and presentations?<br />
+As far as I'm aware, the projects are mainly going to be presented as posters, though a digital version will be needed to produce those. I don't think there's any place to look at them aside from the ones that are posted in the hall.
+
+4. What difficulties do you face when finding past research or colloquia?<br />
+I could maybe find them if I were to go through all the UGrads projects but they aren't really organized at all.
+
+5. If a research showcase website existed, how likely would you be to use it? Why or why not?<br />
+It would be nice to be able to take inspiration from the past projects. When trying to come up with ideas for my own project, I was kind of at a loss for the scope I should be thinking about or the type of projects that work well. I would very likely use it once or twice.
+
+6. What features would be most valuable to you?<br />
+Being able to search through project more easily would be nice.
+
+7. Have you ever tried to showcase your research online? If so, where?<br />
+I have not.
+
+8. Would you want a dedicated portfolio for your research projects? Why or why not?<br />
+I would but I would probably want it to be something that I had control over. Like hosting my projects on GitHub or the like.
+
+9. What would make submitting your research to a public repository easy or difficult? <br />
+If I could just send it to the admin of the site for review, that would be best. Just getting email responses or the like for updates or changes. Having a dedicated page to submit through.
+
+10. Would this help when applying for jobs, internships, or graduate school?<br />
+Yeah, having my work featured in an official location that I could referrence would definitely help build my cv.
+
+Assessment: Nice to have. 
+
+## Interview 5
+
 ### Interview 6
 
 Eck Doerry by Rylan Harris
@@ -119,7 +165,7 @@ Scheduled for 2/4/2025
 
 Dr. Doerry was not available for an interview this week but this will be incorporated once it is completed.
 
-The customer segment I'm targetting here is those that act as administrators/maintenance for the website. Clearly, some of my questions were a bit confusing but the core of the feedback that I took away is that he would like to have a web interface so that he doesn't have to manually manage the projects and add them into the html. It also appeared that having an avenue for interested third party sponsors to reach out would be helpful as well. Though he the knowledge to edit the website himself, he still voiced interest in having a web interface to improve ease of use. Because they already have a similar website, our solution would be a "nice to have" for the added accessibility.
+
 
 ## 4. Final value proposition and consumer segments
 Report the refined versions of these elements (the ones that you reached after the interviews).
