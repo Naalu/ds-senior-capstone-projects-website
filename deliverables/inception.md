@@ -154,7 +154,7 @@ If I could just send it to the admin of the site for review, that would be best.
 10. Would this help when applying for jobs, internships, or graduate school?<br />
 Yeah, having my work featured in an official location that I could referrence would definitely help build my cv.
 
-Assessment: Nice to have. 
+Assessment: Nice to have. The student liked the idea of having a place that under the schools name where he can have projects and research hosted that builds his resume. He would also like it if the students had some sort of control or input over their "page" or the projects "page". 
 
 ## Interview 5
 
