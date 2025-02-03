@@ -21,8 +21,10 @@ Representative quotes
 Assessment: Must have / Nice to have / Don’t care (how the interviewee sees the solution)
 Grading criteria (15 points): You should have at least the required number of interviews. For each interview, you should report the required information. The insight should be grounded on the interview and illustrated by the representative quotes.
 
-### Who: B.S. Data Science student
-When: 2/1/2025
+### Interview 1
+B.S. Data Science student
+2/1/2025
+
 1. Can you describe your experience with student research in the Mathematics & Statistics
 department?
 I personally have not done any formal student research for the department.
@@ -47,8 +49,9 @@ Yes, we could easily link this to our resume and showcase what we have done duri
 Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area.
 
 
-### Who: Dr. Robert Buscaglia
-When: 1/31/2025
+### Interview 2
+Dr. Robert Buscaglia
+1/31/2025
 
 1. Can you describe your experience with student research in the Mathematics & Statistics department?
 I love student research and often helps students in that area. 
@@ -75,8 +78,38 @@ As stated earlier Dr. B emphasized his enthusiasm for the project and is going t
 He didn't comment too much on this but stated again the need for multiple media formats. 
 
 9. Would you be willing to approve or curate student submissions?
-Dr. B stated this could be possible but it would be up to the department. 
+Dr. B stated this could be possible but it would be up to the department.
 
+### Interview 3: 
+
+Igor Steinmacher by Rylan Harris via email
+January 31
+
+1. What is your role in the department?
+    I am currently an assistant professor, responsible for the CS Capstone projects
+
+2. How do you interact with student research and projects?
+    This can be a long conversation, depending on what you want to know. I work with a few students on research (outside of the capstone context), in the capstone projects, I work more on the organization and problem-resolution side. I interact with potential clients to get proposals from people in industry and academia. We work together to come up with interesting projects for the students. Then, I pitch the projects to the students, who bid on them. Then, I assign teams to the proposals. My interface from the moment the projects are assigned on is with the team mentors (GTAs who manage the teams). I work on the backstage, guaranteeing that the projects are moving forward, and I teach the lectures on topics that are important to the teams during the semester.
+
+3. How do you interface with the website or update it with new projects?
+    I use SFTP and manually update the projects and HTML using a text editor.
+
+4. What challenges do you face with the existing system?
+    Well... there is no actual system haha. So, anything that could be updateable directly via web interface would be amazing. Like, every semester there is a ton of renaming, creating folders, archiving, etc. to guarantee that we keep the history.
+
+5. Are there any concerns about submitting or accessing research on the site?
+    I did not understand the questions, I think. I think the previous answer may somehow cover this question.
+
+6. Are there any changes you'd like to see in the existing system?
+    Again, there is no system 😉
+
+7. What are the most important features as an administrator?
+    It would be great to have such a system to enable creating new semesters, automatically updating the pages, having a way to upload the proposals and move away from the FTP and text editors.
+
+8. What level of oversight would you want for research submissions? Do you want direct control, or would you prefer a submission-approval method?
+    If we are talking about the proposals from the community: Submission approval is the way to go (with interaction with the submitters)for us because we have multiple rounds of polishing and adjusting to have a final version of the proposals aligned with our goals (it is an iterative and incremental approach).
+
+The customer segment I'm targetting here is those that act as administrators/maintenance for the website. Clearly, some of my questions were a bit confusing but the core of the feedback that I took away is that he would like to have a web interface so that he doesn't have to manually manage the projects and add them into the html. It also appeared that having an avenue for interested third party sponsors to reach out would be helpful as well. Though he the knowledge to edit the website himself, he still voiced interest in having a web interface to improve ease of use. Because they already have a similar website, our solution would be a "nice to have" for the added accessibility.
 
 ## 4. Final value proposition and consumer segments
 Report the refined versions of these elements (the ones that you reached after the interviews).
