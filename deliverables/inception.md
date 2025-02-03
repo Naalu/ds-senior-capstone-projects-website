@@ -43,7 +43,7 @@ Yes, if that was integrated into the BS DS program I think it would highly benef
 An easy upload system.
 10. Would this help when applying for jobs, internships, or graduate school?
 Yes, we could easily link this to our resume and showcase what we have done during our academic journey.
-11. Would you be more likely to submit research if the faculty approved it first
+11. Would you be more likely to submit research if the faculty approved it first?
 Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area.
 
 
