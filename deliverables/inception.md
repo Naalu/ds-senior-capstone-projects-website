@@ -47,6 +47,7 @@ Yes, we could easily link this to our resume and showcase what we have done duri
 11. Would you be more likely to submit research if the faculty approved it first?<br />
 Yes, one hundred percent. I know there are a lot of politics that your have to deal within that area.
 
+Assessment: Nice to have. The student seeed indifferent on some of the questions but if it is easy to use they showed interest in using the website. 
 
 ### Interview 2
 Dr. Robert Buscaglia<br />
@@ -73,11 +74,14 @@ Yes, one of the first assignments in the BS DS Capstone is to look at past proje
 7. Would you find it helpful to have a structured, department-wide research archive?<br />
 As stated earlier Dr. B emphasized his enthusiasm for the project and is going to help us throughout the semester to make this idea come to light. 
 
-8. What level of oversight would you want for research submissions?<br />
+9. What level of oversight would you want for research submissions?<br />
 He didn't comment too much on this but stated again the need for multiple media formats. 
 
-9. Would you be willing to approve or curate student submissions?<br />
+10. Would you be willing to approve or curate student submissions?<br />
 Dr. B stated this could be possible but it would be up to the department.
+
+
+Assessment: Must have. Dr. Buscaglia has show great interest in the idea and has offered a keen insight into the departments needs. Dr. B and the department are a clear audiance we are targeting and working with them will only help us create a better product. 
 
 ### Interview 3: 
 
