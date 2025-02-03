@@ -18,7 +18,7 @@ When<br />
 Customer segment<br />
 Key insights from the interview<br />
 Representative quotes<br />
-Assessment: Must have / Nice to have / Don’t care (how the interviewee sees the solution)
+Assessment: Must have / Nice to have / Don’t care (how the interviewee sees the solution)<br />
 Grading criteria (15 points): You should have at least the required number of interviews. For each interview, you should report the required information. The insight should be grounded on the interview and illustrated by the representative quotes.
 
 ### Interview 1
@@ -82,7 +82,7 @@ Dr. B stated this could be possible but it would be up to the department.
 ### Interview 3: 
 
 Igor Steinmacher by Rylan Harris via email
-January 31
+1/31/2025
 
 1. What is your role in the department?<br />
     I am currently an assistant professor, responsible for the CS Capstone projects
@@ -107,6 +107,13 @@ January 31
 
 8. What level of oversight would you want for research submissions? Do you want direct control, or would you prefer a submission-approval method?<br />
     If we are talking about the proposals from the community: Submission approval is the way to go (with interaction with the submitters)for us because we have multiple rounds of polishing and adjusting to have a final version of the proposals aligned with our goals (it is an iterative and incremental approach).
+
+### Interview 6
+
+Eck Doerry by Rylan Harris
+Scheduled for 2/4/2025
+
+Dr. Doerry was not available for an interview this week but this will be incorporated once it is completed.
 
 The customer segment I'm targetting here is those that act as administrators/maintenance for the website. Clearly, some of my questions were a bit confusing but the core of the feedback that I took away is that he would like to have a web interface so that he doesn't have to manually manage the projects and add them into the html. It also appeared that having an avenue for interested third party sponsors to reach out would be helpful as well. Though he the knowledge to edit the website himself, he still voiced interest in having a web interface to improve ease of use. Because they already have a similar website, our solution would be a "nice to have" for the added accessibility.
 
