@@ -4,7 +4,7 @@
 **Group:** 14  
 **Date:** TODAY'S DATE (YYYY-MM-DD)  
 **Location:** LOCATION  
-**Present participants:** Rylan (ROLE), Chris (ROLE), Jack (ROLE)  
+**Present participants:** Rylan (ROLE), Chris (ROLE), Jack (ROLE), Ethan (ROLE)  
 **Missing participants:** NONE  
 **Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
 
@@ -35,6 +35,9 @@ Describe what each individual has contributed to the project in the last week. P
 - Fixed several typos and UI issues (issue #300, #400, #430)
 - **GitHub Summary:** 3 resolved issues and 7 commits.
 
+**Ethan:**
+- Out sick this week.
+- **GitHub Summary:** No activity.
 ---
 
 ## 2. Retrospective
@@ -72,6 +75,9 @@ List the tasks that need to be completed, assign them to team members, and link 
 - Fix user settings bugs.
 - Work on Deliverable 2 during Monday meeting.
 
+**Ethan:**
+- Finish acceleration settings.
+- Work on Deliverable 2 during Monday meeting.
 ---
 
 ## Relevant Links
