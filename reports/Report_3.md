@@ -3,7 +3,7 @@
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
 **Date:** TODAY'S DATE (2025-02-09)  
-**Location:** LOCATION  
+**Location:** Online  
 **Present participants:** Rylan (Recorder), Chris (Reporter), Jack (QA), Ethan (Manager)
 **Missing participants:** NONE  
 **Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
