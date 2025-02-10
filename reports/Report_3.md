@@ -1,89 +1,96 @@
-# Report for Week #X: SHORT WEEKLY TITLE
+# Report for Week #4
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
-**Date:** TODAY'S DATE (YYYY-MM-DD)  
+**Date:** TODAY'S DATE (2025-02-09)  
 **Location:** LOCATION  
-**Present participants:** Rylan (ROLE), Chris (ROLE), Jack (ROLE)  
+**Present participants:** Rylan (Recorder), Chris (Reporter), Jack (QA), Ethan (Manager)
 **Missing participants:** NONE  
 **Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
 
 ---
 
 ## Executive Summary
-Provide a brief summary of the week's key updates and outcomes in 2-3 sentences.
+
+This was a rough week for the team. We had multiple members out sick and away,which slowed down our progress.
+We did manage to get some work done, but we are now a little behind schedule.
+We need to make up for lost time next week.
+We will be meeting on Monday to discuss our progress and make a plan for the coming week.
 
 ---
 
 ## 1. Activity Summary
-Describe what each individual has contributed to the project in the last week. Provide supporting documentation (e.g., issue numbers, commit IDs, meeting dates, etc.). Be honest if someone didn't contribute, and explain why.
 
-### Example:
+Rylan drove much of the progress.  Most of the team was out sick or away, so we did not make as much progress as we had hoped.
+We discussed our project after having done interviews and in light of the *new-to-us* use cases.
+We also discussed what a minimum viable product (MVP) would look like for our project.
+Finally, we discussed the need to identify and document the core features of our project that we will need to implement first.
+Not much activity on GitHub this week, but a clearer picture of the project is emerging.
+
+### Example
+
 **Rylan:**
-- Added setting page for velocity (issue #234, commit b345005)
-- Added documentation for importing the physics module (commit 6c7b005)
-- Contributed to discussion of new design using UML class diagrams (7/21)
-- **GitHub Summary:** 1 resolved issue and 2 commits.
+
+- Completed the last remaining outstanding interview.
+- Worked on the UML diagrams for our different user types.
+- **GitHub Summary:** *none*
 
 **Chris:**
-- Out sick this week.
-- **GitHub Summary:** No activity.
+
+- Family medical emergency kept Chris away from the project.
+- Met with the group on Friday to help synthesize the week's work, and results of interviews.
+- **GitHub Summary:** *none*
 
 **Jack:**
-- Integrated new shopping cart (commit b345005)
-- Lead discussion of new design using UML class diagrams (7/21)
-- Fixed several typos and UI issues (issue #300, #400, #430)
-- **GitHub Summary:** 3 resolved issues and 7 commits.
+
+- Sick for most of the week, but managed to relay some feedback on our work.
+- **GitHub Summary:** *none*
 
 **Ethan:**
-- Integrated new shopping cart (commit b345005)
-- Lead discussion of new design using UML class diagrams (7/21)
-- Fixed several typos and UI issues (issue #300, #400, #430)
-- **GitHub Summary:** 3 resolved issues and 7 commits.
+
+- Sick for most of the week, but managed to relay some feedback on our work.
+- **GitHub Summary:** *none*
+
 ---
 
 ## 2. Retrospective
-Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
-1. **Appreciations:** Highlights of contributions from team members.
-2. **Successes:** What went well.
-3. **Failures:** What did not go well.
-4. **Barriers:** Things blocking maximum team performance.
-5. **What we should try next time:** Ideas for improvement.
-
-### Example:
-1. **Appreciations:** Jack was the MVP this week with significant bug fixes that make the product usable.
-2. **Successes:** The demo we did went off without a hitch. The documentation is much more usable.
-3. **Failures:** The UML for the new design is still not complete.
-4. **Barriers:** With one of our team members sick, it was difficult to make the progress we had hoped for.
-5. **What we should try next time:** We really need Chris's help and hope he is feeling better next week.
+1. **Appreciations:** Rylan kept the team moving forward and was our rockstar for the week. He kept everyone aware of the project status and helped to keep the project moving forward.  Completed the last remaining outstanding interview.
+2. **Successes:** Maintained communication among team members despite multiple members being out sick.  Discussed the project in light of the use cases and identified the core features of the project.
+3. **Failures:** Made little progress on GitHub this week.  We are now a little behind schedule.
+4. **Barriers:** Multiple team members were out sick or away this week, which slowed down our progress.
+5. **What we should try next time:** Having a clearer plan for when team members are out sick.
 
 ---
 
 ## 3. Next Steps
+
 List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues.
 
-### Example:
+### Example
+
 **Rylan:**
-- Finish acceleration settings.
-- Work on Deliverable 2 during Monday meeting.
+
+- Begin development. [Issue # 4](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/4)
+- Outline the core features of the MVP. [Issue #3](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/3)
+- Assign tasks to team members.
 
 **Chris:**
-- Review and edit UML diagrams for the new core module.
-- Work on Deliverable 2 during Monday meeting.
+
+- Begin development. [Issue # 5](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/5)
+- Outline the core features of the MVP. [Issue #3](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/3)
+- Assign tasks to team members.
 
 **Jack:**
-- Integrate new recommender system.
-- Fix user settings bugs.
-- Work on Deliverable 2 during Monday meeting.
+
+- Begin development. [Issue # 6](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/6)
+- Outline the core features of the MVP. [Issue #3](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/3)
+- Assign tasks to team members.
 
 **Ethan:**
-- Integrate new recommender system.
-- Fix user settings bugs.
-- Work on Deliverable 2 during Monday meeting.
----
 
-## Relevant Links
-Include any links to tools, documents, or resources used this week.
-- [Link description](URL)
-- [Link description](URL)
+- Begin development. [Issue # 7](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/7)
+- Outline the core features of the MVP. [Issue #3](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/3)
+- Assign tasks to team members.
+  
+---
