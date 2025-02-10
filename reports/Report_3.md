@@ -32,7 +32,7 @@ Not much activity on GitHub this week, but a clearer picture of the project is e
 **Rylan:**
 
 - Completed the last remaining outstanding interview.
-- Worked on the UML diagrams for our different user types.
+- Worked on the use cases for our different user types.
 - **GitHub Summary:** *none*
 
 **Chris:**
