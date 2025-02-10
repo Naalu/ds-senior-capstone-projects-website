@@ -2,17 +2,17 @@
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
-**Date:** TODAY'S DATE (2025-02-09)  
+**Date:** 2025-02-09
 **Location:** Online  
 **Present participants:** Rylan (Recorder), Chris (Reporter), Jack (QA), Ethan (Manager)
 **Missing participants:** NONE  
-**Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
+**Project repo:** [Link to our Repo](https://github.com/Naalu/ds-senior-capstone-projects-website)  
 
 ---
 
 ## Executive Summary
 
-This was a rough week for the team. We had multiple members out sick and away,which slowed down our progress.
+This was a rough week for the team. We had multiple members out sick and away, which slowed down our progress.
 We did manage to get some work done, but we are now a little behind schedule.
 We need to make up for lost time next week.
 We will be meeting on Monday to discuss our progress and make a plan for the coming week.
@@ -37,8 +37,8 @@ Not much activity on GitHub this week, but a clearer picture of the project is e
 
 **Chris:**
 
-- Family medical emergency kept Chris away from the project.
-- Met with the group on Friday to help synthesize the week's work, and results of interviews.
+- A family medical emergency kept Chris away from the project.
+- Met with the group on Friday to help synthesize the group's progress, and the results of interviews.
 - **GitHub Summary:** *none*
 
 **Jack:**
