@@ -45,8 +45,8 @@ By providing a **well-structured and accessible platform**, this project aims to
 1. Clone the repository:
 
    ```bash
-   git clone <GITHUB_REPO_URL>
-   cd research_showcase
+   git clone https://github.com/Naalu/ds-senior-capstone-projects-website/tree/main
+   cd ds-senior-capstone-projects-website/research_showcase
    ```
 
 2. Create and activate a virtual environment:
@@ -78,7 +78,7 @@ By providing a **well-structured and accessible platform**, this project aims to
 
 ```bash
    git clone https://github.com/Naalu/ds-senior-capstone-projects-website.git
-   cd research_showcase
+   cd ds-senior-capstone-projects-website/research_showcase
    python -m venv venv
    source venv/bin/activate
    pip install -r requirements.txt
