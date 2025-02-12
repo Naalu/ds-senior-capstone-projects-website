@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Research Showcase{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron text-center bg-light p-5 rounded shadow-lg">
+        <h1 class="display-4">Welcome to the Research Showcase</h1>
+        <p class="lead">A platform for submitting and reviewing research projects.</p>
+        
+        <hr class="my-4">
+        
+        <p>Explore research projects, submit your own, or review pending submissions.</p>
+        
+        <div class="d-flex justify-content-center gap-3">
+            <a class="btn btn-primary btn-lg px-4" href="{% url 'submit_research' %}">
+                <i class="bi bi-upload"></i> Submit Research
+            </a>
+            <a class="btn btn-success btn-lg px-4" href="{% url 'review_research' %}">
+                <i class="bi bi-check-circle"></i> Review Research
+            </a>
+        </div>
+    </div>
+
+    <!-- Information Cards Section -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-primary"><i class="bi bi-mortarboard"></i> For Students</h5>
+                    <p class="card-text">Submit your research projects and collaborate with peers and faculty members.</p>
+                    <a href="{% url 'submit_research' %}" class="btn btn-outline-primary">Submit Research</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-success"><i class="bi bi-clipboard-check"></i> For Faculty</h5>
+                    <p class="card-text">Review and approve research submissions, and provide feedback to students.</p>
+                    <a href="{% url 'review_research' %}" class="btn btn-outline-success">Review Research</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

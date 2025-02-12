@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Research Review{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="text-center my-4">Research Projects for Review</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>PDF</th>
+                    <th>Poster</th>
+                    <th>Presentation</th>
+                    <th>GitHub</th>
+                    <th>Video</th>
+                    <th>Sponsor</th>
+                    <th>Collaborators</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td><strong>{{ project.title }}</strong></td>
+                    <td><em>{{ project.author.username }}</em></td>
+
+                    <td>
+                        {% if project.pdf_file %}
+                            <a href="{{ project.pdf_file.url }}" target="_blank" class="btn btn-sm btn-primary">View Paper</a>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">No PDF</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if project.poster_image %}
+                            <img src="{{ project.poster_image.url }}" alt="Poster" width="80">
+                        {% else %}
+                            <span class="badge bg-warning text-dark">No Poster</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if project.presentation_file %}
+                            <a href="{{ project.presentation_file.url }}" target="_blank" class="btn btn-sm btn-info">View Slides</a>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">No Slides</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if project.github_link %}
+                            <a href="{{ project.github_link }}" target="_blank" class="btn btn-sm btn-secondary">GitHub Repo</a>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">No GitHub</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if project.video_link %}
+                            <a href="{{ project.video_link }}" target="_blank" class="btn btn-sm btn-success">Watch Video</a>
+                        {% else %}
+                            <span class="badge bg-warning text-dark">No Video</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if project.project_sponsor %}
+                            {{ project.project_sponsor }}
+                        {% else %}
+                            <span class="badge bg-secondary">N/A</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        {% if project.collaborators.all %}
+                            {{ project.collaborators.all|join:", " }}
+                        {% else %}
+                            <span class="badge bg-secondary">No Collaborators</span>
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <a href="{% url 'approve_research' project.id %}" class="btn btn-success btn-sm">Approve</a>
+                        <a href="{% url 'reject_research' project.id %}" class="btn btn-danger btn-sm">Reject</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="10" class="text-center text-muted">No pending research projects.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
