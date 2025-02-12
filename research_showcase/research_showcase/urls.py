@@ -16,9 +16,17 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.shortcuts import render
 from django.urls import include, path
 
+
+def home_view(request):
+    return render(request, "home.html")
+
+
 urlpatterns = [
+    path("", home_view, name="home"),
     path("admin/", admin.site.urls),
     path("users/", include("users.urls")),
+    path("research/", include("research.urls")),
 ]
