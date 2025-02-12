@@ -1,9 +1,9 @@
-# Report for Week #X: SHORT WEEKLY TITLE
+# Report #4
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
-**Date:** TODAY'S DATE (YYYY-MM-DD)  
-**Location:** LOCATION  
+**Date:** 2/12/2025
+**Location:** online
 **Present participants:** Rylan (ROLE), Chris (ROLE), Jack (ROLE), Ethan (ROLE)  
 **Missing participants:** NONE  
 **Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
