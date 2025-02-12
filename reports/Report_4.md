@@ -30,10 +30,7 @@ Describe what each individual has contributed to the project in the last week. P
 - **GitHub Summary:** No activity.
 
 **Jack:**
-- Integrated new shopping cart (commit b345005)
-- Lead discussion of new design using UML class diagrams (7/21)
-- Fixed several typos and UI issues (issue #300, #400, #430)
-- **GitHub Summary:** 3 resolved issues and 7 commits.
+- Researched into Django use in Python
 
 **Ethan:**
 - Out sick this week.
