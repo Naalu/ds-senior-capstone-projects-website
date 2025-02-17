@@ -382,18 +382,69 @@ Alternate Scenario:
 
 ## 7. User Stories
 
-1. As a Math and Stats Professor, I want to store capstone projects in a central location so that I can reference and store them more easily.
+1. As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
 
-2. As a website administrator, I want to have a website that lets me update the capstone repository so that I don't have to manually edit html and file structures to keep it up to date.
+Criteria:
+- Functionality for documents (PDF, LaTeX) and supplementary files (data sets, code, etc.).
+- Ability to add a project title, description, and keywords.
+- Option to tag faculty or collaborators related to the project.
 
-3. As a data science student, I want look at past data science capstones so that I can get a better idea of what to do for my own.
+Estimation:
+- Very Important
+- 2-3 weeks
 
-4. As a company research, I want look through capstone projects so that I can see if I want to propose a research project with a college.
+2. As an administrator,  I want to store capstone projects in a central location so that I can store and manage them more easily.
 
-5. As a <ROLE>, I want <SOMETHING> so that <GOAL>.
+Criteria:
+- Simple web interface for uploading new projects.
+- Admin panel to manage and edit stored research and projects.
+- Ability to control who can upload projects.
 
-6. As a <ROLE>, I want <SOMETHING> so that <GOAL>.
+Estimation:
+- Very Important
+- 2-3 weeks
 
+3. As a student, I want to search for capstone projects from previous years so that I can use them as references or inspiration for my own work.
+
+Criteria:
+- Search bar and filter options to explore past projects by year, topic, or project type.
+- Ability to view project summaries and abstract information.
+
+Estimation:
+- Important
+- 2 weeks
+
+4. As a prospective employer, I want to view a student's capstone project so that I can evaluate their skills and potential for job opportunities.
+
+Criteria:
+- Ability to search for capstone projects by relevant industry-related keywords.
+- Option to view the student's project details, including an abstract, key findings, and outcomes.
+- Option to download or request access to full reports or supplementary materials.
+
+Estimation:
+- Fairly Important
+- 3 days
+
+5. As a company research coordinator,  I want look review capstone projects so that I can assess the quality of past research and propose a research project with a college.
+
+Criteria:
+- Ability to search for capstone projects by relevant industry-related keywords.
+- Ability to contact website administrator or faculty to inquire about sponsoring research.
+
+Estimation:
+- Fairly Important
+- 3 days
+
+6. As a faculty member, I want to browse through capstone projects so that I can review student work and provide feedback.
+
+Criteria:
+- Search and filter options for browsing projects by topic, student name, year, and keywords.
+- Preview of project summaries and a link to view detailed information.
+- Access to provide feedback or comments for each project.
+
+Estimation:
+- Somewhat Important
+- 2 weeks
 
 Write two user stories for each member of the group. They can be related to the same features described in the use cases or to different ones. Adopt the following format: "As a <ROLE>, I want <SOMETHING> so that <GOAL>."
 
