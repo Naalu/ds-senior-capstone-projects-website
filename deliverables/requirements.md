@@ -9,6 +9,8 @@ Team 14
 - Karl Reger
 - Rylan Harris-Small
 
+------------------------------------------------------------------------
+
 ## 1. Positioning
 
 ### Problem statement
@@ -30,6 +32,8 @@ The **Mathematics & Statistics Research Showcase** is a **web-based research rep
 1. **Students** with no structured way to showcase research for grad schools and employers.
 2. **Faculty** with no centralized database for referencing past projects or advising students.
 3. **External Evaluators (employers, graduate schools, prospective students)** lacking an easy way to assess student work in the department.
+
+------------------------------------------------------------------------
 
 ## 2. Stakeholders
 
@@ -95,6 +99,8 @@ The **Mathematics & Statistics Research Showcase** is a **web-based research rep
 
 - Address bugs and continuously improve the user experience.
 
+------------------------------------------------------------------------
+
 ## 3. Functional Requirements (features)
 
 1. **Faculty Registration & Authentication**
@@ -126,16 +132,13 @@ The **Mathematics & Statistics Research Showcase** is a **web-based research rep
         3. Manage faculty accounts and system settings.
 10. **User Notifications**
     1. Faculty must receive notifications when:
+        1. Their research is approved or requires revision.
+    2. Admins must receive notifications when:
+        1. A new research submission is pending review.
+11. **External Research Sharing**
+    1. The system must allow users to generate shareable links for research projects.
 
-o   Their research is approved or requires revision.
-
-o   Admins must receive notifications when:
-
-o   A new research submission is pending review.
-
-11.  External Research Sharing
-
-o   The system must allow users to generate shareable links for research projects.
+------------------------------------------------------------------------
 
 ## 4. Non-Functional Requirements
 
@@ -201,17 +204,19 @@ o   The system must allow users to generate shareable links for research proje
 
         2. **User Environment Adaptability** – The platform must be **fully functional on mobile devices** without requiring additional software.
 
-7. **Accessibility (ISO-IEC: Usability → Accessibility)**
+**Accessibility (ISO-IEC: Usability → Accessibility)**
 
-    1. **Significance:** Faculty and admins with disabilities must be able to use the system without barriers.
+1. **Significance:** Faculty and admins with disabilities must be able to use the system without barriers.
 
-    2. **Verifiability:**
+2. **Verifiability:**
 
-        1. The platform must comply with **WCAG 2.1 AA accessibility standards** (e.g., keyboard navigation, screen reader support).
+    1. The platform must comply with **WCAG 2.1 AA accessibility standards** (e.g., keyboard navigation, screen reader support).
 
-        2. All interactive elements must be **navigable via keyboard shortcuts** without requiring a mouse.
+    2. All interactive elements must be **navigable via keyboard shortcuts** without requiring a mouse.
 
-   ## 5. Minimum Viable Product
+------------------------------------------------------------------------
+
+## 5. Minimum Viable Product
 
 ### **Definition of the MVP**
 
@@ -219,67 +224,69 @@ The Mathematics & Statistics Research Showcase MVP will enable faculty to submit
 
 ### **Essential MVP Features**
 
-#### Faculty Authentication & Role-Based Access Control (RBAC)  
+#### Faculty Authentication & Role-Based Access Control (RBAC)
 
 - Faculty can log in using their university credentials or email authentication.
 
 - Administrators possess specific permissions for reviewing and approving research.
 
-#### Faculty Research Submission Portal  
+#### Faculty Research Submission Portal
 
 - Faculty can submit research on behalf of students by providing the title, student author(s), research category, faculty advisor, and file attachments (PDF, PPT, images).
 
-#### Admin Review & Approval Workflow  
+#### Admin Review & Approval Workflow
 
 - Administrators can approve, request revisions, or reject research submissions.
 
 - Faculty receive automated notifications regarding approvals or revision requests.
 
-#### Research Browsing & Viewing  
+#### Research Browsing & Viewing
 
 - Users can browse approved research projects organized by research area, faculty advisor, and keywords.
 
-#### Search & Filtering System  
+#### Search & Filtering System
 
 - Users can search for projects by title, research category, faculty advisor, and keywords.
 
-### MVP Validation Strategy  
+### MVP Validation Strategy
 
-#### Faculty Authentication & Role-Based Access Control  
+#### Faculty Authentication & Role-Based Access Control
 
 - Validation: Test authentication processes for faculty and administrative roles.
 
 - Success Criteria: Faculty and administrators can **log in** **within 10 seconds**, and unauthorized users **cannot access restricted features**.
 
-#### Faculty Research Submission Portal  
+#### Faculty Research Submission Portal
 
 - Validation: Faculty complete test submissions under real-world conditions.
 
 - Success Criteria: Faculty **submit** research in **5 minutes or less**, including all necessary metadata and attachments.
 
-#### Admin Review & Approval Workflow  
+#### Admin Review & Approval Workflow
 
 - Validation: Administrators review and either approve or reject test submissions.
 
 - Success Criteria: Administrators can **approve or reject** research in **3 minutes or less**.
 
-#### Research Browsing & Viewing  
+#### Research Browsing & Viewing
 
 - Validation: Users navigate and browse published research projects.
 
 - Success Criteria: Users can **access and view** a research project **within 5 clicks** from the homepage.
 
-#### Search & Filtering System  
+#### Search & Filtering System
 
 - Validation: Users conduct targeted searches using various filter combinations.
 
 - Success Criteria: Searches **return relevant results in 3 seconds or less for \>90% of queries**.
 
+------------------------------------------------------------------------
+
 ## 6. Use cases
 
 ![use case diagram](images/UseCase.drawio.svg)
 
-Use Case 1: Submit Research
+Use Case 1: *Submit Research*
 
 Actor: Faculty
 
@@ -305,7 +312,7 @@ Alternate Scenario:
 
 ![use case diagram](images/UseCase1.svg)
 
-Use Case 2: Approve/Reject Research
+Use Case 2: *Approve/Reject Research*
 
 Actor: Admin
 
@@ -331,7 +338,7 @@ Alternate Scenario:
 
 ![use case diagram](images/UseCase2.svg)
 
-Use Case 3: Browse Research
+Use Case 3: *Browse Research*
 
 Actor: Faculty, Admins, Visitors
 
@@ -355,7 +362,7 @@ Alternate Scenario:
 
 ![use case diagram](images/UseCase3.svg)
 
-Use Case 4: Search Research
+Use Case 4: *Search Research*
 
 Actor: Faculty, Admins, Visitors
 
@@ -382,24 +389,60 @@ Alternate Scenario:
 
 ## 7. User Stories
 
-1. As a Math and Stats Professor, I want to store capstone projects in a central location so that I can reference and store them more easily.
+1. *As a Math and Stats Professor, I want to store capstone projects in a central location so that I can reference and store them more easily.*
 
-2. As a website administrator, I want to have a website that lets me update the capstone repository so that I don't have to manually edit html and file structures to keep it up to date.
+    **Priority:** High
 
-3. As a data science student, I want look at past data science capstones so that I can get a better idea of what to do for my own.
+    **Effort Estimate:** 6 hours
 
-4. As a company research, I want look through capstone projects so that I can see if I want to propose a research project with a college.
+2. *As a website administrator, I want to have a website that lets me update the capstone repository so that I don't have to manually edit html and file structures to keep it up to date.*
 
-5. As a <ROLE>, I want <SOMETHING> so that <GOAL>.
+    **Priority:** Medium
 
-6. As a <ROLE>, I want <SOMETHING> so that <GOAL>.
+    **Effort Estimate:** 6 hours
 
+3. *As a data science student, I want look at past data science capstones so that I can get a better idea of what to do for my own.*
 
-Write two user stories for each member of the group. They can be related to the same features described in the use cases or to different ones. Adopt the following format: "As a <ROLE>, I want <SOMETHING> so that <GOAL>."
+    **Priority:** High
 
-Establish a priority level for each user story and estimate how many hours each one will demand using the planning poker approach.
+    **Effort Estimate:** 12 Hours
 
-Grading criteria (6 points): Use the provided format. The user stories should be in an adequate level of granularity (not too broad nor too specific). Provide the priority and estimation for each user story.
+4. *As a company, I want look through capstone projects so that I can see if I want to propose a research project collaboration with the department.*
+
+    **Priority:** Low
+
+    **Effort Estimate:** 12 Hours
+
+5. *As a faculty member, I want to submit research on behalf of students so that their work can be officially archived and showcased.*
+
+    **Priority:** Medium
+
+    **Effort Estimate:** 6 hours
+
+6. *As an admin, I want to review research submissions and approve or reject them so that only high-quality work is published.*
+
+    **Priority:** Medium
+
+    **Effort Estimate:** 6 hours
+
+7. *As a faculty member, I want to receive notifications about my research submission status so that I know when it is approved or requires revisions.*
+
+    **Priority:** Low
+
+    **Effort Estimate:** 12 hours
+
+8. *As an admin, I want to request revisions on submitted research so that faculty can improve the quality before approval.*
+    **Priority:** Medium
+
+    **Effort Estimate:** 12 hours
+
+9. *As a visitor, I want to search for research using keywords, faculty names, and categories so that I can quickly find relevant projects.*
+
+    **Priority:** High
+
+    **Effort Estimate:** 24 hours
+
+------------------------------------------------------------------------
 
 ## 8. Issue Tracker
 
@@ -409,8 +452,23 @@ Grading criteria (1 point): Provide the URL and screenshot of the issue tracker.
 
 Format Your document should be composed in Markdown and hosted on GitHub but you should also turn in a PDF copy to be graded. See also Converting GitHub Markdown to PDF. Sections should use appropriate markdown and figures should be included if needed or appropriate.
 
-Teamwork The contribution of each team member may be different but we expect the amount of work to be roughly even. When you submit the deliverable, the person submitting the deliverable should describe what each member worked on and a rough percentage estimation of their contribution as a submission comment. Here's an example:
+------------------------------------------------------------------------
 
-John Doe (40%) – Conducted 2 interviews, wrote section 2.3, and reviewed the whole document. Mary Shawn (40%) – Conducted 1 interview, wrote sections 1 and 2.1, reviewed section 2.3, and worked on the source code. Lucy Johnson (20%) – Wrote section 2.2 and performed code review. We will also be reviewing your github repository, which should also reflect the work happening in your team. Every team member should be committing and making meaningful contributions in your repository.
+## Teamwork
+
+The contribution of each team member may be different but we expect the amount of work to be roughly even. When you submit the deliverable, the person submitting the deliverable should describe what each member worked on and a rough percentage estimation of their contribution as a submission comment. Here's an example:
+
+John Doe (40%) – Conducted 2 interviews, wrote section 2.3, and reviewed the whole document.
+
+Mary Shawn (40%) – Conducted 1 interview, wrote sections 1 and 2.1, reviewed section 2.3, and worked on the source code.
+
+Lucy Johnson (20%) – Wrote section 2.2 and performed code review.
+
+- Ethan Ferguson ()
+- Jack Tomlon ()
+- Karl Reger ()
+- Rylan Harris-Small ()
+
+We will also be reviewing your github repository, which should also reflect the work happening in your team. Every team member should be committing and making meaningful contributions in your repository.
 
 Individual grades may be reduced based on a combination of what we see in the deliverable summary and github contributions. If there's no evidence that a team member contributed to the deliverable, they should absolutely expect to receive a zero!
