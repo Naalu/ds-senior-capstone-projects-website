@@ -70,10 +70,8 @@ List the tasks that need to be completed, assign them to team members, and link 
 - Work on Deliverable 2 during Monday meeting.
 
 **Jack:**
-- Integrate new recommender system.
-- Fix user settings bugs.
-- Work on Deliverable 2 during Monday meeting.
-
+- Finish creating Sample data
+   
 **Ethan:**
 - Finish acceleration settings.
 - Work on Deliverable 2 during Monday meeting.
