@@ -277,7 +277,98 @@ The Mathematics & Statistics Research Showcase MVP will enable faculty to submit
 
 ## 6. Use cases
 
-- Include a UML use case diagram for your project. There are many drawing tools that you can use. I recommend the one we used in class, draw.io.
+![use case diagram](images/UseCase.drawio.svg)
+
+Use Case 1: Submit Research
+Actor: Faculty
+Trigger: Faculty decides to submit a research project.
+Pre-conditions: Faculty is logged in.
+Post-condition: Research submission is recorded and pending admin review.
+Success Scenario:
+1. Faculty provides research details (title, student author(s), research category, and faculty advisor).
+2. The faculty uploads the research file.
+3. The system validates the submission and stores the file.
+4. The system marks the research as “Pending Review.”
+5. The system notifies admins that a new research submission is awaiting approval.
+
+Alternate Scenario:
+1. The system detects an invalid file format or missing information.
+2. The system informs the faculty of the issue and requests corrections.
+3. The faculty resubmits the corrected research.
+
+![use case diagram](images/UseCase1.svg)
+
+Use Case 2: Approve/Reject Research
+Actor: Admin
+Trigger: Admin decides to review a submitted research project.
+Pre-conditions: Admin is logged in, and research submission is pending.
+Post-condition: The research is either approved (published) or rejected (removed from the review queue).
+Success Scenario:
+1. Admin selects a pending research submission.
+2. Admin reviews the research details and attached file.
+3. Admin decides to approve the research.
+4. The system marks the research as “Approved” and moves it to public access.
+5. The system notifies faculty that their research has been approved.
+
+Alternate Scenario:
+3. Admin rejects the submission due to poor quality or policy violations.
+4. The system marks the submission as “Rejected.”
+5. The system notifies faculty that the submission has been rejected.
+
+![use case diagram](images/UseCase2.svg)
+
+Use Case 3: Browse Research
+Actor: Faculty, Admins, Visitors
+Trigger: A user wants to explore published research projects.
+Pre-conditions: The system has approved research projects.
+Post-condition: The user successfully views research project details.
+Success Scenario:
+1. The user accesses the research repository.
+2. The system presents a list of published research projects.
+3. The user selects a research project to view details.
+4. The system displays the research title, student author(s), faculty advisor, and attached files.
+
+Alternate Scenario:
+2. No research projects are available.
+3. The system informs the user that no research has been published yet.
+
+![use case diagram](images/UseCase3.svg)
+
+Use Case 4: Search Research
+Actor: Faculty, Admins, Visitors
+Trigger: A user wants to find specific research.
+Pre-conditions: Approved research projects exist in the system.
+Post-condition: The user successfully retrieves relevant research results.
+Success Scenario:
+1. A user enters a search query (keywords, faculty advisor, category).
+2. The system retrieves relevant research projects based on search criteria.
+3. The system displays matching results.
+4. The user selects a project from the results.
+5. The system presents the research details and attached files.
+
+Alternate Scenario:
+3. No matching results are found.
+4. The system informs the user that no projects match the search criteria.
+
+![use case diagram](images/UseCase4.svg)
+
+## 7. User Stories
+
+1. As a Math and Stats Professor, I want to store capstone projects in a central location so that I can reference and store them more easily.
+
+2. As a website administrator, I want to have a website that lets me update the capstone repository so that I don't have to manually edit html and file structures to keep it up to date.
+
+3. As a data science student, I want look at past data science capstones so that I can get a better idea of what to do for my own.
+
+4. As a company research, I want look through capstone projects so that I can see if I want to propose a research project with a college.
+
+5. As a <ROLE>, I want <SOMETHING> so that <GOAL>.
+
+6. As a <ROLE>, I want <SOMETHING> so that <GOAL>.
+
+
+
+
 =======
 In this deliverable, you will report the results for the requirements engineering for your product. Structure your deliverable using the following sections. When preparing your deliverable, don't add the explanation text from this document. 
 
