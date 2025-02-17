@@ -31,6 +31,8 @@ Describe what each individual has contributed to the project in the last week. P
 
 **Jack:**
 - Researched into Django use in Python
+- Creating Sample data to work with
+- **GitHub Summary:** No activity
 
 **Ethan:**
 - Out sick this week.
