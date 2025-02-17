@@ -27,12 +27,12 @@ Describe what each individual has contributed to the project in the last week. P
 
 **Chris:**
 - Out sick this week.
-- **GitHub Summary:** No activity.
+- **GitHub Summary:** 7 commits
 
 **Jack:**
 - Researched into Django use in Python
 - Creating Sample data to work with
-- **GitHub Summary:** No activity
+- **GitHub Summary:** 4 commits
 
 **Ethan:**
 - Sick on Monday but was told what has to be done for the project and reviewed the code that needs to be fixed.
