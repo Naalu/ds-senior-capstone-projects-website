@@ -6,19 +6,17 @@
 **Location:** online
 **Present participants:** Rylan (Manager), Chris (Recorder), Jack (Reporter), Ethan (QA)  
 **Missing participants:** NONE  
-**Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
+**Project repo:** [https://github.com/Naalu/ds-senior-capstone-projects-website](https://github.com/Naalu/ds-senior-capstone-projects-website)  
 
 ---
 
 ## Executive Summary
-This week Ethan was sick on Monday so he wasnt able to get much work done but was updated on what was happening on Wednesday. This week the group has gotten a significant amount of work done on the project and is making good progress.
+This week Ethan was sick on Monday so he wasnt able to get much work done but was updated on what was happening on Wednesday. This week the group has gotten a significant amount of work done on the project and is making good progress.  The groundwork of a website with an admin page, log-in, research submission, and review process has been created. Completed the requirements deliverable.
 
 ---
 
 ## 1. Activity Summary
-Describe what each individual has contributed to the project in the last week. Provide supporting documentation (e.g., issue numbers, commit IDs, meeting dates, etc.). Be honest if someone didn't contribute, and explain why.
 
-### Example:
 **Rylan:**
 - Added setting page for velocity (issue #234, commit b345005)
 - Added documentation for importing the physics module (commit 6c7b005)
@@ -26,8 +24,18 @@ Describe what each individual has contributed to the project in the last week. P
 - **GitHub Summary:** 1 resolved issue and 2 commits.
 
 **Chris:**
-- Out sick this week.
-- **GitHub Summary:** 7 commits
+- Built consensus to use Django.
+- Began creation of the app.
+- Updated README including adding contributor instructions.
+- Implemented & Tested basic user authentication
+- Added Research and Colluquim models
+- Created Research Submission Form
+- Implemented Work Flow for research submissions
+- Created virtual environment process and set up requirements.txt for group
+- Created SQLite DB, wrote and implemented migrations
+- Wrote substantial portion of requirements document
+- **GitHub Summary:** 1 resolved issue, 6 branch merges, 14 commits
+
 
 **Jack:**
 - Researched into Django use in Python
@@ -54,19 +62,26 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 
 
 **Rylan:**
-- Finish acceleration settings.
-- Work on Deliverable 2 during Monday meeting.
+- Design Homepage (look/feel)
+- Begin work on the home template
+- Gain familiarity with Django
 
 **Chris:**
-- Review and edit UML diagrams for the new core module.
-- Work on Deliverable 2 during Monday meeting.
+- Edit the workflow for research
+- Remove student log-ins
+- Begin work on notifications
+- Act as a resource for others less familiar with Django
 
 **Jack:**
 - Finish creating Sample data
+   - users
+   - colloquia
+   - research   
+- Gain familiarity with Django
    
 **Ethan:**
 - Finish fixing some problems with the webpage
-- 
+- Gain familiarity with Django
 
 ---
 
