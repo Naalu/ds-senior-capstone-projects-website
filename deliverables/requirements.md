@@ -432,11 +432,12 @@ Alternate Scenario:
     **Effort Estimate:** 12 hours
 
 8. *As an admin, I want to request revisions on submitted research so that faculty can improve the quality before approval.*
+   
     **Priority:** Medium
 
     **Effort Estimate:** 12 hours
 
-9. *As a visitor, I want to search for research using keywords, faculty names, and categories so that I can quickly find relevant projects.*
+10. *As a visitor, I want to search for research using keywords, faculty names, and categories so that I can quickly find relevant projects.*
 
     **Priority:** High
 
