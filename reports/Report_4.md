@@ -18,10 +18,11 @@ This week Ethan was sick on Monday so he wasnt able to get much work done but wa
 ## 1. Activity Summary
 
 **Rylan:**
-- Added setting page for velocity (issue #234, commit b345005)
-- Added documentation for importing the physics module (commit 6c7b005)
-- Contributed to discussion of new design using UML class diagrams (7/21)
-- **GitHub Summary:** 1 resolved issue and 2 commits.
+- Sick towards beginning of week
+- Began research and familiarization with Django
+- Helped revise use case concepts
+- Started outlining design of front page search
+- **GitHub Summary:** 9 commits.
 
 **Chris:**
 - Built consensus to use Django.
