@@ -437,7 +437,7 @@ Alternate Scenario:
 
     **Effort Estimate:** 12 hours
 
-10. *As a visitor, I want to search for research using keywords, faculty names, and categories so that I can quickly find relevant projects.*
+9. *As a visitor, I want to search for research using keywords, faculty names, and categories so that I can quickly find relevant projects.*
 
     **Priority:** High
 
@@ -447,11 +447,10 @@ Alternate Scenario:
 
 ## 8. Issue Tracker
 
-The user stories should be registered in your GitHub issue tracker. Include here the link for your issue tracker and a screenshot of what you did.
+https://github.com/Naalu/ds-senior-capstone-projects-website/issues
 
-Grading criteria (1 point): Provide the URL and screenshot of the issue tracker. The user stories should be registered there.
 
-Format Your document should be composed in Markdown and hosted on GitHub but you should also turn in a PDF copy to be graded. See also Converting GitHub Markdown to PDF. Sections should use appropriate markdown and figures should be included if needed or appropriate.
+![use case diagram](images/issue_tracker.png)
 
 ------------------------------------------------------------------------
 
