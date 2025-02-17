@@ -48,18 +48,6 @@ The department currently **lacks a centralized system** for showcasing student r
 
 By creating a **structured, user-friendly, and publicly accessible platform**, this project **modernizes** how the department documents, manages, and shares student research, ensuring long-term **academic and professional benefits**.  
 
----
-
-## **Why This Project Matters**  
-
-Currently, NAU **does not have a centralized system** for showcasing student research, making it difficult for:  
-
-- Students to **share their work with employers or graduate schools**.  
-- Faculty to **reference past projects** for advising and curriculum improvement.  
-- External audiences to **evaluate the department’s research contributions**.  
-
-By providing a **well-structured and accessible platform**, this project aims to **bridge these gaps** while **modernizing** how student research is documented and shared.
-
 ***
 
 # For Contributors
