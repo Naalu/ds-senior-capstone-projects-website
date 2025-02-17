@@ -1,0 +1,39 @@
+[
+    {
+        "model": "research.researchproject",
+        "pk": 1,
+        "fields": {
+            "title": "Machine Learning for Sports Analytics",
+            "abstract": "This research explores predictive analytics in hockey.",
+            "author": 1,
+            "collaborators": [2, 3],
+            "faculty_advisor": 4,
+            "approval_status": "approved",
+            "github_link": "https://github.com/Jack-Tomlon",
+            "project_sponsor": "NHL Data Initiative",
+            "poster_image": null,
+            "video_link": "https://www.youtube.com",
+            "presentation_file": null,
+            "pdf_file": null
+        }
+    },
+    {
+        "model": "research.researchproject",
+        "pk": 2,
+        "fields": {
+            "title": "Deep Learning for Image Recognition",
+            "abstract": "Applying CNNs to classify medical images.",
+            "author": 2,
+            "collaborators": [],
+            "faculty_advisor": 5,
+            "approval_status": "pending",
+            "github_link": "https://github.com/Jack-Tomlon",
+            "project_sponsor": "HealthTech AI",
+            "poster_image": null,
+            "video_link": null,
+            "presentation_file": null,
+            "pdf_file": null
+        }
+    }
+    
+]
