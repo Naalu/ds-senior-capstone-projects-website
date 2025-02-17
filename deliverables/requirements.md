@@ -457,9 +457,9 @@ https://github.com/Naalu/ds-senior-capstone-projects-website/issues
 ## Teamwork
 
 
-- Ethan Ferguson (25%)
+- Ethan Ferguson (5%)
 - Jack Tomlon (5%)
-- Karl Reger (35%)
-- Rylan Harris-Small (35%)
+- Karl Reger (70%)
+- Rylan Harris-Small (20%)
 
 
