@@ -40,48 +40,138 @@ By providing a **well-structured and accessible platform**, this project aims to
 
 ***
 
+# For Contributors
+
 ## Setting Up the Development Environment
 
-1. Clone the repository:
+Follow these steps to set up the local development environment for the **Data Science Senior Capstone Projects Website**.
 
-   ```bash
-   git clone https://github.com/Naalu/ds-senior-capstone-projects-website/tree/main
-   cd ds-senior-capstone-projects-website/research_showcase
-   ```
+### 1. Clone the Repository
 
-2. Create and activate a virtual environment:
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate # On Windows, use venv\Scripts\activate
-   ```
-
-3. Install the required project dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Run database migrations:
-
-   ```bash
-   python manage.py migrate
-   ```
-
-5. Start the development server:
-
-   ```bash
-   python manage.py runserver
-   ```
-
-## Clone the Repository and Set Up the Development Environment
+First, clone the repository and navigate into the `research_showcase` directory:
 
 ```bash
-   git clone https://github.com/Naalu/ds-senior-capstone-projects-website.git
-   cd ds-senior-capstone-projects-website/research_showcase
-   python -m venv venv
-   source venv/bin/activate
-   pip install -r requirements.txt
-   python manage.py migrate
-   python manage.py runserver
+git clone https://github.com/Naalu/ds-senior-capstone-projects-website.git
+cd ds-senior-capstone-projects-website/research_showcase
 ```
+
+---
+
+### 2. Create and Activate a Virtual Environment
+
+#### **macOS/Linux**
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+#### **Windows (PowerShell)**
+```powershell
+python -m venv venv
+venv\Scripts\activate
+```
+
+---
+
+### 3. Install Project Dependencies
+
+Once the virtual environment is activated, install the required Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+If dependencies change, update them with:
+
+```bash
+pip install --upgrade -r requirements.txt
+```
+
+---
+
+### 4. Apply Database Migrations
+
+Run the following command to set up the database schema:
+
+```bash
+python manage.py migrate
+```
+
+If you encounter issues, you can reset the database with:
+
+```bash
+python manage.py flush
+```
+
+---
+
+### 5. Create a Superuser (Optional)
+
+If you need access to the Django Admin panel, create a superuser:
+
+```bash
+python manage.py createsuperuser
+```
+
+Follow the prompts to set up a username, email, and password.
+
+---
+
+### 6. Run the Development Server
+
+Start the Django development server:
+
+```bash
+python manage.py runserver
+```
+
+Once running, access the project at:
+
+- **Frontend:** [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- **Admin Panel:** [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+
+---
+
+### 7. Managing Static Files
+
+To ensure static files (CSS, JS) are properly served:
+
+```bash
+python manage.py collectstatic --noinput
+```
+
+---
+
+### 8. Loading Sample Data (Optional)
+
+If test data is available, load it into the database:
+
+```bash
+python manage.py loaddata sample_data.json
+```
+
+---
+
+### 🔧 Troubleshooting
+
+- **Issue: `Command not found` for Python**
+  - Use `python3` instead of `python`
+  - Use `pip3` instead of `pip`
+
+- **Issue: Missing Dependencies**
+  - Run: `pip install --upgrade -r requirements.txt`
+
+- **Issue: Database Errors**
+  - Reset database with: `python manage.py flush`
+
+- **Issue: Changes Not Reflected**
+  - Restart server: `Ctrl + C` and re-run `python manage.py runserver`
+  - Clear browser cache or try **private browsing mode**
+
+---
+
+### 🎯 Development Guidelines
+
+- Ensure all new dependencies are added to `requirements.txt`
+- Follow Django's **coding conventions** and **best practices**
+- Use **feature branches** for development and open a **pull request** before merging into `main`
