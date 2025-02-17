@@ -1,30 +1,52 @@
-# Northern Arizona University Department of Mathematics & Statistics Research Showcase Website
+# **Northern Arizona University Department of Mathematics & Statistics Research Showcase**  
 
-## **Project Overview**  
+## **Overview**  
 
-The **NAU Mathematics & Statistics Research Showcase** is a web-based platform designed to **archive, organize, and showcase** student research within **Northern Arizona University’s Department of Mathematics and Statistics**. Initially focused on **Senior Capstone projects**, this system will provide a **structured and accessible repository** for students, faculty, and external audiences such as employers and graduate programs.  
+The **NAU Mathematics & Statistics Research Showcase** is a **web-based platform** designed to **organize, archive, and showcase** student research within **Northern Arizona University’s Department of Mathematics & Statistics**.  
 
-### **Key Objectives**  
+This system provides a **structured, searchable repository** where **faculty submit student research**, and **admins approve and publish projects**. It ensures increased **visibility for students**, facilitates **academic reference for faculty**, and allows **external audiences such as employers and graduate schools** to explore NAU’s research contributions.  
 
-- **Enhance Research Visibility** – Give students a professional space to **showcase** their research.  
-- **Support Faculty & Academic Growth** – Provide a **searchable** database for faculty and students to reference past projects.  
-- **Improve Accessibility & Usability** – Ensure research materials (including PDFs, abstracts, and presentations) are easily searchable and well-organized.  
-- **Expand Opportunities** – Allow external audiences, including **graduate schools, employers, and prospective students**, to explore NAU’s research contributions.  
-- **Scale for the Future** – Built with **Django & SQLite3**, the system is designed for **future expansions** to include additional research projects, interdisciplinary collaborations, and more departments at NAU.  
+---
 
-### **Core Features (MVP)**  
+## **Key Objectives**  
 
-✔️ **Student Research Submission System** – Students submit capstone projects, including abstracts, PDFs, and presentations.  
-✔️ **Faculty Approval Workflow** – Faculty can review, approve, or request revisions before publishing projects.  
-✔️ **Search & Filtering** – Users can browse projects by **title, author, advisor, research topic, or date**.  
-✔️ **Secure User Authentication** – Students, faculty, and admins have role-based permissions for submission and approval.  
-✔️ **Django Admin Panel** – Faculty and admins can manage research projects efficiently.  
+✅ **Increase Research Visibility** – Provide a **dedicated, accessible platform** to showcase student research.  
+✅ **Improve Academic Accessibility** – Organize research materials (PDFs, abstracts, presentations) in a **searchable, structured repository**.  
+✅ **Support Faculty & Curriculum Development** – Help faculty **reference past projects** for advising, curriculum improvements, and research collaboration.  
+✅ **Expand Career & Academic Opportunities** – Enable **graduate schools, employers, and prospective students** to explore NAU’s research.  
+✅ **Ensure Long-Term Scalability** – Built with **Django & SQLite3**, the platform is designed for **future expansion** across disciplines.  
 
-### **Future Enhancements**  
+---
 
-- **Colloquium & Seminar Archive** – Store and display department seminars and research presentations.  
-- **Project Highlights & Awards** – Feature outstanding student research projects.  
-- **Multi-Department Expansion** – Allow other departments at NAU to contribute.  
+## **Core Features (MVP)**  
+
+✔ **Faculty-Driven Research Submission** – Faculty can submit student research with **metadata (title, author, category, faculty advisor) and file uploads (PDF, PPT, images).**  
+✔ **Admin Review & Approval** – Admins can **approve, reject, or request revisions** before projects are published.  
+✔ **Advanced Search & Filtering** – Users can search by **title, research category, faculty advisor, or keywords** to find relevant projects.  
+✔ **Public Research Repository** – Approved projects are **accessible to students, faculty, and external audiences**.  
+✔ **Secure Role-Based Access Control** – Only **faculty and admins** can submit, review, and manage projects.  
+✔ **Efficient Research Management** – Admins manage **research projects, user roles, and system settings** through an intuitive **Django Admin Panel**.  
+
+---
+
+## **Future Enhancements**  
+
+🔹 **Colloquium & Seminar Archive** – Store and display **research presentations & departmental seminars**.  
+🔹 **Featured Research & Awards** – Highlight **outstanding student research projects**.  
+🔹 **Cross-Disciplinary Expansion** – Allow **other NAU departments** to contribute research.  
+🔹 **External Integrations** – Enable **faculty to link projects to Google Scholar, LinkedIn, or ORCID profiles**.  
+
+---
+
+## **Why This Project Matters**  
+
+The department currently **lacks a centralized system** for showcasing student research, making it difficult for:  
+
+🔹 **Students** – To share their work with **employers or graduate programs**.  
+🔹 **Faculty** – To reference past research for **advising, teaching, and collaboration**.  
+🔹 **External Audiences** – To explore **NAU’s research contributions and student work**.  
+
+By creating a **structured, user-friendly, and publicly accessible platform**, this project **modernizes** how the department documents, manages, and shares student research, ensuring long-term **academic and professional benefits**.  
 
 ---
 
@@ -34,7 +56,7 @@ Currently, NAU **does not have a centralized system** for showcasing student res
 
 - Students to **share their work with employers or graduate schools**.  
 - Faculty to **reference past projects** for advising and curriculum improvement.  
-- External audiences to **evaluate NAU’s research contributions**.  
+- External audiences to **evaluate the department’s research contributions**.  
 
 By providing a **well-structured and accessible platform**, this project aims to **bridge these gaps** while **modernizing** how student research is documented and shared.
 
