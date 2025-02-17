@@ -457,13 +457,10 @@ Format Your document should be composed in Markdown and hosted on GitHub but you
 
 ## Teamwork
 
-The contribution of each team member may be different but we expect the amount of work to be roughly even. When you submit the deliverable, the person submitting the deliverable should describe what each member worked on and a rough percentage estimation of their contribution as a submission comment. Here's an example:
 
 - Ethan Ferguson (25%)
 - Jack Tomlon (5%)
 - Karl Reger (35%)
 - Rylan Harris-Small (35%)
 
-We will also be reviewing your github repository, which should also reflect the work happening in your team. Every team member should be committing and making meaningful contributions in your repository.
 
-Individual grades may be reduced based on a combination of what we see in the deliverable summary and github contributions. If there's no evidence that a team member contributed to the deliverable, they should absolutely expect to receive a zero!
