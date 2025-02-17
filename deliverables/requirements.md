@@ -459,16 +459,10 @@ Format Your document should be composed in Markdown and hosted on GitHub but you
 
 The contribution of each team member may be different but we expect the amount of work to be roughly even. When you submit the deliverable, the person submitting the deliverable should describe what each member worked on and a rough percentage estimation of their contribution as a submission comment. Here's an example:
 
-John Doe (40%) – Conducted 2 interviews, wrote section 2.3, and reviewed the whole document.
-
-Mary Shawn (40%) – Conducted 1 interview, wrote sections 1 and 2.1, reviewed section 2.3, and worked on the source code.
-
-Lucy Johnson (20%) – Wrote section 2.2 and performed code review.
-
-- Ethan Ferguson ()
-- Jack Tomlon ()
-- Karl Reger ()
-- Rylan Harris-Small ()
+- Ethan Ferguson (25%)
+- Jack Tomlon (5%)
+- Karl Reger (35%)
+- Rylan Harris-Small (35%)
 
 We will also be reviewing your github repository, which should also reflect the work happening in your team. Every team member should be committing and making meaningful contributions in your repository.
 
