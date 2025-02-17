@@ -88,5 +88,5 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 
 ## Relevant Links
 Include any links to tools, documents, or resources used this week.
-- [Link description](URL)
-- [Link description](URL)
+- [Django Proposal](https://docs.google.com/document/d/1K8hebcH7kyy7usPalvte4KLtdzY0Biyd/edit?usp=sharing&ouid=106362998607842802359&rtpof=true&sd=true)
+- [Django Tutorial](https://youtu.be/rHux0gMZ3Eg?si=DRPxnPMOANzcQY6K)
