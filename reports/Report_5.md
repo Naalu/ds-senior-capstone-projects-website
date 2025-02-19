@@ -28,7 +28,7 @@ Describe what each individual has contributed to the project in the last week. P
 - **GitHub Summary:** 
 
 **Jack:**
-
+Commited first steps for sample data/projects to work with
 - **GitHub Summary:** 
 
 **Ethan:**
@@ -40,11 +40,11 @@ Describe what each individual has contributed to the project in the last week. P
 Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
 ### Example:
-1. **Appreciations:** Jack was the MVP this week with significant bug fixes that make the product usable.
-2. **Successes:** The demo we did went off without a hitch. The documentation is much more usable.
-3. **Failures:** The UML for the new design is still not complete.
-4. **Barriers:** With one of our team members sick, it was difficult to make the progress we had hoped for.
-5. **What we should try next time:** We really need Chris's help and hope he is feeling better next week.
+1. **Appreciations:** 
+2. **Successes:** 
+3. **Failures:** 
+4. **Barriers:** 
+5. **What we should try next time:** 
 
 ---
 
