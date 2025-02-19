@@ -49,17 +49,16 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 ---
 
 ## 3. Next Steps
-List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues.
+List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues
 
 ### Example:
-**Rylan:**
+**Rylan:** Front end make things look nice, Django html
 
-**Chris:**
+**Chris:** 
 
-**Jack:**
+**Jack:** Continue working on the functional test data to a working format
 
-
-**Ethan:**
+**Ethan:** Front end make things look nice, Django html
 
 ---
 
