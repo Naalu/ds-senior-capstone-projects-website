@@ -54,7 +54,7 @@ List the tasks that need to be completed, assign them to team members, and link 
 ### Example:
 **Rylan:** Front end make things look nice, Django html. Navigation/Search page
 
-**Chris:** 
+**Chris:** Fixing Users and workflow
 
 **Jack:** Continue working on the functional test data to a working format
 
