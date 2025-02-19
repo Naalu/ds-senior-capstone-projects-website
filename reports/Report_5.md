@@ -3,9 +3,9 @@
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
 **Date:** 2025-2-17 
-**Location:** 
+**Location:**  Engineering building
 **Present participants:** Rylan, Chris, Jack, Ethan  
-**Missing participants:**  
+**Missing participants:**  none
 **Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
 
 ---
