@@ -40,8 +40,8 @@ Commited first steps for sample data/projects to work with
 Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
 ### Example:
-1. **Appreciations:** 
-2. **Successes:** 
+1. **Appreciations:** In person communication and looking ahead. Balanceing the class work and actual development. 
+2. **Successes:** Plan for the next few weeks figured out
 3. **Failures:** 
 4. **Barriers:** 
 5. **What we should try next time:** 
@@ -54,7 +54,7 @@ List the tasks that need to be completed, assign them to team members, and link 
 ### Example:
 **Rylan:** Front end make things look nice, Django html. Navigation/Search page
 
-**Chris:** Fixing Users and workflow
+**Chris:** Fixing Users and workflow. 
 
 **Jack:** Continue working on the functional test data to a working format
 
