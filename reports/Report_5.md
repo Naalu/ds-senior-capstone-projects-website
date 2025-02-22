@@ -29,7 +29,7 @@ Describe what each individual has contributed to the project in the last week. P
 
 **Jack:**
 Commited first steps for sample data/projects to work with
-- **GitHub Summary:** 
+- **GitHub Summary:** 17 commits
 
 **Ethan:**
 
@@ -43,7 +43,7 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 1. **Appreciations:** In person communication and looking ahead. Balanceing the class work and actual development. 
 2. **Successes:** Plan for the next few weeks figured out
 3. **Failures:** 
-4. **Barriers:** 
+4. **Barriers:** Creating time to get real work done
 5. **What we should try next time:** 
 
 ---
