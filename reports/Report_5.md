@@ -26,6 +26,8 @@ The group has more corrected some difficulties with meetings that should allow f
 
 **Chris:**
 - Continued to develop project user parameters/definitions
+- Assisted in organizing and structuring key project requirements.
+- Helped with project setup and development issues.
 - **GitHub Summary:** 6 commits
 
 **Jack:**
@@ -34,6 +36,8 @@ The group has more corrected some difficulties with meetings that should allow f
 
 **Ethan:**
 - Continued learning the Django framework and systems
+- Began coding key website pages to bring the project to life.
+- Provided feedback on UI components and layout decisions.
 - **GitHub Summary:** 2 commits
 ---
 
