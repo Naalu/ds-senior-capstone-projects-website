@@ -1,17 +1,17 @@
-# Report for Week #X: SHORT WEEKLY TITLE
+# Report 6: Project Analysis
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
-**Date:** TODAY'S DATE (YYYY-MM-DD)  
-**Location:** LOCATION  
-**Present participants:** Rylan (ROLE), Chris (ROLE), Jack (ROLE), Ethan (ROLE)  
-**Missing participants:** NONE  
+**Date:** 2025-02-24 
+**Location:** Adel 207  
+**Present participants:** Rylan, Jack 
+**Missing participants:** Ethan, Chris 
 **Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
 
 ---
 
 ## Executive Summary
-Provide a brief summary of the week's key updates and outcomes in 2-3 sentences.
+Clarify the ways the people are going to interact with the system and the types of objects that the system works with. We'll create visual models to help design and clarify this information.
 
 ---
 
@@ -48,13 +48,6 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 3. **Failures:** What did not go well.
 4. **Barriers:** Things blocking maximum team performance.
 5. **What we should try next time:** Ideas for improvement.
-
-### Example:
-1. **Appreciations:** Jack was the MVP this week with significant bug fixes that make the product usable.
-2. **Successes:** The demo we did went off without a hitch. The documentation is much more usable.
-3. **Failures:** The UML for the new design is still not complete.
-4. **Barriers:** With one of our team members sick, it was difficult to make the progress we had hoped for.
-5. **What we should try next time:** We really need Chris's help and hope he is feeling better next week.
 
 ---
 
