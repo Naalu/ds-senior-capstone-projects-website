@@ -1,6 +1,6 @@
 [
     {
-        "model": "research.researchproject",
+        "model": "ResearchProject",
         "pk": 1,
         "fields": {
             "title": "Machine Learning for Sports Analytics",
@@ -19,7 +19,7 @@
     },
 
     {
-        "model": "research.researchproject",
+        "model": "ResearchProject",
         "pk": 2,
         "fields": {
             "title": "Deep Learning for Image Recognition",
