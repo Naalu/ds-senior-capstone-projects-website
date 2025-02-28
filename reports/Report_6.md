@@ -20,34 +20,30 @@ Describe what each individual has contributed to the project in the last week. P
 
 ### Example:
 **Rylan:**
-- Added setting page for velocity (issue #234, commit b345005)
-- Added documentation for importing the physics module (commit 6c7b005)
-- Contributed to discussion of new design using UML class diagrams (7/21)
-- **GitHub Summary:** 1 resolved issue and 2 commits.
+- UML Diagram for Deliverable
+- **GitHub Summary:** 
 
 **Chris:**
-- Out sick this week.
-- **GitHub Summary:** No activity.
+- Summary for deliverable
+- **GitHub Summary:** 
 
 **Jack:**
-- Integrated new shopping cart (commit b345005)
-- Lead discussion of new design using UML class diagrams (7/21)
-- Fixed several typos and UI issues (issue #300, #400, #430)
-- **GitHub Summary:** 3 resolved issues and 7 commits.
+- UML Diagram for Deliverable
+- **GitHub Summary:** 
 
 **Ethan:**
-- Out sick this week.
-- **GitHub Summary:** No activity.
+- HTML for home page
+- **GitHub Summary:** 
 ---
 
 ## 2. Retrospective
 Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
-1. **Appreciations:** Highlights of contributions from team members.
-2. **Successes:** What went well.
-3. **Failures:** What did not go well.
-4. **Barriers:** Things blocking maximum team performance.
-5. **What we should try next time:** Ideas for improvement.
+1. **Appreciations:** 
+2. **Successes:** 
+3. **Failures:** 
+4. **Barriers:** 
+5. **What we should try next time:** 
 
 ---
 
@@ -55,22 +51,14 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues.
 
 ### Example:
-**Rylan:**
-- Finish acceleration settings.
-- Work on Deliverable 2 during Monday meeting.
-
+**Rylan:** 
+- Presentation prep
 **Chris:**
-- Review and edit UML diagrams for the new core module.
-- Work on Deliverable 2 during Monday meeting.
-
+- Presentation prep
 **Jack:**
-- Integrate new recommender system.
-- Fix user settings bugs.
-- Work on Deliverable 2 during Monday meeting.
-
+- Fix sample data, Presentation prep
 **Ethan:**
-- Finish acceleration settings.
-- Work on Deliverable 2 during Monday meeting.
+- HTML Home page, Presentation prep
 ---
 
 ## Relevant Links
