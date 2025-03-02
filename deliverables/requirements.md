@@ -17,7 +17,7 @@ Team 14
 
 *The problem of* **the lack of a centralized, structured platform for storing and showcasing Mathematics and Statistics student research** *affects* **students, faculty, and external evaluators (such as employers, graduate programs, and** **prospective students**), *the impact of which is* **diminished research visibility, ineffective knowledge-sharing, and lost academic and professional opportunities**.
 
-Without an organized system, students struggle to showcase their work, faculty lack an easy way to reference past research, and external audiences find it difficult to evaluate the department’s academic output.
+Without an organized system, students struggle to showcase their work, faculty lack an easy way to reference past research, and external audiences find it difficult to evaluate the department's academic output.
 
 ### Product Position Statement
 
@@ -65,7 +65,7 @@ The **Mathematics & Statistics Research Showcase** is a **web-based research rep
 
 **3. Department Administrators** (Platform Managers)
 
-- **Description:** Administrative staff responsible for maintaining and overseeing the platform’s operations.
+- **Description:** Administrative staff responsible for maintaining and overseeing the platform's operations.
 
 - **Responsibilities:**
 
@@ -106,10 +106,10 @@ The **Mathematics & Statistics Research Showcase** is a **web-based research rep
 1. **Faculty Registration & Authentication**
     1. Faculty must securely log in using university credentials or email authentication.
 2. **Role-Based Access Control (RBAC)**
-    1. Faculty can submit research and manage their own past submissions.
+    1. Faculty can submit student research and manage their own past submissions.
     2. Admins can approve or reject research, manage users, and adjust system settings.
 3. **Faculty Research Submission Portal**
-    1. Faculty must be able to submit research projects on behalf of students by entering:
+    1. Faculty must be able to submit student research projects by entering:
         1. Project title, student author(s), research category, faculty advisor, and attached files (PDFs, images, presentations).
 4. **Admin Approval Workflow**
     1. Admins must be able to review the research submitted by faculty and:
@@ -290,25 +290,25 @@ Use Case 1: *Submit Research*
 
 Actor: Faculty
 
-Trigger: Faculty decides to submit a research project.
+Trigger: Faculty decides to submit a student research project.
 
 Pre-conditions: Faculty is logged in.
 
-Post-condition: Research submission is recorded and pending admin review.
+Post-condition: Student research submission is recorded and pending admin review.
 
 Success Scenario:
 
-1. Faculty provides research details (title, student author(s), research category, and faculty advisor).
-2. The faculty uploads the research file.
-3. The system validates the submission and stores the file.
-4. The system marks the research as “Pending Review.”
+1. Faculty provides student research details (title, studentauthor(s), research category, and faculty advisor).
+2. The faculty uploads the research file(s), which may include PDFs, presentations, or images.
+3. The system validates the submission and stores the files.
+4. The system marks the research as "Pending Review."
 5. The system notifies admins that a new research submission is awaiting approval.
 
 Alternate Scenario:
 
 1. The system detects an invalid file format or missing information.
 2. The system informs the faculty of the issue and requests corrections.
-3. The faculty resubmits the corrected research.
+3. The faculty resubmits the corrected student research.
 
 ![use case diagram](images/UseCase1.svg)
 
@@ -327,13 +327,13 @@ Success Scenario:
 1. Admin selects a pending research submission.
 2. Admin reviews the research details and attached file.
 3. Admin decides to approve the research.
-4. The system marks the research as “Approved” and moves it to public access.
+4. The system marks the research as "Approved" and moves it to public access.
 5. The system notifies faculty that their research has been approved.
 
 Alternate Scenario:
 
 3. Admin rejects the submission due to poor quality or policy violations.
-4. The system marks the submission as “Rejected.”
+4. The system marks the submission as "Rejected."
 5. The system notifies faculty that the submission has been rejected.
 
 ![use case diagram](images/UseCase2.svg)
@@ -401,7 +401,7 @@ Alternate Scenario:
 
     **Effort Estimate:** 6 hours
 
-3. *As a data science student, I want look at past data science capstones so that I can get a better idea of what to do for my own.*
+3. *As a data science student, I want to browse past data science capstones so that I can get a better idea of what to do for my own.*
 
     **Priority:** High
 
@@ -425,14 +425,14 @@ Alternate Scenario:
 
     **Effort Estimate:** 6 hours
 
-7. *As a faculty member, I want to receive notifications about my research submission status so that I know when it is approved or requires revisions.*
+7. *As a faculty member, I want to receive notifications about student research I've submitted so that I know when it is approved or requires revisions.*
 
     **Priority:** Low
 
     **Effort Estimate:** 12 hours
 
 8. *As an admin, I want to request revisions on submitted research so that faculty can improve the quality before approval.*
-   
+
     **Priority:** Medium
 
     **Effort Estimate:** 12 hours
@@ -447,8 +447,7 @@ Alternate Scenario:
 
 ## 8. Issue Tracker
 
-https://github.com/Naalu/ds-senior-capstone-projects-website/issues
-
+<https://github.com/Naalu/ds-senior-capstone-projects-website/issues>
 
 ![use case diagram](images/issue_tracker.png)
 
@@ -456,10 +455,7 @@ https://github.com/Naalu/ds-senior-capstone-projects-website/issues
 
 ## Teamwork
 
-
 - Ethan Ferguson (5%)
 - Jack Tomlon (5%)
 - Karl Reger (70%)
 - Rylan Harris-Small (20%)
-
-

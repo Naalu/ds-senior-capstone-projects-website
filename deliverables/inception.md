@@ -11,36 +11,22 @@ Group 14
 
 ## 1. Introduction
 
-The Mathematics & Statistics Research Showcase is a centralized platform designed to host and display student capstone research, undergraduate projects, and colloquium presentations. Currently, there is no single, well-organized system for tracking and sharing past research, which makes it difficult for students to showcase their work, for faculty to reference previous projects, and for external audiences (graduate schools, employers, prospective students) to evaluate research output.
+The Mathematics & Statistics Research Showcase is a centralized platform designed to host and display student capstone research, undergraduate projects, and colloquium presentations. Currently, there is no single, well-organized system for tracking and sharing past research, which makes it difficult for faculty to submit and showcase student work, for faculty to reference previous projects, and for external audiences (graduate schools, employers, prospective students) to evaluate research output.
 
-Our goal is to create a user-friendly platform with a **Python and SQL** backend that enables seamless research submission, searchability, and accessibility. This project will provide students with an academic portfolio, faculty with an organized archive, and external users with an easy way to browse research output.
+Our goal is to create a user-friendly platform with a **Python and SQL** backend that enables seamless faculty submission of student research, administrative approval, searchability, and accessibility. This project will provide a platform to showcase students' academic portfolios, give faculty an organized archive for submission and reference, and offer external users an easy way to browse research output.
 
 ## 2. Initial value proposition and customer segments
 
-We help the Mathematics & Statistics Department at NAU keep track of and display student research projects by providing a structured, web-accessible repository. The platform is designed for users who may not have web development experience but need an easy way to contribute and explore academic content.
+We help the Mathematics & Statistics Department at NAU keep track of and display student research projects by providing a structured, web-accessible repository where faculty can submit student work and administrators can manage content. The platform is designed for users who may not have web development experience but need an easy way to contribute, approve, and explore academic content.
 
 ### Customer Segments
 
-1. **Students** – Showcase research, build academic portfolios, and gain visibility.
-2. **Faculty** – Archive and reference student research while maintaining oversight.
-3. **External Visitors** – Employers, graduate programs, and prospective students exploring research at NAU.
+1. **Students** – Gain visibility through showcased research and build academic portfolios.
+2. **Faculty** – Submit, archive, and reference student research while maintaining oversight.
+3. **Administrators** – Review, approve, and manage research submissions.
+4. **External Visitors** – Employers, graduate programs, and prospective students exploring research at NAU.
 
 ## 3. Interviews summary
-
-*Present the results of each interview (the minimum number of interviews is 1.5 \* the number of participants in the group).*
-
-*For each interview, report:*
-
-1. *Who was interviewed and who participated in the interview*
-2. *When*
-3. *Customer segment*
-4. *Key insights from the interview*
-5. *Representative quotes*
-6. *Assessment: Must have / Nice to have / Don’t care (how the interviewee sees the solution)*
-
-*Grading criteria (15 points): You should have at least the required number of interviews. For each interview, you should report the required information. The insight should be grounded on the interview and illustrated by the representative quotes.*
-
----
 
 ### Interview 1
 
@@ -102,9 +88,9 @@ Student
 
 ##### Representative Quotes
 
-- “Honestly, in B.S. DS, I cannot recall a time when I’ve been told where past student research/projects are held.”
-- “Seeing others’ work and the type of professionalism that a student can achieve would be beneficial to my education.”
-- “Yes, if that was integrated into the BS DS program, I think it would highly benefit every student.”
+- "Honestly, in B.S. DS, I cannot recall a time when I've been told where past student research/projects are held."
+- "Seeing others' work and the type of professionalism that a student can achieve would be beneficial to my education."
+- "Yes, if that was integrated into the BS DS program, I think it would highly benefit every student."
 
 ##### Assessment
 
@@ -168,9 +154,9 @@ Faculty
 
 ##### Representative Quotes
 
-- “I love student research and often help students in that area. I also serve as the instructor for the Data Science Capstone course.”
-- “Currently, B.S. DS capstone projects are not hosted online, but some are hung up in Adel.”
-- “Some research is online at the undergraduate symposia website, but that’s separate from capstones.”
+- "I love student research and often help students in that area. I also serve as the instructor for the Data Science Capstone course."
+- "Currently, B.S. DS capstone projects are not hosted online, but some are hung up in Adel."
+- "Some research is online at the undergraduate symposia website, but that's separate from capstones."
 
 ##### Assessment
 
@@ -229,9 +215,9 @@ Administrator
 
 ##### Representative Quotes
 
-- “Well... there is no actual system haha. So, anything that could be update-able directly via web interface would be amazing.”
-- “It would be great to have such a system to enable creating new semesters, automatically updating the pages, having a way to upload the proposals and move away from the FTP and text editors.”
-- “Submission approval is the way to go for us because we have multiple rounds of polishing and adjusting to have a final version of the proposals aligned with our goals.”
+- "Well... there is no actual system haha. So, anything that could be update-able directly via web interface would be amazing."
+- "It would be great to have such a system to enable creating new semesters, automatically updating the pages, having a way to upload the proposals and move away from the FTP and text editors."
+- "Submission approval is the way to go for us because we have multiple rounds of polishing and adjusting to have a final version of the proposals aligned with our goals."
 
 ##### Assessment
 
@@ -295,9 +281,9 @@ Student
 
 ##### Representative Quotes
 
-- “Honestly, in B.S. DS, I cannot recall a time when I’ve been told where past student research/projects are held.”
-- “Seeing others’ work and the type of professionalism that a student can achieve would be beneficial to my education.”
-- “Yes, if that was integrated into the BS DS program, I think it would highly benefit every student.”
+- "Honestly, in B.S. DS, I cannot recall a time when I've been told where past student research/projects are held."
+- "Seeing others' work and the type of professionalism that a student can achieve would be beneficial to my education."
+- "Yes, if that was integrated into the BS DS program, I think it would highly benefit every student."
 
 ##### Assessment
 
@@ -311,27 +297,27 @@ Student
 
 1. How does the department track and archive student capstone research and other student-led projects?
 
-*To be honest, we don’t have a formal system in place. Some faculty keep records of the projects they advise, but there’s no centralized archive. If students want to look at past capstone work, they typically have to ask a professor who might have kept a copy. For colloquia, we keep a list of past talks, but it’s mostly informal.*
+*To be honest, we don't have a formal system in place. Some faculty keep records of the projects they advise, but there's no centralized archive. If students want to look at past capstone work, they typically have to ask a professor who might have kept a copy. For colloquia, we keep a list of past talks, but it's mostly informal.*
 
 2. Are there any existing tools or systems for this?
 
-*Not really. Some students upload their work to ResearchGate or personal websites, but that’s inconsistent. The department’s website isn’t really built for hosting research.*
+*Not really. Some students upload their work to ResearchGate or personal websites, but that's inconsistent. The department's website isn't really built for hosting research.*
 
 3. Do faculty or students ever ask you for past project examples?
 
-*Yes, all the time. Students often want to see previous capstones for reference. Faculty sometimes want to showcase successful projects, but there’s no easy way to access them.*
+*Yes, all the time. Students often want to see previous capstones for reference. Faculty sometimes want to showcase successful projects, but there's no easy way to access them.*
 
 4. What are the most significant challenges faculty and students face when trying to showcase or access past research?
 
-*For students, I’d say visibility is the main issue. After completing a capstone or research project, it often goes unnoticed. That’s frustrating because many of these projects are quite impressive. Faculty, on the other hand, struggle to keep track of quality student work. We frequently see excellent projects, but we lack a systematic way to document them.*
+*For students, I'd say visibility is the main issue. After completing a capstone or research project, it often goes unnoticed. That's frustrating because many of these projects are quite impressive. Faculty, on the other hand, struggle to keep track of quality student work. We frequently see excellent projects, but we lack a systematic way to document them.*
 
 5. Are there any issues with how colloquia presentations are archived?
 
-*Yes. We keep a simple list of past colloquia, but there’s no repository for slides or videos. If a student misses a talk, there’s no easy way to access the content.*
+*Yes. We keep a simple list of past colloquia, but there's no repository for slides or videos. If a student misses a talk, there's no easy way to access the content.*
 
 6. Would faculty be willing to review and approve research submissions before they go public?
 
-*I think so, but we’d want to keep it lightweight. Maybe it is just an option for faculty advisors to verify that a submission is appropriate before it’s published. We don’t want to add too much administrative burden.*
+*I think so, but we'd want to keep it lightweight. Maybe it is just an option for faculty advisors to verify that a submission is appropriate before it's published. We don't want to add too much administrative burden.*
 
 7. Have students ever expressed frustration about not having a good way to showcase their research?
 
@@ -343,7 +329,7 @@ Student
 
 9. Would a platform exist where students could submit and showcase their capstone projects, undergraduate research, and colloquium talks? If so, would that be valuable for the department?
 
-*Yes, but only if it’s easy to use. If it requires too much maintenance or effort on our part, it might be challenging to sustain.*
+*Yes, but only if it's easy to use. If it requires too much maintenance or effort on our part, it might be challenging to sustain.*
 
 10. What features would be most important?
 
@@ -355,7 +341,7 @@ Student
 
 12. Do you think external audiences, such as graduate schools or employers, actively seek out student research when evaluating candidates?
 
-*For graduate schools, absolutely. Many programs prefer research experience. Employers? Perhaps not as much, unless it’s for a technical position, but having an organized repository wouldn’t hurt.*
+*For graduate schools, absolutely. Many programs prefer research experience. Employers? Perhaps not as much, unless it's for a technical position, but having an organized repository wouldn't hurt.*
 
 13. What would make this platform useful for external audiences?
 
@@ -363,17 +349,17 @@ Student
 
 14. Would there be any privacy concerns with making student research public?
 
-*We’d need an option for students to opt-out or restrict access. Some projects might contain sensitive data or unpublished work.*
+*We'd need an option for students to opt-out or restrict access. Some projects might contain sensitive data or unpublished work.*
 
-15. This has been incredibly helpful—thank you for your insights! Based on your feedback, we’ll refine our project to ensure it remains valuable and user-friendly. Would you be willing to review a prototype in the future?
+15. This has been incredibly helpful—thank you for your insights! Based on your feedback, we'll refine our project to ensure it remains valuable and user-friendly. Would you be willing to review a prototype in the future?
 
-*Yes, I’d be happy to. Keep it simple and practical; faculty don’t have time to manage something too complex.*
+*Yes, I'd be happy to. Keep it simple and practical; faculty don't have time to manage something too complex.*
 
 16. Is there anything else we should consider?
 
 *Think about sustainability. Who will maintain it long-term? If this is going to last, the department needs to be able to manage it without too much effort.*
 
-17. That’s a great point. We’ll certainly consider that during our design. Thank you for your time!
+17. That's a great point. We'll certainly consider that during our design. Thank you for your time!
 
 #### Results
 
@@ -391,11 +377,11 @@ Faculty
 
 ##### Representative Quotes
 
-- “We don’t have a formal system in place. Some faculty keep records of the projects they advise, but there’s no centralized archive.”
-- “Students often want to see previous capstones for reference. Faculty sometimes want to showcase successful projects, but there’s no easy way to access them.”
-- “Being able to showcase research in a professional way would be very beneficial for students.”
-- “Searchability is key. If we can search by student, faculty advisor, or topic, that would be a game-changer.”
-- “Showing strong undergraduate research could help us attract better students.”
+- "We don't have a formal system in place. Some faculty keep records of the projects they advise, but there's no centralized archive."
+- "Students often want to see previous capstones for reference. Faculty sometimes want to showcase successful projects, but there's no easy way to access them."
+- "Being able to showcase research in a professional way would be very beneficial for students."
+- "Searchability is key. If we can search by student, faculty advisor, or topic, that would be a game-changer."
+- "Showing strong undergraduate research could help us attract better students."
 
 ##### Assessment
 
@@ -425,11 +411,11 @@ Dr. Doerry was not available for an interview this week but this will be incorpo
 
 ## 4. Final value proposition and consumer segments
 
-The **NAU Mathematics & Statistics Research Showcase** provides a centralized platform for students to present their research, for faculty to archive and reference student work, and for external audiences to explore department research output. By making past projects easily accessible, the platform increases research visibility, enhances student portfolios, and helps faculty manage academic contributions efficiently.
+The **NAU Mathematics & Statistics Research Showcase** provides a centralized platform for faculty to submit student research, for administrators to review and approve submissions, and for external audiences to explore department research output. By making past projects easily accessible, the platform increases research visibility, enhances student portfolios, and helps faculty manage academic contributions efficiently.
 
 **Refined Customer Segments:**
 
-1. **Students** – Need a **portfolio** for showcasing their work.
-2. **Faculty** – Need a **searchable archive** of past research.
-3. **External Audiences** – Need **easy browsing and filtering** for research evaluation.
-4. **Administrators** - Need a **web interface** to manage and update the platform.
+1. **Students** – Need visibility for their research work through faculty submissions.
+2. **Faculty** – Need to **submit student research** and access a **searchable archive** of past research.
+3. **Administrators** – Need to **review and approve** research submissions and manage platform content.
+4. **External Audiences** – Need **easy browsing and filtering** for research evaluation.
