@@ -2,36 +2,25 @@
 
 Group 14
 
-In this deliverable, report the results of the software analysis for your project. Use the following sections to structure your deliverable.
-
-## System Description
-Provide a brief textual description of your system. The first paragraph of the description must contain the problem statement, the product position statement, and the value proposition of your system (you can refine/update what you presented in D.2). The following paragraphs should describe the key requirements of the system. This description should be consistent with D.2 stakeholders, requirements, use cases, and user stories. Again, refinements/updates are welcome since your understanding of the system is constantly evolving. 
-
-Use Bold every time that you use a noun that is a class in your model. Use Italic every time that you use a noun that is an attribute in your model. Use Bold and Italic every time that you use a noun or verb that is an association in your model. 
-
-Grading criteria (5 points): The description should be clear, concise, and well-written, free of typos and grammar problems. The use of bold, italic, and underline should be coherent with the model presented in Section 2---all classes, attributes, and associations from the model should appear in the text and their role in the system, as described in the text, should be consistent with the model.  
-
-## Model
-Provide the conceptual model of your system as a UML class diagram. Represent proper cardinalities (multiplicities) for all associations. Also include the association names. 
- 
-Some points to consider:
-
-Use UML adequately. Do not use graphical elements that are not part of the language. Represent compositions and aggregations when relevant.
-This model is not an ER diagram (entity-relationship model), which is focused on relational database systems. However, both diagrams have similarities.
-Do not overcomplicate how you represent the elements of your model (e.g., using inheritance or an association when they are not necessary). Pay attention to simplicity, maintainability, unnecessary repetition, cohesion, and coupling.
-Do not represent actions that don’t need to be registered in the system.
-Do not represent technical elements, such as user interface or programming language libraries in the model. At this point, we are modeling the business logic/domain of your system. During the design phase, the model will be refined to include technology-specific elements and decisions.
-Do not represent "System" as a class in your model. Everything that you are modeling is part of the system.
-If you feel the need to justify your decisions, you can write your rationale in this section or as UML comments in the diagram.
-The model must have at least 8 classes. You can add requirements in the system description if you need more classes. 
-Grading criteria (25 points): You should correctly use the UML specification. Your model should have the minimum number of classes. Your domain should be adequately modeled. The model should avoid unnecessary complexity, repetition, lack of cohesion, and coupling. The classes should be at an adequate abstraction level.
-
-![UML Model](images/Analysis-UML.drawio.svg)
-
-## Team Members 
-And contributions
+## Team Members
 
 - Ethan Ferguson
 - Jack Tomlon
 - Karl Reger
 - Rylan Harris-Small
+
+## System Description
+
+The **NAU Mathematics & Statistics Research Showcase** addresses *the problem* of the lack of a centralized, structured platform for storing and showcasing Mathematics and Statistics student research, which affects **students**, **faculty**, and **external evaluators** such as employers, graduate programs, and prospective students. The impact is diminished research visibility, ineffective knowledge-sharing, and lost academic and professional opportunities. For students, faculty, and external evaluators who need a reliable and structured platform to manage and discover research, the **Mathematics & Statistics Research Showcase** is a web-based academic repository that streamlines research submission, display, and discovery. Unlike current ad hoc solutions like GitHub or departmental posters, which lack centralized organization and faculty oversight, our product offers a seamless submission workflow, faculty moderation, and an intuitive, searchable archive for student research projects.
+
+The core functionality centers around the **Faculty** role, where faculty members ***submit*** **ResearchProject** entries on behalf of students. Each **ResearchProject** contains essential *attributes* including *title*, *abstract*, *submission_date*, and *approval_status*. Faculty can also include optional elements such as *github_link*, *project_sponsor*, *poster_image*, *video_link*, *presentation_file*, and *pdf_file* to enhance the research presentation. A **User** with the faculty role not only ***submits*** **ResearchProject** entries but can also be ***associated with*** projects as ***collaborators*** or serve as a ***faculty_advisor***. The system additionally manages **Colloquium** events with *title*, *date*, *description*, and optional *video_link* and *presentation_file* attributes, where a **User** ***presents*** a **Colloquium**.
+
+The **Admin** role is critical for quality control, as administrators ***review*** and ***approve*** or ***reject*** submitted research through a structured workflow. When a **Faculty** member submits a **ResearchProject**, its *approval_status* is set to "pending." An **Admin** then reviews the submission and changes the *approval_status* to either "approved" or "rejected." The system implements role-based access control through the **User** class, which contains a *role* attribute that determines permissions. Only users with the *faculty* role can submit research, while only those with the *admin* role can approve or reject submissions.
+
+**Visitors**, including students, faculty, and external evaluators, can ***browse*** and ***search*** the repository of approved research. The system features comprehensive search and filtering capabilities allowing users to find research based on titles, research categories, faculty advisors, and keywords. This makes the platform valuable for students seeking examples for their own work, faculty referencing past projects, and external parties evaluating the department's research output. All approved research is publicly accessible through an intuitive browsing interface that displays project details in a structured format.
+
+The architecture prioritizes security, usability, and maintainability. Authentication ensures that only authorized **Users** can perform role-specific actions, while the public-facing components remain accessible to all **Visitors**. The modular design supports future expansion to include features such as featured research sections, cross-disciplinary integration, and external platform connections. This approach ensures the system can evolve while continuing to serve its primary purpose of enhancing research visibility and accessibility for all stakeholders.
+
+## Model
+
+![UML Model](images/Analysis-UML.drawio.svg)
