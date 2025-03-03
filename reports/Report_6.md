@@ -49,12 +49,16 @@ Clarify the ways the people are going to interact with the system and the types 
 
 **Rylan:** 
 - Presentation prep
+  
 **Chris:**
 - Presentation prep
+  
 **Jack:**
 - Fix sample data, Presentation prep
+  
 **Ethan:**
 - HTML Home page, Presentation prep
+  
 ---
 
 ## Relevant Links
