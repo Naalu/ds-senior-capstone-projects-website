@@ -11,46 +11,42 @@
 ---
 
 ## Executive Summary
-Clarify the ways the people are going to interact with the system and the types of objects that the system works with. We'll create visual models to help design and clarify this information.
+Clarify the ways the people are going to interact with the system and the types of objects that the system works with. We'll create visual models to help design and clarify this information. Set up for making the presentation.
 
 ---
 
 ## 1. Activity Summary
-Describe what each individual has contributed to the project in the last week. Provide supporting documentation (e.g., issue numbers, commit IDs, meeting dates, etc.). Be honest if someone didn't contribute, and explain why.
 
 ### Example:
 **Rylan:**
 - UML Diagram for Deliverable
-- **GitHub Summary:** 
+- **GitHub Summary:** 3 commits
 
 **Chris:**
 - Summary for deliverable
-- **GitHub Summary:** 
+- **GitHub Summary:** 2 commits
 
 **Jack:**
 - UML Diagram for Deliverable
-- **GitHub Summary:** 
+- **GitHub Summary:** 9 commits
 
 **Ethan:**
 - HTML for home page
-- **GitHub Summary:** 
+- **GitHub Summary:** 1 commit
 ---
 
 ## 2. Retrospective
-Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
 1. **Appreciations:** 
-2. **Successes:** 
-3. **Failures:** 
-4. **Barriers:** 
+2. **Successes:** The group did a good job of looking to future assignments and assigning responsibilities.
+3. **Failures:** Any progress on the actual project has slowed as other class responsibilities have taken priority.
+4. **Barriers:** Familiarity with Django continues to be a wall for the members that aren't familiar with the framework. 
 5. **What we should try next time:** 
 
 ---
 
 ## 3. Next Steps
-List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues.
 
-### Example:
 **Rylan:** 
 - Presentation prep
 **Chris:**
@@ -62,6 +58,5 @@ List the tasks that need to be completed, assign them to team members, and link 
 ---
 
 ## Relevant Links
-Include any links to tools, documents, or resources used this week.
-- [Link description](URL)
-- [Link description](URL)
+
+None
