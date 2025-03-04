@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <!--THIS IS ALL THE SEARCH BAR-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+      .search-container {
+        margin-top: 20px;
+      }
+      input[type="text"] {
+        width: 50%;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .projects-container {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .project {
+        width: 300px;
+        margin: 10px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="search-container">
+      <input type="text" id="search" placeholder="Search projects..." />
+    </div>
+    <div class="projects-container" id="projects">
+      {% for project in projects %}
+      <div class="project">
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!--THIS IS JUST A LOADING INDICATOR IF THE LOADING IS SLOW-->
+    <div id="loading-indicator" style="display: none; text-align: center">
+      Loading...
+    </div>
+
+    <!--THIS PART HANDLES THE INFINITE SCROLL-->
+    <script>
+      let page = 2;
+      let loading = false;
+
+      $(window).scroll(function () {
+        if (
+          $(window).scrollTop() + $(window).height() >=
+          $(document).height() - 100
+        ) {
+          if (!loading) {
+            loading = true;
+            $("#loading-indicator").show();
+            $.get(
+              "{% url 'load_more_projects' %}?page=" + page,
+              function (data) {
+                $("#loading-indicator").hide();
+                if (data.trim() !== "") {
+                  $("#projects").append(data);
+                  page++;
+                  loading = false;
+                } else {
+                  $(window).off("scroll");
+                }
+              }
+            );
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
