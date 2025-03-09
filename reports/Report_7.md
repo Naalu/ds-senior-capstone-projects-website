@@ -2,7 +2,7 @@
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
-**Date:** 2025-M-DD
+**Date:** 2025-03-05
 **Location:** 
 **Present participants:** Rylan, Chris, Jack, Ethan  
 **Missing participants:**  
@@ -11,7 +11,7 @@
 ---
 
 ## Executive Summary
-Provide a brief summary of the week's key updates and outcomes in 2-3 sentences.
+Week before spring break. Group focused on midterm presentation.
 
 ---
 
@@ -20,19 +20,19 @@ Describe what each individual has contributed to the project in the last week. P
 
 ### Example:
 **Rylan:**
-
+refined presentation
 - **GitHub Summary:** 
 
 **Chris:**
-
+refined presentation
 - **GitHub Summary:** 
 
 **Jack:**
-
+refined presentation
 - **GitHub Summary:** 
 
 **Ethan:**
-
+refined presentation
 - **GitHub Summary:** 
 ---
 
@@ -41,9 +41,9 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 
 ### Example:
 1. **Appreciations:** 
-2. **Successes:** 
+2. **Successes:** Midterm presentation
 3. **Failures:** 
-4. **Barriers:** 
+4. **Barriers:** Spring break
 5. **What we should try next time:** 
 
 ---
@@ -56,10 +56,9 @@ List the tasks that need to be completed, assign them to team members, and link 
 
 **Chris:**
 
-**Jack:**
+**Jack:** Finish sample data 
 
-
-**Ethan:**
+**Ethan:** Finish Home page HTML
 
 ---
 
