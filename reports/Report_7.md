@@ -51,7 +51,7 @@ Week before spring break. Group focused on creating and practicing the midterm p
 ## 3. Next Steps
 **Rylan:**
 - Organize future workload for team
-- 
+
 **Chris:**
 - Organize future workload for team
 
