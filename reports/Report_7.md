@@ -11,55 +11,57 @@
 ---
 
 ## Executive Summary
-Week before spring break. Group focused on midterm presentation.
+Week before spring break. Group focused on creating and practicing the midterm presentation.
 
 ---
 
 ## 1. Activity Summary
-Describe what each individual has contributed to the project in the last week. Provide supporting documentation (e.g., issue numbers, commit IDs, meeting dates, etc.). Be honest if someone didn't contribute, and explain why.
 
-### Example:
 **Rylan:**
-refined presentation
-- **GitHub Summary:** 
+- co-created first draft of slide set for presentation
+- refined presentation
+- **GitHub Summary:** 2 commits
 
 **Chris:**
-refined presentation
-- **GitHub Summary:** 
+- created outline and final slide set for presentation
+- refined presentation
+- **GitHub Summary:** 5 commits
 
 **Jack:**
-refined presentation
-- **GitHub Summary:** 
+- co-created first draft of slide set for presentation
+- refined presentation
+- **GitHub Summary:** 2 commits
 
 **Ethan:**
-refined presentation
-- **GitHub Summary:** 
+- Edited script for presentation
+- refined presentation
+- **GitHub Summary:** 5 commits
 ---
 
 ## 2. Retrospective
-Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
-### Example:
-1. **Appreciations:** Everyone for killing it on the presentation
-2. **Successes:** Midterm presentation
-3. **Failures:** NONE
+1. **Appreciations:** Everyone for did a really good job on the presentation
+2. **Successes:** Hit the exact time estimate for the presentation. Worked well together to practice and refine the presentation.
+3. **Failures:** No real progress on the actual project this week.
 4. **Barriers:** Spring break
 5. **What we should try next time:** N/A
 
 ---
 
 ## 3. Next Steps
-List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues.
-
-### Example:
 **Rylan:**
-
+- Organize future workload for team
+- 
 **Chris:**
+- Organize future workload for team
 
-**Jack:** Finish sample data 
+**Jack:** 
+- Finish sample data 
 
-**Ethan:** Finish Home page HTML
+**Ethan:** 
+- Finish Home page HTML
 
 ---
 
 ## Relevant Links
+None
