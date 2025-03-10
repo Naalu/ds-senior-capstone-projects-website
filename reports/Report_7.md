@@ -40,11 +40,11 @@ refined presentation
 Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
 ### Example:
-1. **Appreciations:** 
+1. **Appreciations:** Everyone for killing it on the presentation
 2. **Successes:** Midterm presentation
-3. **Failures:** 
+3. **Failures:** NONE
 4. **Barriers:** Spring break
-5. **What we should try next time:** 
+5. **What we should try next time:** N/A
 
 ---
 
