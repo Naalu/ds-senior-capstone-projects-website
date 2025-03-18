@@ -60,6 +60,22 @@ Grading criteria (3 points): You should have an adequate number of automated tes
 
 List the adopted technologies with a brief description and justification for choosing them.
 
+Django is a popular choice for developing a project like the "ds-senior-capstone-projects-website" because of its benefits:
+
+    Rapid Development: Django's built-in tools for routing, templating, and database management speed up development.
+
+    Scalability: Django is well-suited for projects that might grow over time, such as expanding to accommodate more research departments.
+
+    Built-in Admin Interface: Useful for managing research submissions and user roles without extra effort.
+
+    Security: Django has built-in protection against common vulnerabilities like SQL injection, XSS, and CSRF.
+
+    ORM (Object-Relational Mapping): Simplifies database interactions, ideal for handling structured data like student projects.
+
+    Community Support: Extensive documentation and community resources make problem-solving easier.
+
+Given the project's goals—to organize, archive, and showcase student research—Django's structure and capabilities are a strong fit.
+
 Grading criteria (1 point): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, and adequate use of language.
 
 ## Deployment
