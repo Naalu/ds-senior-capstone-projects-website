@@ -32,7 +32,8 @@ Order the requirements below by the name of the student who implemented them. Al
 
 Example:
 
-Requirement: As a Student, I want to add a homework assignment so that I can organize my ToDo list.
+#### Requirement: 
+As a Student, I want to add a homework assignment so that I can organize my ToDo list.
 Issue: <link to your GitHub issue>
 Pull request: https://github.com/user/project/pull/426
 Implemented by: Martin Fowler
@@ -43,6 +44,21 @@ All source code should be submitted by means of pull requests and the quality as
 https://help.github.com/articles/about-pull-requests/
 
 Links to an external site.
+
+#### Requirement: 
+As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
+
+Criteria:
+
+    Functionality for documents (PDF, LaTeX) and supplementary files (data sets, code, etc.).
+    Ability to add a project title, description, and keywords.
+    Option to tag faculty or collaborators related to the project.
+
+Issue: https://github.com/Naalu/ds-senior-capstone-projects-website/issues/15 
+Pull Request(s):
+Implemented By:
+Approved By:
+Print Screen: 
 
 Grading criteria (8 points): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, adequate use of language, and amount of work put into the implementation. Students can receive different grades depending on their involvement. It is expected that all members contribute with non-trivial implementation. All pull requests should be approved and integrated by the quality assurance person. You should follow an adequate workflow (description of the requirement on the issue tracker, submission of the implemented requirement as a pull request, and review of the pull request by another developer). 
 
