@@ -35,6 +35,59 @@
             "presentation_file": null,
             "pdf_file": null
         }
+    },
+    {
+        "model": "ResearchProject",
+        "pk": 3,
+        "fields": {
+            "title": "Gear Shifts and Data Rifts Formula 1 Driver Prowess",
+            "abstract": "Deepened the understanding of the factors influencing driver performance in Formula 1 (F1) racing could provide meaningful insights to improve results on the racetrack.",
+            "author": "Caleb King",
+            "collaborators": [],
+            "faculty_advisor": "Robert Buscaglia",
+            "approval_status": "pending",
+            "github_link": "https://github.com/Jack-Tomlon",
+            "project_sponsor": null,
+            "poster_image": null,
+            "video_link": null,
+            "presentation_file": null,
+            "pdf_file": null
+        }
+    },
+    {
+        "model": "ResearchProject",
+        "pk": 4,
+        "fields": {
+            "title": "Bop or Flop, A Data-Driven Approach to Predicting Hit Songs",
+            "abstract": "Billboard Music’s Year-End Hot 100 showcases the most popular songs of each year based on sales and streaming. Many musicians strive to appear on the Billboard charts as a sign of their success in the industry. ",
+            "author": "Catalina Munoz",
+            "collaborators": [],
+            "faculty_advisor": "Robert Buscaglia",
+            "approval_status": "pending",
+            "github_link": "https://github.com/Jack-Tomlon",
+            "project_sponsor": null,
+            "poster_image": null,
+            "video_link": null,
+            "presentation_file": null,
+            "pdf_file": null
+        }
+    },
+    {
+        "model": "ResearchProject",
+        "pk": 5,
+        "fields": {
+            "title": "Insight into the Effects of a Peer Math Assistant on Student Academic Performance",
+            "abstract": "This project takes data collected from the Math Achievement Program (MAP) and pairs it with student grade data to find impactful results regarding how a Peer Math Assistant (PMA) can affect student academic performance",
+            "author": "Peter Eng" ,
+            "collaborators": [],
+            "faculty_advisor": "Robert Buscaglia",
+            "approval_status": "pending",
+            "github_link": "https://github.com/Jack-Tomlon",
+            "project_sponsor": null,
+            "poster_image": null,
+            "video_link": null,
+            "presentation_file": null,
+            "pdf_file": null
+        }
     }
-    
 ]
