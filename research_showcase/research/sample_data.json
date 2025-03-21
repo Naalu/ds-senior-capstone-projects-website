@@ -14,7 +14,7 @@
             "poster_image": null,
             "video_link": "https://www.youtube.com",
             "presentation_file": null,
-            "pdf_file": null
+            "pdf_file": "../media/capstone_projects/machince_learning_for_sports_analyitics.pdf"
         }
     },
 
@@ -33,7 +33,7 @@
             "poster_image": null,
             "video_link": null,
             "presentation_file": null,
-            "pdf_file": null
+            "pdf_file": "../media/capstone_projects/deep_learning_for_image_recognition.pdf"
         }
     },
     {
@@ -51,7 +51,7 @@
             "poster_image": null,
             "video_link": null,
             "presentation_file": null,
-            "pdf_file": null
+            "pdf_file": "../media/capstone_projects/F1-poster.pdf"
         }
     },
     {
@@ -69,7 +69,7 @@
             "poster_image": null,
             "video_link": null,
             "presentation_file": null,
-            "pdf_file": null
+            "pdf_file": "../media/capstone_projects/bop-or-flop.pdf"
         }
     },
     {
@@ -87,7 +87,7 @@
             "poster_image": null,
             "video_link": null,
             "presentation_file": null,
-            "pdf_file": null
+            "pdf_file": "../media/capstone_projects/Effects-of-peer-math-assitant.pdf"
         }
     }
 ]
