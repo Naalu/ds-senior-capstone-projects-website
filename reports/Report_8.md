@@ -18,23 +18,23 @@ Week after spring break and getting back into the swing of things. We met up and
 ## 1. Activity Summary
 
 **Rylan:**
-- co-created first draft of slide set for presentation
-- refined presentation
+- Reviewed project documentation for consistency
+- Provided feedback on website layout and usability
 - **GitHub Summary:** 0 commits
 
 **Chris:**
-- created outline and final slide set for presentation
-- refined presentation
+- Researched potential improvements for website
+- Drafted a plan for upcoming development tasks
 - **GitHub Summary:**  commits
 
 **Jack:**
-- co-created first draft of slide set for presentation
-- refined presentation
+- Reviewed and tested website features for bugs
+- Provided feedback on the search page implementation
 - **GitHub Summary:** 4 commits
 
 **Ethan:**
 - Working on the search page for the website
-- 
+- Debugged issues with search functionality
 - **GitHub Summary:** 0 commits
 ---
 
