@@ -42,7 +42,7 @@ Week after spring break and getting back into the swing of things. We met up and
 
 1. **Appreciations:** Everyone for working on the project and keeping the group in check
 2. **Successes:** Great progress for the project
-3. **Failures:** 
+3. **Failures:** N/A
 4. **Barriers:** N/A
 5. **What we should try next time:** N/A
 
