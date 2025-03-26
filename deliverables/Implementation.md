@@ -1,7 +1,5 @@
 ## Introduction
 
-Provide a short paragraph that describes your system. This paragraph should contain the value proposition and a description of the main features of the software. At the end of the introduction, include a link to your project on GitHub.
-
 ### Description
 Northern Arizona University Department of Mathematics & Statistics Research Showcase is dedicated to developing a web-based platform for Northern Arizona University's Department of Mathematics & Statistics. This platform aims to organize, archive, and showcase student research, particularly senior capstone projects, with potential expansions for additional research and other departments.
 
@@ -70,11 +68,15 @@ Grading criteria (8 points): This section will be evaluated in terms of correctn
     An example of a test case. Include in your answer a GitHub link to the class being tested and to the test.
     A print screen showing the result of the execution of the automated tests. 
 
+Django's built in testing system. In each Django module/app there is a test.py file for testing.
+
+- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/research/tests.py 
+
+- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py
+
 Grading criteria (3 points): You should have an adequate number of automated tests. They should be well-written to exercise the main components of your system, covering the relevant inputs.
 
 ## Technology
-
-List the adopted technologies with a brief description and justification for choosing them.
 
 Django is a popular choice for developing a project like the "ds-senior-capstone-projects-website" because of its benefits:
 
@@ -91,8 +93,6 @@ Django is a popular choice for developing a project like the "ds-senior-capstone
     Community Support: Extensive documentation and community resources make problem-solving easier.
 
 Given the project's goals—to organize, archive, and showcase student research—Django's structure and capabilities are a strong fit.
-
-Grading criteria (1 point): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, and adequate use of language.
 
 ## Deployment
 
