@@ -83,6 +83,8 @@ Django's built in testing system. In each Django module/app there is a test.py f
 
 - https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py
 
+[test screen shot]
+
 Grading criteria (3 points): You should have an adequate number of automated tests. They should be well-written to exercise the main components of your system, covering the relevant inputs.
 
 ## Technology
