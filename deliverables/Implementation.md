@@ -138,7 +138,11 @@ Grading criteria (3 points): This section will be graded based on the appearance
 
 ## Lessons Learned
 
-In retrospective, describe what your team learned during this first release and what you are planning to change for the second release. 
+Improve Communication: Throughout this project, we discovered that clear and consistent communication is key to avoiding delays and misundersandings. Implimenting more structired communication methods, such as regualr check-ins and better alignment on task dependencies, will ensure that everyone is on the same page and help keep the project moving forward.
+
+Documentation and Sharaing: Another learning point was the need for better documentation. As the project progressed it became clear that having a centralized place for important information could help avoid confusion. 
+
+Understand Django: Throughout the first release, it became clear that a deeper understanding of Django's core components was essential for this project. While most team members had a general grasp of the framework, we faced challenges in leveraging Django's built-in tools and features effectively. This led to some inefficiencies and delays when implementing certain features. 
 
 Grading criteria (2 points): Adequate reflection about problems and solutions, clear description with adequate use of language. 
 
