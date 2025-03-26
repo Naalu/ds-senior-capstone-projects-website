@@ -48,7 +48,6 @@ As a student, I want to my capstone project stored online so that I can share my
     - Enabling Faculty to submit research on behalf of students
     - Allowing Admins to access both submission and review features
     - Improving the permission system for more intuitive access control
-    - Updating the documentation to reflect these changes including the README and usage guides for Faculty and Admins
 
 **Issue(s):**
 - [#51 - Create User Documentation](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/16)
@@ -58,6 +57,52 @@ As a student, I want to my capstone project stored online so that I can share my
 **Implemented by**: Karl Reger  
 **Approved by**: Jack Tomlon  
 **Print screen**: ![Karl Reqiuriement](images/admin-panel.png)
+
+
+
+### Requirement: 
+As an administrator, I want to store capstone projects in a central location so that I can store and manage them more easily.
+
+**Criteria**  
+
+This enhancement significantly improves the research submission process with the following features:
+
+#### 1. Enhanced Data Model
+- Added student author name field to track student researchers
+- Added collaborator names field for non-user collaborators
+- Added date presented field to record when research was presented
+
+#### 2. Multi-Step Submission Form
+- Created intuitive 4-step process (Basic Info → Project Details → Research Materials → Review)
+- Implemented in-line validation with clear error messages
+- Added file preview functionality for uploaded materials
+- Added tooltips and helper text for all fields
+
+#### 3. Improved File Handling
+- Added proper file type validation for different uploads
+- Implemented file size restrictions
+- Added clear visual feedback for uploaded files
+
+#### 4. Success Page
+- Created dedicated success page after submission
+- Added navigation options to return home or submit another project
+
+#### 5. Comprehensive Testing
+- Implemented automated tests for all new functionality
+- Test coverage includes form validation, file uploads, and workflow
+
+This implementation aligns with the project's user experience goals by making the submission process more intuitive while ensuring data quality through robust validation. Faculty can now provide complete information about student research with minimal friction.
+
+**Issue**:
+ - https://github.com/Naalu/ds-senior-capstone-projects-website/issues/16
+ - https://github.com/Naalu/ds-senior-capstone-projects-website/issues/38
+
+**Pull Request**: https://github.com/Naalu/ds-senior-capstone-projects-website/pull/57   
+**Implemented by**: Karl Reger  
+**Approved by**: Jack Tomlin  
+**Print screen**:    
+![Research Submission Form](images/research_submission_form.png)   
+
 
 ## Tests
 
