@@ -44,7 +44,7 @@ As a student, I want to my capstone project stored online so that I can share my
 **Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)    
 **Implemented by**: Jack Tomlon  
 **Approved by**: Karl Reager   
-**Print screen**: [Insert screenshot showing role selection or admin interface]
+**Print screen**: Back-end no availiable screenshot. 
 
 ### Requirement:
  As an administrator, I want to store capstone projects in a central location so that I can store and manage them more easily.
@@ -64,7 +64,7 @@ As a student, I want to my capstone project stored online so that I can share my
 **Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)  
 **Implemented by**: Karl Reger  
 **Approved by**: Jack Tomlon  
-**Print screen**: [Insert screenshot showing role selection or admin interface]
+**Print screen**: ![Karl Reqiuriement](images/admin-panel.png)
 
 
 Grading criteria (8 points): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, adequate use of language, and amount of work put into the implementation. Students can receive different grades depending on their involvement. It is expected that all members contribute with non-trivial implementation. All pull requests should be approved and integrated by the quality assurance person. You should follow an adequate workflow (description of the requirement on the issue tracker, submission of the implemented requirement as a pull request, and review of the pull request by another developer). 
@@ -81,9 +81,9 @@ Django's built in testing system. In each Django module/app there is a test.py f
 
 - https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/research/tests.py 
 
-- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py
+- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py  
 
-[test screen shot]
+![Test Case](images/python_test_example.png)  
 
 Grading criteria (3 points): You should have an adequate number of automated tests. They should be well-written to exercise the main components of your system, covering the relevant inputs.
 
@@ -141,8 +141,6 @@ Improve Communication: Throughout this project, we discovered that clear and con
 Documentation and Sharaing: Another learning point was the need for better documentation. As the project progressed it became clear that having a centralized place for important information could help avoid confusion. 
 
 Understand Django: Throughout the first release, it became clear that a deeper understanding of Django's core components was essential for this project. While most team members had a general grasp of the framework, we faced challenges in leveraging Django's built-in tools and features effectively. This led to some inefficiencies and delays when implementing certain features. 
-
-Grading criteria (2 points): Adequate reflection about problems and solutions, clear description with adequate use of language. 
 
 ## Demo
 
