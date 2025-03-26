@@ -76,3 +76,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Removed Student role as Faculty now submit research on behalf of students
+
+### Added
+
+- Basic search functionality for research projects
+  - Search by title, abstract, and project sponsor
+  - Results filtered to approved projects only
+- Automated tests for models and views
+  - Test coverage for user permissions
+  - Test coverage for search functionality

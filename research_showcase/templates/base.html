@@ -38,6 +38,12 @@
                         {% endif %}
                     {% endif %}
                 </ul>
+                
+                <!-- Search Form -->
+                <form class="d-flex ms-auto me-2" action="{% url 'search_research' %}" method="get">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search projects..." aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
 
                 <!-- Right-aligned navbar items -->
                 <ul class="navbar-nav">

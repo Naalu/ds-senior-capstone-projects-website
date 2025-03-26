@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from users.decorators import admin_required, faculty_required
 
@@ -55,3 +56,38 @@ def reject_research(request, project_id):
     project.save()
     messages.error(request, "Project rejected.")
     return redirect("review_research")
+
+
+def search_research(request):
+    """
+    Search for research projects by title, abstract, or project sponsor.
+
+    This view handles searching of approved research projects. When a query
+    is provided, it filters projects containing the search term in their
+    title, abstract, or project sponsor fields. Without a query, it returns
+    all approved projects.
+
+    Args:
+        request: The HTTP request object containing the 'q' query parameter
+
+    Returns:
+        Rendered template with filtered research projects and the search query
+    """
+    query = request.GET.get("q", "")
+    projects = None
+
+    if query:
+        projects = ResearchProject.objects.filter(
+            Q(title__icontains=query)
+            | Q(abstract__icontains=query)
+            | Q(project_sponsor__icontains=query),
+            approval_status="approved",
+        ).order_by("-submission_date")
+    else:
+        projects = ResearchProject.objects.filter(approval_status="approved").order_by(
+            "-submission_date"
+        )
+
+    return render(
+        request, "research/search_results.html", {"projects": projects, "query": query}
+    )

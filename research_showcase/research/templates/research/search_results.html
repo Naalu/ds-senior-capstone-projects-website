@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Research Project Search</h2>
+    
+    <form method="get" action="{% url 'search_research' %}" class="mb-4">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search by title, abstract, or sponsor..." value="{{ query }}">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ project.author.username }}</h6>
+                    <p class="card-text">{{ project.abstract|truncatewords:30 }}</p>
+                    
+                    <div class="mt-3">
+                        {% if project.pdf_file %}
+                        <a href="{{ project.pdf_file.url }}" class="btn btn-sm btn-primary">View Paper</a>
+                        {% endif %}
+                        
+                        {% if project.github_link %}
+                        <a href="{{ project.github_link }}" class="btn btn-sm btn-secondary">GitHub</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    Submitted: {{ project.submission_date|date:"F j, Y" }}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">No research projects found matching your search.</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
