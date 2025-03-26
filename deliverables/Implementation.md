@@ -123,8 +123,6 @@ Grading criteria (1 point): This section will be evaluated in terms of correctne
 
 ## Readme File
 
-
-
 - [ReadMe](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/README.md)  
 - [Contributing ](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/CONTRIBUTING.md) 
 - [Code of Conduct](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/CODE_OF_CONDUCT.md)
