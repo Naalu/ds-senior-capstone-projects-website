@@ -64,19 +64,28 @@ As a student, I want to my capstone project stored online so that I can share my
 **Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)  
 **Implemented by**: Karl Reger  
 **Approved by**: Jack Tomlon  
-**Print screen**:
+**Print screen**: [Insert screenshot showing role selection or admin interface]
 
-![Requirement](images/admin-panel.png)  
 
-## Tests 
+Grading criteria (8 points): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, adequate use of language, and amount of work put into the implementation. Students can receive different grades depending on their involvement. It is expected that all members contribute with non-trivial implementation. All pull requests should be approved and integrated by the quality assurance person. You should follow an adequate workflow (description of the requirement on the issue tracker, submission of the implemented requirement as a pull request, and review of the pull request by another developer). 
 
-We are using Django's built in testing system. In each Django module/app there is a test.py file for testing.
+## Tests
+
+    You should implement automated tests that aim to verify the correct behavior of your code. Provide the following information:
+    Test framework you used to develop your tests (e.g., JUnit, unittest, pytest, etc.)
+    Link to your GitHub folder where your automated unit tests are located.
+    An example of a test case. Include in your answer a GitHub link to the class being tested and to the test.
+    A print screen showing the result of the execution of the automated tests. 
+
+Django's built in testing system. In each Django module/app there is a test.py file for testing.
 
 - https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/research/tests.py 
 
-- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py  
+- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py
 
-![Test Case Example](images/python_test_example.png)
+[test screen shot]
+
+Grading criteria (3 points): You should have an adequate number of automated tests. They should be well-written to exercise the main components of your system, covering the relevant inputs.
 
 ## Technology
 
@@ -98,18 +107,15 @@ Given the project's goalsâ€”to organize, archive, and showcase student researchâ
 
 ## Deployment
 
-Provide a link for the system in production and describe how you are deploying your system. 
+Currently our project is being hosted locally but we have identified several cloud platforms that are suitable for hosting our project. The goal is to deploy the system in a cloud environment to improve its scalability, availability, and accessibility. If our project shows promise Northern Arizona University Department of Mathematics & Statistics may take over the project for further development and implementation.
 
-Some alternatives for deploying your system in the cloud:
+Here are some cloud hosting platforms we discussed using:
 
-    AWS. AWS Educate offers free credits for students. See the tutorial at https://docker-curriculum.com/ on how to create a container and deploy it on AWS. 
-    Digital Ocean or Azzure. As part of the GitHub Education benefits, as a student, you can get $100 at Digital Ocean and $100 at Microsoft Azzure cloud computing platforms (see more details at https://education.github.com/students) 
+    AWS(Amazon Web Service):
+    AWS is one of the most popular cloud services used today. It offers feww credits for students, and the platform provides an array of tool and services. These include EC2 for virtucal servers, S3 for storage, and RDS for database management. AWS is ideal for larger, complex projects that may require high scalability and avaliablity.
 
-    Links to an external site..
-    Oracle Cloud. Oracle offers a free tier in its cloud environment that should be more than enough for your needs.
-    Firebase. Firebase can be a good choice if you are building a mobile phone app.
-
-Grading criteria (3 points): This section will be graded based on the adequate use of the technology and its adequate description.
+    Microsoft Azure: 
+    Azure is also a great alternative for web cloud service. Azure offers $100 in free credits and is free for students as well. They have Azure App Service for app hoting and Azure SQL Database for database management. Azure has integreation with Visual Studio which makes it an amazing choice for our project. Azure also supports automate deployment pipelines through CI/CD.
 
 ## Licensing
 
@@ -119,11 +125,10 @@ Grading criteria (1 point): This section will be evaluated in terms of correctne
 
 ## Readme File
 
-You should also prepare your repository for receiving new contributors. You should prepare a Readme.md file. See an example at https://gist.github.com/PurpleBooth/109311bb0361f32d87a2   In the Readme file, the current version should be stated. You should follow the Semantic Versioning schema (https://semver.org/). Tag the GitHub repository accordingly (https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
-
-Your repository should contain a CONTRIBUTING.md file, a LICENSE file, and a CODE_OF_CONDUCT.md file. Search online for some examples of these files. In this section of the deliverable, put links to these files on GitHub.
-
-Grading criteria (3 points): This section will be based on the presence and quality of the information presented in the files.
+- [ReadMe](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/README.md)  
+- [Contributing ](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/CONTRIBUTING.md) 
+- [Code of Conduct](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/CODE_OF_CONDUCT.md)
+- [License](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/LICENSE)
 
 ## UX Design
 
