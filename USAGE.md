@@ -67,6 +67,7 @@ Tips for effective searching:
    - Abstract
    - Research category
    - Faculty advisor (yourself or another faculty member)
+
 3. **Upload research materials**:
    - Research paper (PDF)
    - Presentation slides

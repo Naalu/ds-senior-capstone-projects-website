@@ -40,6 +40,7 @@ The platform features two primary user roles:
 
 ### Installation
 
+
 1. **Clone the repository**
 
 ```bash

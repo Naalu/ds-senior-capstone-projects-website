@@ -85,3 +85,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Automated tests for models and views
   - Test coverage for user permissions
   - Test coverage for search functionality
+
