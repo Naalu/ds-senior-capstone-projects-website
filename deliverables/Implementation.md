@@ -9,7 +9,7 @@ For students, faculty, and external evaluators who need a reliable and structure
 ### Core Features (MVP)
 ✔ **Faculty-Driven Research Submission** – Faculty can submit student research with metadata (title, author, category, faculty advisor) and file uploads (PDF, PPT, images).
 
-✔ ******Admin Review & Approval** – Admins can approve, reject, or request revisions before projects are published.
+✔ **Admin Review & Approval** – Admins can approve, reject, or request revisions before projects are published.
 
 ✔ **Advanced Search & Filtering** – Users can search by title, research category, faculty advisor, or keywords to find relevant projects.
 
@@ -19,14 +19,7 @@ For students, faculty, and external evaluators who need a reliable and structure
 
 ✔ **Efficient Research Management** – Admins manage research projects, user roles, and system settings through an intuitive Django Admin Panel.
 
-
-Grading criteria (1 point): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, and adequate use of language. The description should be consistent with the current state of the project. You should include the link to GitHub.
-
 ## Requirements
-
-List in this section, the requirements and associated pull request that you implemented for this release, following the example below---include the description of the requirement, a link to the issue, a link to the pull request(s) that implement the requirement, who implemented the requirement, who approved it, and a print screen that depicts the implemented feature (if applicable). I expect that you implement the features you specified in your MVP (c.f. D.2 Requirements). 
-
-Order the requirements below by the name of the student who implemented them. All the members of the group should have worked on implementation activities and submitted pull requests. Only stable code should be included in the release. The code that is still under development should be in branches.
 
 ### Requirement:
 As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
@@ -66,9 +59,6 @@ As a student, I want to my capstone project stored online so that I can share my
 **Approved by**: Jack Tomlon  
 **Print screen**: ![Karl Reqiuriement](images/admin-panel.png)
 
-
-Grading criteria (8 points): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, adequate use of language, and amount of work put into the implementation. Students can receive different grades depending on their involvement. It is expected that all members contribute with non-trivial implementation. All pull requests should be approved and integrated by the quality assurance person. You should follow an adequate workflow (description of the requirement on the issue tracker, submission of the implemented requirement as a pull request, and review of the pull request by another developer). 
-
 ## Tests
 
     You should implement automated tests that aim to verify the correct behavior of your code. Provide the following information:
@@ -84,8 +74,6 @@ Django's built in testing system. In each Django module/app there is a test.py f
 - https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py  
 
 ![Test Case](images/python_test_example.png)  
-
-Grading criteria (3 points): You should have an adequate number of automated tests. They should be well-written to exercise the main components of your system, covering the relevant inputs.
 
 ## Technology
 
@@ -130,9 +118,6 @@ We chose the MIT license in order to have simple, short, and relatively understa
 
 ## UX Design
 
-Describe the approach you adopted to design your user interface. Include some screenshots.
-
-Grading criteria (3 points): This section will be graded based on the appearance (aesthetics) and usability (ease of use) of the system.
 
 ## Lessons Learned
 
@@ -143,7 +128,3 @@ Documentation and Sharaing: Another learning point was the need for better docum
 Understand Django: Throughout the first release, it became clear that a deeper understanding of Django's core components was essential for this project. While most team members had a general grasp of the framework, we faced challenges in leveraging Django's built-in tools and features effectively. This led to some inefficiencies and delays when implementing certain features. 
 
 ## Demo
-
-Include a link to a video showing the system working.
-
-Grading criteria (5 points): This section will be graded based on the quality of the video and on the evidence that the features are running as expected. Additional criteria are the relevance of the demonstrated functionalities, the correctness of the functionalities, and the quality of the developed system from the external point of view (user interface).
