@@ -1,22 +1,54 @@
+from typing import List, Tuple
+
 from django.db import models
 from users.models import User
 
+# In research/models.py
+
 
 class ResearchProject(models.Model):
-    STATUS_CHOICES = [
+    """
+    Model representing a research project submission.
+
+    A research project is submitted by a faculty member on behalf of a student.
+    It includes details about the research, optional files and links, and tracks
+    its approval status through the workflow process.
+
+    Fields:
+        title: The research project title
+        abstract: A detailed description of the research
+        author: The faculty member who submitted the project
+        student_author_name: Name of the student researcher
+        collaborator_names: Text field listing all collaborators
+        faculty_advisor: Optional link to faculty advisor user
+        submission_date: When the project was submitted
+        date_presented: When the research was presented (if applicable)
+        approval_status: Current status in the approval workflow
+        Various optional fields for links and file attachments
+    """
+
+    STATUS_CHOICES: List[Tuple[str, str]] = [
         ("pending", "Pending Approval"),
         ("approved", "Approved"),
         ("rejected", "Rejected"),
     ]
 
     title: models.CharField = models.CharField(max_length=255)
-    abstract: models.TextField = models.TextField()  # Written abstract
+    abstract: models.TextField = models.TextField()
+
+    # Faculty member who submits the research
     author: models.ForeignKey = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="research_projects"
     )
-    collaborators: models.ManyToManyField = models.ManyToManyField(
-        User, related_name="collaborations", blank=True
+
+    # New field: Student author (text field, not a user)
+    student_author_name: models.CharField = models.CharField(max_length=255, blank=True)
+
+    # New field: Text-based collaborators list, not User objects
+    collaborator_names: models.TextField = models.TextField(
+        blank=True, help_text="Enter collaborator names, separated by commas"
     )
+
     faculty_advisor: models.ForeignKey = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
@@ -24,32 +56,33 @@ class ResearchProject(models.Model):
         blank=True,
         related_name="advised_projects",
     )
+
     submission_date: models.DateTimeField = models.DateTimeField(auto_now_add=True)
+
+    # New field: When the research was presented
+    date_presented: models.DateField = models.DateField(null=True, blank=True)
+
     approval_status: models.CharField = models.CharField(
         max_length=10, choices=STATUS_CHOICES, default="pending"
     )
 
-    # Optional Fields
-    github_link: models.URLField = models.URLField(
-        null=True, blank=True
-    )  # GitHub Repository
+    # Optional Fields (keep existing fields)
+    github_link: models.URLField = models.URLField(null=True, blank=True)
     project_sponsor: models.CharField = models.CharField(
         max_length=255, null=True, blank=True
-    )  # Sponsor organization or company
+    )
     poster_image: models.ImageField = models.ImageField(
         upload_to="posters/", null=True, blank=True
-    )  # Research poster image
-    video_link: models.URLField = models.URLField(
-        null=True, blank=True
-    )  # Video Presentation Link
-    presentation_file = models.FileField(
+    )
+    video_link: models.URLField = models.URLField(null=True, blank=True)
+    presentation_file: models.FileField = models.FileField(
         upload_to="presentations/", null=True, blank=True
-    )  # Slide Presentation
+    )
     pdf_file: models.FileField = models.FileField(
         upload_to="research_papers/", null=True, blank=True
-    )  # Research Paper PDF
+    )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
 
