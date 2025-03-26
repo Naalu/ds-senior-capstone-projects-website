@@ -119,9 +119,7 @@ Here are some cloud hosting platforms we discussed using:
 
 ## Licensing
 
-Inform the license you adopted for your source code (remember to configure GitHub accordingly). Explain why you adopted this license. For more information, check https://choosealicense.com/.
-
-Grading criteria (1 point): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, and adequate use of language.
+We chose the MIT license in order to have simple, short, and relatively understandable agreement. It gives minimal restrictions to anyone who wants to use the code as long as reasonable credit is given.
 
 ## Readme File
 
