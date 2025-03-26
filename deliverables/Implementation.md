@@ -105,18 +105,15 @@ Given the project's goalsâ€”to organize, archive, and showcase student researchâ
 
 ## Deployment
 
-Provide a link for the system in production and describe how you are deploying your system. 
+Currently our project is being hosted locally but we have identified several cloud platforms that are suitable for hosting our project. The goal is to deploy the system in a cloud environment to improve its scalability, availability, and accessibility. If our project shows promise Northern Arizona University Department of Mathematics & Statistics may take over the project for further development and implementation.
 
-Some alternatives for deploying your system in the cloud:
+Here are some cloud hosting platforms we discussed using:
 
-    AWS. AWS Educate offers free credits for students. See the tutorial at https://docker-curriculum.com/ on how to create a container and deploy it on AWS. ]
-    Digital Ocean or Azzure. As part of the GitHub Education benefits, as a student, you can get $100 at Digital Ocean and $100 at Microsoft Azzure cloud computing platforms (see more details at https://education.github.com/students) 
+    AWS(Amazon Web Service):
+    AWS is one of the most popular cloud services used today. It offers feww credits for students, and the platform provides an array of tool and services. These include EC2 for virtucal servers, S3 for storage, and RDS for database management. AWS is ideal for larger, complex projects that may require high scalability and avaliablity.
 
-    Links to an external site..
-    Oracle Cloud. Oracle offers a free tier in its cloud environment that should be more than enough for your needs.
-    Firebase. Firebase can be a good choice if you are building a mobile phone app.
-
-Grading criteria (3 points): This section will be graded based on the adequate use of the technology and its adequate description.
+    Microsoft Azure: 
+    Azure is also a great alternative for web cloud service. Azure offers $100 in free credits and is free for students as well. They have Azure App Service for app hoting and Azure SQL Database for database management. Azure has integreation with Visual Studio which makes it an amazing choice for our project. Azure also supports automate deployment pipelines through CI/CD.
 
 ## Licensing
 
