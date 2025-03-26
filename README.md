@@ -21,8 +21,15 @@ By making research projects easily accessible, the platform increases research v
 - **Admin Review & Approval** – Administrators ensure quality control through a structured review process
 - **Advanced Search & Filtering** – Find research by title, category, advisor, or keywords
 - **Public Research Repository** – Browse approved projects in a well-organized archive
-- **Secure Role-Based Access** – Different capabilities for faculty, admins, and visitors
+- **Secure Role-Based Access** – Different capabilities for faculty and administrators
 - **Streamlined Management** – Intuitive interfaces for all user roles
+
+## User Roles
+
+The platform features two primary user roles:
+
+- **Faculty** – Submit and manage research projects on behalf of students
+- **Administrators** – Review, approve, and manage all research submissions
 
 ## Quick Start
 
@@ -32,6 +39,7 @@ By making research projects easily accessible, the platform increases research v
 - pip package manager
 
 ### Installation
+
 
 1. **Clone the repository**
 

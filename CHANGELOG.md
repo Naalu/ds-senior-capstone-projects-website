@@ -63,3 +63,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Repository creation on GitHub
 - Basic requirements definition
 - Project planning documents
+
+## [0.2.0] - Upcoming Release
+
+### Changed
+
+- Simplified user role system to focus on Faculty and Admin roles
+- Updated Faculty permissions to submit research on behalf of students
+- Enhanced Admin capabilities to include all Faculty features
+- Improved navigation and role-based access controls
+
+### Removed
+
+- Removed Student role as Faculty now submit research on behalf of students
+
+### Added
+
+- Basic search functionality for research projects
+  - Search by title, abstract, and project sponsor
+  - Results filtered to approved projects only
+- Automated tests for models and views
+  - Test coverage for user permissions
+  - Test coverage for search functionality
+

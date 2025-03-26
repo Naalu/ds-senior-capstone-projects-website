@@ -28,9 +28,15 @@ This guide provides instructions for using the NAU Mathematics & Statistics Rese
 ### Searching for Research
 
 1. **Use the search bar** at the top of any page
-2. **Enter keywords** related to your research interest
-3. **View results** sorted by relevance
-4. **Apply additional filters** to refine your search
+2. **Enter keywords** related to research topics (e.g., "machine learning", "statistics")
+3. **View results** that match your query in the title, abstract, or project sponsor
+4. **Browse all approved projects** by submitting an empty search
+
+Tips for effective searching:
+
+- Use specific terms related to research areas
+- Try partial words (e.g., "math" will find "mathematics")
+- Searches are not case-sensitive
 
 ### Viewing Project Details
 
@@ -60,7 +66,8 @@ This guide provides instructions for using the NAU Mathematics & Statistics Rese
    - Student author(s)
    - Abstract
    - Research category
-   - Faculty advisor
+   - Faculty advisor (yourself or another faculty member)
+
 3. **Upload research materials**:
    - Research paper (PDF)
    - Presentation slides

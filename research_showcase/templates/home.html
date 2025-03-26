@@ -13,12 +13,16 @@
         <p>Explore research projects, submit your own, or review pending submissions.</p>
         
         <div class="d-flex justify-content-center gap-3">
-            <a class="btn btn-primary btn-lg px-4" href="{% url 'submit_research' %}">
-                <i class="bi bi-upload"></i> Submit Research
-            </a>
-            <a class="btn btn-success btn-lg px-4" href="{% url 'review_research' %}">
-                <i class="bi bi-check-circle"></i> Review Research
-            </a>
+            {% if user.is_authenticated and user.is_faculty or user.is_admin %}
+                <a class="btn btn-primary btn-lg px-4" href="{% url 'submit_research' %}">
+                    <i class="bi bi-upload"></i> Submit Research
+                </a>
+            {% endif %}
+            {% if user.is_authenticated and user.is_admin %}
+                <a class="btn btn-success btn-lg px-4" href="{% url 'review_research' %}">
+                    <i class="bi bi-check-circle"></i> Review Research
+                </a>
+            {% endif %}
         </div>
     </div>
 
@@ -27,18 +31,26 @@
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
                 <div class="card-body">
-                    <h5 class="card-title text-primary"><i class="bi bi-mortarboard"></i> For Students</h5>
-                    <p class="card-text">Submit your research projects and collaborate with peers and faculty members.</p>
-                    <a href="{% url 'submit_research' %}" class="btn btn-outline-primary">Submit Research</a>
+                    <h5 class="card-title text-primary"><i class="bi bi-mortarboard"></i> For Faculty</h5>
+                    <p class="card-text">Submit student research projects and manage submissions on behalf of your students.</p>
+                    {% if user.is_authenticated and user.is_faculty or user.is_admin %}
+                        <a href="{% url 'submit_research' %}" class="btn btn-outline-primary">Submit Research</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary">Login to Submit</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
                 <div class="card-body">
-                    <h5 class="card-title text-success"><i class="bi bi-clipboard-check"></i> For Faculty</h5>
-                    <p class="card-text">Review and approve research submissions, and provide feedback to students.</p>
-                    <a href="{% url 'review_research' %}" class="btn btn-outline-success">Review Research</a>
+                    <h5 class="card-title text-success"><i class="bi bi-clipboard-check"></i> For Administrators</h5>
+                    <p class="card-text">Review and approve research submissions, and provide feedback to faculty.</p>
+                    {% if user.is_authenticated and user.is_admin %}
+                        <a href="{% url 'review_research' %}" class="btn btn-outline-success">Review Research</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-outline-success">Login to Review</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
