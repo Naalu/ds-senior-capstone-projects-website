@@ -5,6 +5,7 @@ from .views import (
     reject_research,
     review_research,
     search_research,
+    submission_success,
     submit_research,
 )
 
@@ -14,4 +15,5 @@ urlpatterns = [
     path("approve/<int:project_id>/", approve_research, name="approve_research"),
     path("reject/<int:project_id>/", reject_research, name="reject_research"),
     path("search/", search_research, name="search_research"),
+    path("submit/success/", submission_success, name="submission_success"),
 ]
