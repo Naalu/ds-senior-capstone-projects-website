@@ -1,187 +1,116 @@
-# **Northern Arizona University Department of Mathematics & Statistics Research Showcase**  
+# NAU Mathematics & Statistics Research Showcase
 
-## **Overview**  
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.0-green.svg)](https://semver.org)
 
-The **NAU Mathematics & Statistics Research Showcase** is a **web-based platform** designed to **organize, archive, and showcase** student research within **Northern Arizona University’s Department of Mathematics & Statistics**.  
+A web-based platform designed to organize, archive, and showcase student research within Northern Arizona University's Department of Mathematics & Statistics.
 
-This system provides a **structured, searchable repository** where **faculty submit student research**, and **admins approve and publish projects**. It ensures increased **visibility for students**, facilitates **academic reference for faculty**, and allows **external audiences such as employers and graduate schools** to explore NAU’s research contributions.  
+## Overview
 
----
+The **NAU Mathematics & Statistics Research Showcase** is a centralized platform that transforms how student research is managed and shared within the department. It provides:
 
-## **Key Objectives**  
+- A structured repository where **faculty submit** student research
+- A quality control process where **administrators approve** submissions
+- A searchable archive where **visitors discover** valuable research
 
-✅ **Increase Research Visibility** – Provide a **dedicated, accessible platform** to showcase student research.  
-✅ **Improve Academic Accessibility** – Organize research materials (PDFs, abstracts, presentations) in a **searchable, structured repository**.  
-✅ **Support Faculty & Curriculum Development** – Help faculty **reference past projects** for advising, curriculum improvements, and research collaboration.  
-✅ **Expand Career & Academic Opportunities** – Enable **graduate schools, employers, and prospective students** to explore NAU’s research.  
-✅ **Ensure Long-Term Scalability** – Built with **Django & SQLite3**, the platform is designed for **future expansion** across disciplines.  
+By making research projects easily accessible, the platform increases research visibility, enhances student portfolios, and helps faculty reference past work—creating value for students, faculty, and external audiences.
 
----
+## Core Features
 
-## **Core Features (MVP)**  
+- **Faculty-Driven Research Submission** – Faculty submit student research with complete metadata and file attachments
+- **Admin Review & Approval** – Administrators ensure quality control through a structured review process
+- **Advanced Search & Filtering** – Find research by title, category, advisor, or keywords
+- **Public Research Repository** – Browse approved projects in a well-organized archive
+- **Secure Role-Based Access** – Different capabilities for faculty, admins, and visitors
+- **Streamlined Management** – Intuitive interfaces for all user roles
 
-✔ **Faculty-Driven Research Submission** – Faculty can submit student research with **metadata (title, author, category, faculty advisor) and file uploads (PDF, PPT, images).**  
-✔ **Admin Review & Approval** – Admins can **approve, reject, or request revisions** before projects are published.  
-✔ **Advanced Search & Filtering** – Users can search by **title, research category, faculty advisor, or keywords** to find relevant projects.  
-✔ **Public Research Repository** – Approved projects are **accessible to students, faculty, and external audiences**.  
-✔ **Secure Role-Based Access Control** – Only **faculty and admins** can submit, review, and manage projects.  
-✔ **Efficient Research Management** – Admins manage **research projects, user roles, and system settings** through an intuitive **Django Admin Panel**.  
+## Quick Start
 
----
+### Prerequisites
 
-## **Future Enhancements**  
+- Python 3.10+
+- pip package manager
 
-🔹 **Colloquium & Seminar Archive** – Store and display **research presentations & departmental seminars**.  
-🔹 **Featured Research & Awards** – Highlight **outstanding student research projects**.  
-🔹 **Cross-Disciplinary Expansion** – Allow **other NAU departments** to contribute research.  
-🔹 **External Integrations** – Enable **faculty to link projects to Google Scholar, LinkedIn, or ORCID profiles**.  
+### Installation
 
----
-
-## **Why This Project Matters**  
-
-The department currently **lacks a centralized system** for showcasing student research, making it difficult for:  
-
-🔹 **Students** – To share their work with **employers or graduate programs**.  
-🔹 **Faculty** – To reference past research for **advising, teaching, and collaboration**.  
-🔹 **External Audiences** – To explore **NAU’s research contributions and student work**.  
-
-By creating a **structured, user-friendly, and publicly accessible platform**, this project **modernizes** how the department documents, manages, and shares student research, ensuring long-term **academic and professional benefits**.  
-
-***
-
-# For Contributors
-
-## Setting Up the Development Environment
-
-Follow these steps to set up the local development environment for the **Data Science Senior Capstone Projects Website**.
-
-### 1. Clone the Repository
-
-First, clone the repository and navigate into the `research_showcase` directory:
+1. **Clone the repository**
 
 ```bash
 git clone https://github.com/Naalu/ds-senior-capstone-projects-website.git
 cd ds-senior-capstone-projects-website/research_showcase
 ```
 
----
+2. **Create and activate a virtual environment**
 
-### 2. Create and Activate a Virtual Environment
+**macOS/Linux**
 
-#### **macOS/Linux**
 ```bash
 python -m venv venv
 source venv/bin/activate
 ```
 
-#### **Windows (PowerShell)**
+**Windows (PowerShell)**
+
 ```powershell
 python -m venv venv
 venv\Scripts\activate
 ```
 
----
-
-### 3. Install Project Dependencies
-
-Once the virtual environment is activated, install the required Python dependencies:
+3. **Install dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-If dependencies change, update them with:
-
-```bash
-pip install --upgrade -r requirements.txt
-```
-
----
-
-### 4. Apply Database Migrations
-
-Run the following command to set up the database schema:
+4. **Apply database migrations**
 
 ```bash
 python manage.py migrate
 ```
 
-If you encounter issues, you can reset the database with:
-
-```bash
-python manage.py flush
-```
-
----
-
-### 5. Create a Superuser (Optional)
-
-If you need access to the Django Admin panel, create a superuser:
+5. **Create a superuser (admin account)**
 
 ```bash
 python manage.py createsuperuser
 ```
 
-Follow the prompts to set up a username, email, and password.
-
----
-
-### 6. Run the Development Server
-
-Start the Django development server:
+6. **Run the development server**
 
 ```bash
 python manage.py runserver
 ```
 
-Once running, access the project at:
+7. **Access the application**
 
-- **Frontend:** [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-- **Admin Panel:** [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+- Frontend: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- Admin Panel: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
----
+## Documentation
 
-### 7. Managing Static Files
+- [Usage Guide](USAGE.md) - How to use the application
+- [Contributing Guide](CONTRIBUTING.md) - How to contribute to the project
+- [Changelog](CHANGELOG.md) - Version history and changes
+- [Project Design](docs/DESIGN.md) - Architecture and design decisions
 
-To ensure static files (CSS, JS) are properly served:
+## Tech Stack
 
-```bash
-python manage.py collectstatic --noinput
-```
+- **Backend**: Django 5.1.6 (Python)
+- **Database**: SQLite (development)
+- **Frontend**: HTML/CSS with Bootstrap
+- **Template Engine**: Django Template Language (DTL)
+- **Version Control**: Git/GitHub
 
----
+## License
 
-### 8. Loading Sample Data (Optional)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-If test data is available, load it into the database:
+## Team
 
-```bash
-python manage.py loaddata sample_data.json
-```
+This project is developed by:
 
----
+- Ethan Ferguson
+- Jack Tomlon
+- Karl Reger
+- Rylan Harris-Small
 
-### 🔧 Troubleshooting
-
-- **Issue: `Command not found` for Python**
-  - Use `python3` instead of `python`
-  - Use `pip3` instead of `pip`
-
-- **Issue: Missing Dependencies**
-  - Run: `pip install --upgrade -r requirements.txt`
-
-- **Issue: Database Errors**
-  - Reset database with: `python manage.py flush`
-
-- **Issue: Changes Not Reflected**
-  - Restart server: `Ctrl + C` and re-run `python manage.py runserver`
-  - Clear browser cache or try **private browsing mode**
-
----
-
-### 🎯 Development Guidelines
-
-- Ensure all new dependencies are added to `requirements.txt`
-- Follow Django's **coding conventions** and **best practices**
-- Use **feature branches** for development and open a **pull request** before merging into `main`
+Northern Arizona University, Department of Mathematics & Statistics
