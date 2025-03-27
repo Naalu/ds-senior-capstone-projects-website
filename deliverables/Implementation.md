@@ -114,8 +114,8 @@ As a student, I want to search for capstone projects from previous years so that
 - [#17 User Story 3](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/17)
 
 **Pull Request**: [#Y - Search Page](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/59)  
-**Implemented by**: Ethan Ferguson
-**Approved by**: Jack Tomlon
+**Implemented by**: Ethan Ferguson  
+**Approved by**: Jack Tomlon  
 **Print screen**: 
 ![Ethan Reqiuriement](images/Search.png)
 
@@ -189,3 +189,5 @@ Documentation and Sharaing: Another learning point was the need for better docum
 Understand Django: Throughout the first release, it became clear that a deeper understanding of Django's core components was essential for this project. While most team members had a general grasp of the framework, we faced challenges in leveraging Django's built-in tools and features effectively. This led to some inefficiencies and delays when implementing certain features. 
 
 ## Demo
+
+[Demo video zoom link](https://nau.zoom.us/rec/share/ihvsrqC8_ld7zPJaDMbHHVfRLmQtQ14wuIvbbEDsy8WSO4buUeUxPk1DE6M86914.zWiHu_OmQPWz8cYy)  
