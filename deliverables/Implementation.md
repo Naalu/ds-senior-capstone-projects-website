@@ -59,7 +59,6 @@ As a student, I want to my capstone project stored online so that I can share my
 **Print screen**: ![Karl Reqiuriement](images/admin-panel.png)
 
 
-
 ### Requirement: 
 As an administrator, I want to store capstone projects in a central location so that I can store and manage them more easily.
 
@@ -119,6 +118,22 @@ As a student, I want to search for capstone projects from previous years so that
 **Print screen**: 
 ![Ethan Reqiuriement](images/Search.png)
 
+### Requirement:
+ As a company research coordinator, I want look review capstone projects so that I can assess the quality of past research and propose a research project with a college.
+
+**Criteria:**
+
+    - Ability to search for capstone projects by relevant industry-related keywords.
+    - Ability to contact website administrator or faculty to inquire about sponsoring research.
+
+**Issue(s):**
+- [#42 - Implement notification system](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/42)
+- [#19 User Story 5](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/19)
+
+**Pull Request**: [#58 - Creating of admin contact button](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/58)  
+**Implemented by**: Rylan Harris 
+**Approved by**: Karl Reger  
+**Print screen**: ![Rylan's Requirement Screenshot](images/Screenshot%202025-03-26%20222735.png)
 
 ## Tests
 
@@ -181,19 +196,16 @@ We chose the MIT license in order to have simple, short, and relatively understa
 
 The primary design constraint for this project is ease of use, both for general users and those maintaining the website. Aside from the developers, users should not need to interact with code or complex technical environments. Therefore, all system interactions will occur through a web client.
 
-User interaction will take place through two main interfaces: the project search page and the database management pages. The project search page, serving as the main landing page, will cater to students, interested third parties, and most faculty members. The database management pages will allow faculty to submit new research projects and administrators to review, approve, deny, or request revisions.
+User interaction will take place through two main interfaces: **the project search page and the database management pages**. The **project search page**, serving as the main landing page, will cater to students, interested third parties, and most faculty members. The **database management pages** will allow faculty to submit new research projects and administrators to review, approve, deny, or request revisions.
 
-The design will align with the aesthetic and navigation structure of NAU’s Math and Statistics Department website by incorporating a similar navigation bar. The search page layout will include a search panel and a results section. Search results will be displayed in expandable panels spanning the width of the page, showing relevant project details with the option to collapse or expand for additional information. The search function will support keyword searches in project titles and abstracts, as well as filtering by associated research terms. Additionally, the search page will feature a method for interested third parties to contact the website administrator regarding potential research sponsorships.
+The design will align with the aesthetic and navigation structure of NAU’s Math and Statistics Department website by incorporating a similar navigation bar. The **search page layout** will include a search panel and a results section. Search results will be displayed in expandable panels spanning the width of the page, showing relevant project details with the option to collapse or expand for additional information. The search function will support keyword searches in project titles and abstracts, as well as filtering by associated research terms. Additionally, the search page will feature a method for interested third parties to contact the website administrator regarding potential research sponsorships.
 
-The project management interface will implement a structured submission and approval workflow, with access determined by user permissions. Faculty will submit research projects, while administrators will manage approvals and revisions. The system currently supports two permission levels: faculty and administrators, though the search page will be publicly accessible without an account. Administrators will be able to review submitted projects and take action accordingly. Future improvements may include notification features to alert faculty and administrators about project updates, submissions, and revisions.
+The **project management interface** will implement a structured submission and approval workflow, with access determined by user permissions. Faculty will submit research projects, while administrators will manage approvals and revisions. The system currently supports two permission levels: **faculty and administrators**, though the search page will be publicly accessible without an account. Administrators will be able to review submitted projects and take action accordingly. Future improvements may include notification features to alert faculty and administrators about project updates, submissions, and revisions.
 
-### Mock-ups for concept
+### Mock-ups for Search Page Concept
 
 ![concept image](./images/Screenshot%202025-03-26%20000326.png)
 ![concept image](./images/Screenshot%202025-03-26%20000414.png)
-
-
-### Screencaps of current project
 
 
 
