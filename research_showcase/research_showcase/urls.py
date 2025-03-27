@@ -29,5 +29,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("users/", include("users.urls")),
     path("research/", include("research.urls")),
-    path("search/", views.search_page, name="search"),
+    path("search/", include("search.urls"), name="search"),
 ]
