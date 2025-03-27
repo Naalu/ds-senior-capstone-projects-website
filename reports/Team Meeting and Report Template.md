@@ -18,7 +18,7 @@ Provide a brief summary of the week's key updates and outcomes in 2-3 sentences.
 ## 1. Activity Summary
 Describe what each individual has contributed to the project in the last week. Provide supporting documentation (e.g., issue numbers, commit IDs, meeting dates, etc.). Be honest if someone didn't contribute, and explain why.
 
-### Example:
+
 **Rylan:**
 
 - **GitHub Summary:** 
@@ -39,7 +39,7 @@ Describe what each individual has contributed to the project in the last week. P
 ## 2. Retrospective
 Reflect on the group dynamics and project progress. Create five lists to summarize your discussion.
 
-### Example:
+
 1. **Appreciations:** 
 2. **Successes:** 
 3. **Failures:** 
@@ -51,7 +51,7 @@ Reflect on the group dynamics and project progress. Create five lists to summari
 ## 3. Next Steps
 List the tasks that need to be completed, assign them to team members, and link them to your activity management system and corresponding GitHub issues.
 
-### Example:
+
 **Rylan:**
 
 **Chris:**
