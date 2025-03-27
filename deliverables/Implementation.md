@@ -125,6 +125,12 @@ Grading criteria (3 points): This section will be based on the presence and qual
 
 ## UX Design
 
+The main design constraint that form the crux of this project is that it needs to be easily usable for laymen, even from the point of view of the admin. Besides the developers, people interacting with the system should not have to deal with code or complex technical environments. As such, when fully developed, all interaction with the systems should be done throught a web client.
+
+The main two avenues that interaction will be funneled through are the database management pages and the project search page. The main landing page will be the search page, meant to satisfy student, interested third party, and the bulk of faculty needs. The database management pages will be for the submission of new research projects by faculty members as well as the approval/denial/revision process of the administrator. 
+
+Each page should have a layout that evokes the general design of the pages on NAU's Math and Stats Department by using similar navigation bar. The main panel of the page will be occupied on the top by a 
+
 Describe the approach you adopted to design your user interface. Include some screenshots.
 
 Grading criteria (3 points): This section will be graded based on the appearance (aesthetics) and usability (ease of use) of the system.
