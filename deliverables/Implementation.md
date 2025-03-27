@@ -99,7 +99,7 @@ This implementation aligns with the project's user experience goals by making th
 
 **Pull Request**: https://github.com/Naalu/ds-senior-capstone-projects-website/pull/57   
 **Implemented by**: Karl Reger  
-**Approved by**: Jack Tomlin  
+**Approved by**: Jack Tomlon  
 **Print screen**:    
 ![Research Submission Form](images/research_submission_form.png)   
 
