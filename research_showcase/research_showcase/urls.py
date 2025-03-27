@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.shortcuts import render
 from django.urls import include, path
-from . import views
+
 
 def home_view(request):
     return render(request, "home.html")
@@ -29,5 +29,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("users/", include("users.urls")),
     path("research/", include("research.urls")),
-    path("search/", views.search_page, name="search"),
 ]
