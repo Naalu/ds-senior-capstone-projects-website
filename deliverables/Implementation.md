@@ -125,11 +125,21 @@ Grading criteria (3 points): This section will be based on the presence and qual
 
 ## UX Design
 
-The main design constraint that form the crux of this project is that it needs to be easily usable for laymen, even from the point of view of the admin. Besides the developers, people interacting with the system should not have to deal with code or complex technical environments. As such, when fully developed, all interaction with the systems should be done throught a web client.
+The primary design constraint for this project is ease of use, both for general users and those maintaining the website. Aside from the developers, users should not need to interact with code or complex technical environments. Therefore, all system interactions will occur through a web client.
 
-The main two avenues that interaction will be funneled through are the database management pages and the project search page. The main landing page will be the search page, meant to satisfy student, interested third party, and the bulk of faculty needs. The database management pages will be for the submission of new research projects by faculty members as well as the approval/denial/revision process of the administrator. 
+User interaction will take place through two main interfaces: the project search page and the database management pages. The project search page, serving as the main landing page, will cater to students, interested third parties, and most faculty members. The database management pages will allow faculty to submit new research projects and administrators to review, approve, deny, or request revisions.
 
-Each page should have a layout that evokes the general design of the pages on NAU's Math and Stats Department by using similar navigation bar. The main panel of the page will be occupied on the top by a 
+The design will align with the aesthetic and navigation structure of NAU’s Math and Statistics Department website by incorporating a similar navigation bar. The search page layout will include a search panel and a results section. Search results will be displayed in expandable panels spanning the width of the page, showing relevant project details with the option to collapse or expand for additional information. The search function will support keyword searches in project titles and abstracts, as well as filtering by associated research terms. Additionally, the search page will feature a method for interested third parties to contact the website administrator regarding potential research sponsorships.
+
+The project management interface will implement a structured submission and approval workflow, with access determined by user permissions. Faculty will submit research projects, while administrators will manage approvals and revisions. The system currently supports two permission levels: faculty and administrators, though the search page will be publicly accessible without an account. Administrators will be able to review submitted projects and take action accordingly. Future improvements may include notification features to alert faculty and administrators about project updates, submissions, and revisions.
+
+### Mock-ups for concept
+
+![concept image](./images/Screenshot%202025-03-26%20000326.png)
+![concept image](./images/Screenshot%202025-03-26%20000414.png)
+
+
+### Screencaps of current project
 
 Describe the approach you adopted to design your user interface. Include some screenshots.
 
