@@ -55,10 +55,9 @@
     </div>
 
     <!--THIS PART HANDLES THE INFINITE SCROLL-->
-   <script>
+   <!-- <script>
       let page = 2;
       let loading = false;
-      let loadMoreUrl = "{% url 'load_more_projects' %}";  // Store resolved URL
 
       $(window).scroll(function () {
         if (
@@ -68,20 +67,22 @@
           if (!loading) {
             loading = true;
             $("#loading-indicator").show();
-
-            $.get(loadMoreUrl + "?page=" + page, function (data) {  // Correct concatenation
-              $("#loading-indicator").hide();
-              if (data.trim() !== "") {
-                $("#projects").append(data);
-                page++;
-                loading = false;
-              } else {
-                $(window).off("scroll");
+            $.get(
+              "{% url 'load_more_projects' %}?page=" + page,
+              function (data) {
+                $("#loading-indicator").hide();
+                if (data.trim() !== "") {
+                  $("#projects").append(data);
+                  page++;
+                  loading = false;
+                } else {
+                  $(window).off("scroll");
+                }
               }
-            });
+            );
           }
         }
       });
-    </script> 
+    </script> -->
   </body>
 </html>
