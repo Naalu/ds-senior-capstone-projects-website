@@ -11,87 +11,132 @@
             <thead class="table-dark">
                 <tr>
                     <th>Title</th>
-                    <th>Author</th>
-                    <th>PDF</th>
-                    <th>Poster</th>
-                    <th>Presentation</th>
-                    <th>GitHub</th>
-                    <th>Video</th>
-                    <th>Sponsor</th>
+                    <th>Student Author</th>
+                    <th>Faculty Submitter</th>
+                    <th>Date Presented</th>
                     <th>Collaborators</th>
+                    <th>Files</th>
+                    <th>Links</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {% for project in projects %}
                 <tr>
-                    <td><strong>{{ project.title }}</strong></td>
-                    <td><em>{{ project.author.username }}</em></td>
-
                     <td>
-                        {% if project.pdf_file %}
-                            <a href="{{ project.pdf_file.url }}" target="_blank" class="btn btn-sm btn-primary">View Paper</a>
+                        <strong>{{ project.title }}</strong>
+                        <div class="small text-muted">Submitted: {{ project.submission_date|date:"M d, Y" }}</div>
+                        <button type="button" class="btn btn-sm btn-outline-info mt-1" data-bs-toggle="modal" data-bs-target="#abstractModal{{ project.id }}">
+                            View Abstract
+                        </button>
+                    </td>
+                    
+                    <td><em>{{ project.student_author_name }}</em></td>
+                    
+                    <td>{{ project.author.username }}</td>
+                    
+                    <td>
+                        {% if project.date_presented %}
+                            {{ project.date_presented|date:"M d, Y" }}
                         {% else %}
-                            <span class="badge bg-warning text-dark">No PDF</span>
+                            <span class="badge bg-secondary">Not specified</span>
+                        {% endif %}
+                    </td>
+                    
+                    <td>
+                        {% if project.collaborator_names %}
+                            {{ project.collaborator_names }}
+                        {% else %}
+                            <span class="badge bg-secondary">None</span>
                         {% endif %}
                     </td>
 
                     <td>
-                        {% if project.poster_image %}
-                            <img src="{{ project.poster_image.url }}" alt="Poster" width="80">
-                        {% else %}
-                            <span class="badge bg-warning text-dark">No Poster</span>
-                        {% endif %}
+                        <div class="d-flex flex-column gap-1">
+                            {% if project.pdf_file %}
+                                <a href="{{ project.pdf_file.url }}" target="_blank" class="btn btn-sm btn-primary">
+                                    <i class="bi bi-file-earmark-pdf"></i> Paper
+                                </a>
+                            {% endif %}
+                            
+                            {% if project.presentation_file %}
+                                <a href="{{ project.presentation_file.url }}" target="_blank" class="btn btn-sm btn-info">
+                                    <i class="bi bi-file-earmark-slides"></i> Slides
+                                </a>
+                            {% endif %}
+                            
+                            {% if project.poster_image %}
+                                <a href="{{ project.poster_image.url }}" target="_blank" class="btn btn-sm btn-success">
+                                    <i class="bi bi-image"></i> Poster
+                                </a>
+                            {% endif %}
+                            
+                            {% if not project.pdf_file and not project.presentation_file and not project.poster_image %}
+                                <span class="badge bg-warning text-dark">No files</span>
+                            {% endif %}
+                        </div>
                     </td>
 
                     <td>
-                        {% if project.presentation_file %}
-                            <a href="{{ project.presentation_file.url }}" target="_blank" class="btn btn-sm btn-info">View Slides</a>
-                        {% else %}
-                            <span class="badge bg-warning text-dark">No Slides</span>
-                        {% endif %}
+                        <div class="d-flex flex-column gap-1">
+                            {% if project.github_link %}
+                                <a href="{{ project.github_link }}" target="_blank" class="btn btn-sm btn-secondary">
+                                    <i class="bi bi-github"></i> GitHub
+                                </a>
+                            {% endif %}
+                            
+                            {% if project.video_link %}
+                                <a href="{{ project.video_link }}" target="_blank" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-youtube"></i> Video
+                                </a>
+                            {% endif %}
+                            
+                            {% if not project.github_link and not project.video_link %}
+                                <span class="badge bg-secondary">No links</span>
+                            {% endif %}
+                        </div>
                     </td>
 
                     <td>
-                        {% if project.github_link %}
-                            <a href="{{ project.github_link }}" target="_blank" class="btn btn-sm btn-secondary">GitHub Repo</a>
-                        {% else %}
-                            <span class="badge bg-warning text-dark">No GitHub</span>
-                        {% endif %}
-                    </td>
-
-                    <td>
-                        {% if project.video_link %}
-                            <a href="{{ project.video_link }}" target="_blank" class="btn btn-sm btn-success">Watch Video</a>
-                        {% else %}
-                            <span class="badge bg-warning text-dark">No Video</span>
-                        {% endif %}
-                    </td>
-
-                    <td>
-                        {% if project.project_sponsor %}
-                            {{ project.project_sponsor }}
-                        {% else %}
-                            <span class="badge bg-secondary">N/A</span>
-                        {% endif %}
-                    </td>
-
-                    <td>
-                        {% if project.collaborators.all %}
-                            {{ project.collaborators.all|join:", " }}
-                        {% else %}
-                            <span class="badge bg-secondary">No Collaborators</span>
-                        {% endif %}
-                    </td>
-
-                    <td>
-                        <a href="{% url 'approve_research' project.id %}" class="btn btn-success btn-sm">Approve</a>
-                        <a href="{% url 'reject_research' project.id %}" class="btn btn-danger btn-sm">Reject</a>
+                        <div class="d-flex flex-column gap-2">
+                            <a href="{% url 'approve_research' project.id %}" class="btn btn-success btn-sm">
+                                <i class="bi bi-check-circle"></i> Approve
+                            </a>
+                            <a href="{% url 'reject_research' project.id %}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-x-circle"></i> Reject
+                            </a>
+                        </div>
                     </td>
                 </tr>
+                
+                <!-- Abstract Modal for each project -->
+                <div class="modal fade" id="abstractModal{{ project.id }}" tabindex="-1" aria-labelledby="abstractModalLabel{{ project.id }}" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="abstractModalLabel{{ project.id }}">{{ project.title }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h6>Abstract</h6>
+                                <p>{{ project.abstract }}</p>
+                                
+                                {% if project.project_sponsor %}
+                                <h6>Project Sponsor</h6>
+                                <p>{{ project.project_sponsor }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <a href="{% url 'approve_research' project.id %}" class="btn btn-success">Approve</a>
+                                <a href="{% url 'reject_research' project.id %}" class="btn btn-danger">Reject</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% empty %}
                 <tr>
-                    <td colspan="10" class="text-center text-muted">No pending research projects.</td>
+                    <td colspan="8" class="text-center text-muted">No pending research projects.</td>
                 </tr>
                 {% endfor %}
             </tbody>

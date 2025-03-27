@@ -1,7 +1,5 @@
 ## Introduction
 
-Provide a short paragraph that describes your system. This paragraph should contain the value proposition and a description of the main features of the software. At the end of the introduction, include a link to your project on GitHub.
-
 ### Description
 Northern Arizona University Department of Mathematics & Statistics Research Showcase is dedicated to developing a web-based platform for Northern Arizona University's Department of Mathematics & Statistics. This platform aims to organize, archive, and showcase student research, particularly senior capstone projects, with potential expansions for additional research and other departments.
 
@@ -11,7 +9,7 @@ For students, faculty, and external evaluators who need a reliable and structure
 ### Core Features (MVP)
 ✔ **Faculty-Driven Research Submission** – Faculty can submit student research with metadata (title, author, category, faculty advisor) and file uploads (PDF, PPT, images).
 
-✔ ******Admin Review & Approval** – Admins can approve, reject, or request revisions before projects are published.
+✔ **Admin Review & Approval** – Admins can approve, reject, or request revisions before projects are published.
 
 ✔ **Advanced Search & Filtering** – Users can search by title, research category, faculty advisor, or keywords to find relevant projects.
 
@@ -21,46 +19,106 @@ For students, faculty, and external evaluators who need a reliable and structure
 
 ✔ **Efficient Research Management** – Admins manage research projects, user roles, and system settings through an intuitive Django Admin Panel.
 
-
-Grading criteria (1 point): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, and adequate use of language. The description should be consistent with the current state of the project. You should include the link to GitHub.
-
 ## Requirements
 
-List in this section, the requirements and associated pull request that you implemented for this release, following the example below---include the description of the requirement, a link to the issue, a link to the pull request(s) that implement the requirement, who implemented the requirement, who approved it, and a print screen that depicts the implemented feature (if applicable). I expect that you implement the features you specified in your MVP (c.f. D.2 Requirements). 
-
-Order the requirements below by the name of the student who implemented them. All the members of the group should have worked on implementation activities and submitted pull requests. Only stable code should be included in the release. The code that is still under development should be in branches.
-
-Example:
-
-#### Requirement: 
-As a Student, I want to add a homework assignment so that I can organize my ToDo list.
-Issue: <link to your GitHub issue>
-Pull request: https://github.com/user/project/pull/426
-Implemented by: Martin Fowler
-Approved by: Ada Lovelace
-Print screen: A print screen that depicts the implemented feature (if applicable)
-
-All source code should be submitted by means of pull requests and the quality assurance person in the team should review and approve each pull request. For more information about pull requests:
-https://help.github.com/articles/about-pull-requests/
-
-Links to an external site.
-
-#### Requirement: 
+### Requirement:
 As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
 
-Criteria:
+**Criteria:**
 
     Functionality for documents (PDF, LaTeX) and supplementary files (data sets, code, etc.).
     Ability to add a project title, description, and keywords.
     Option to tag faculty or collaborators related to the project.
 
-Issue: https://github.com/Naalu/ds-senior-capstone-projects-website/issues/15 
-Pull Request(s):
-Implemented By:
-Approved By:
-Print Screen: 
+**Issue(s):**  
+ -[ User story 1 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/15)  
+ -[ Create comprehensive sample data ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/44)
 
-Grading criteria (8 points): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, adequate use of language, and amount of work put into the implementation. Students can receive different grades depending on their involvement. It is expected that all members contribute with non-trivial implementation. All pull requests should be approved and integrated by the quality assurance person. You should follow an adequate workflow (description of the requirement on the issue tracker, submission of the implemented requirement as a pull request, and review of the pull request by another developer). 
+**Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)    
+**Implemented by**: Jack Tomlon  
+**Approved by**: Karl Reager   
+**Print screen**: Back-end no availiable screenshot. 
+
+### Requirement:
+ As an administrator, I want to store capstone projects in a central location so that I can store and manage them more easily.
+
+**Criteria:**
+
+    - Focusing on Faculty and Admin roles
+    - Enabling Faculty to submit research on behalf of students
+    - Allowing Admins to access both submission and review features
+    - Improving the permission system for more intuitive access control
+
+**Issue(s):**
+- [#51 - Create User Documentation](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/16)
+- [#16 User Story 2](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/16)
+
+**Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)  
+**Implemented by**: Karl Reger  
+**Approved by**: Jack Tomlon  
+**Print screen**: ![Karl Reqiuriement](images/admin-panel.png)
+
+
+
+### Requirement: 
+As an administrator, I want to store capstone projects in a central location so that I can store and manage them more easily.
+
+**Criteria**  
+
+This enhancement significantly improves the research submission process with the following features:
+
+#### 1. Enhanced Data Model
+- Added student author name field to track student researchers
+- Added collaborator names field for non-user collaborators
+- Added date presented field to record when research was presented
+
+#### 2. Multi-Step Submission Form
+- Created intuitive 4-step process (Basic Info → Project Details → Research Materials → Review)
+- Implemented in-line validation with clear error messages
+- Added file preview functionality for uploaded materials
+- Added tooltips and helper text for all fields
+
+#### 3. Improved File Handling
+- Added proper file type validation for different uploads
+- Implemented file size restrictions
+- Added clear visual feedback for uploaded files
+
+#### 4. Success Page
+- Created dedicated success page after submission
+- Added navigation options to return home or submit another project
+
+#### 5. Comprehensive Testing
+- Implemented automated tests for all new functionality
+- Test coverage includes form validation, file uploads, and workflow
+
+This implementation aligns with the project's user experience goals by making the submission process more intuitive while ensuring data quality through robust validation. Faculty can now provide complete information about student research with minimal friction.
+
+**Issue**:
+ - https://github.com/Naalu/ds-senior-capstone-projects-website/issues/16
+ - https://github.com/Naalu/ds-senior-capstone-projects-website/issues/38
+
+**Pull Request**: https://github.com/Naalu/ds-senior-capstone-projects-website/pull/57   
+**Implemented by**: Karl Reger  
+**Approved by**: Jack Tomlon  
+**Print screen**:    
+![Research Submission Form](images/research_submission_form.png)   
+
+### Requirement:
+As a student, I want to search for capstone projects from previous years so that I can use them as references or inspiration for my own work.
+
+**Criteria:**
+
+    - Search bar and filter options to explore past projects by year, topic, or project type.
+    - Ability to view project summaries and abstract information.
+**Issue(s):**
+- [#17 User Story 3](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/17)
+
+**Pull Request**: [#Y - Search Page](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/59)  
+**Implemented by**: Ethan Ferguson  
+**Approved by**: Jack Tomlon  
+**Print screen**: 
+![Ethan Reqiuriement](images/Search.png)
+
 
 ## Tests
 
@@ -70,11 +128,15 @@ Grading criteria (8 points): This section will be evaluated in terms of correctn
     An example of a test case. Include in your answer a GitHub link to the class being tested and to the test.
     A print screen showing the result of the execution of the automated tests. 
 
-Grading criteria (3 points): You should have an adequate number of automated tests. They should be well-written to exercise the main components of your system, covering the relevant inputs.
+Django's built in testing system. In each Django module/app there is a test.py file for testing.
+
+- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/research/tests.py 
+
+- https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/research_showcase/users/tests.py  
+
+![Test Case](images/python_test_example.png)  
 
 ## Technology
-
-List the adopted technologies with a brief description and justification for choosing them.
 
 Django is a popular choice for developing a project like the "ds-senior-capstone-projects-website" because of its benefits:
 
@@ -92,36 +154,28 @@ Django is a popular choice for developing a project like the "ds-senior-capstone
 
 Given the project's goals—to organize, archive, and showcase student research—Django's structure and capabilities are a strong fit.
 
-Grading criteria (1 point): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, and adequate use of language.
-
 ## Deployment
 
-Provide a link for the system in production and describe how you are deploying your system. 
+Currently our project is being hosted locally but we have identified several cloud platforms that are suitable for hosting our project. The goal is to deploy the system in a cloud environment to improve its scalability, availability, and accessibility. If our project shows promise Northern Arizona University Department of Mathematics & Statistics may take over the project for further development and implementation.
 
-Some alternatives for deploying your system in the cloud:
+Here are some cloud hosting platforms we discussed using:
 
-    AWS. AWS Educate offers free credits for students. See the tutorial at https://docker-curriculum.com/ on how to create a container and deploy it on AWS. ]
-    Digital Ocean or Azzure. As part of the GitHub Education benefits, as a student, you can get $100 at Digital Ocean and $100 at Microsoft Azzure cloud computing platforms (see more details at https://education.github.com/students) 
+    AWS(Amazon Web Service):
+    AWS is one of the most popular cloud services used today. It offers feww credits for students, and the platform provides an array of tool and services. These include EC2 for virtucal servers, S3 for storage, and RDS for database management. AWS is ideal for larger, complex projects that may require high scalability and avaliablity.
 
-    Links to an external site..
-    Oracle Cloud. Oracle offers a free tier in its cloud environment that should be more than enough for your needs.
-    Firebase. Firebase can be a good choice if you are building a mobile phone app.
-
-Grading criteria (3 points): This section will be graded based on the adequate use of the technology and its adequate description.
+    Microsoft Azure: 
+    Azure is also a great alternative for web cloud service. Azure offers $100 in free credits and is free for students as well. They have Azure App Service for app hoting and Azure SQL Database for database management. Azure has integreation with Visual Studio which makes it an amazing choice for our project. Azure also supports automate deployment pipelines through CI/CD.
 
 ## Licensing
 
-Inform the license you adopted for your source code (remember to configure GitHub accordingly). Explain why you adopted this license. For more information, check https://choosealicense.com/.
-
-Grading criteria (1 point): This section will be evaluated in terms of correctness, completeness, thoroughness, consistency, coherence, and adequate use of language.
+We chose the MIT license in order to have simple, short, and relatively understandable agreement. It gives minimal restrictions to anyone who wants to use the code as long as reasonable credit is given.
 
 ## Readme File
 
-You should also prepare your repository for receiving new contributors. You should prepare a Readme.md file. See an example at https://gist.github.com/PurpleBooth/109311bb0361f32d87a2   In the Readme file, the current version should be stated. You should follow the Semantic Versioning schema (https://semver.org/). Tag the GitHub repository accordingly (https://git-scm.com/book/en/v2/Git-Basics-Tagging). 
-
-Your repository should contain a CONTRIBUTING.md file, a LICENSE file, and a CODE_OF_CONDUCT.md file. Search online for some examples of these files. In this section of the deliverable, put links to these files on GitHub.
-
-Grading criteria (3 points): This section will be based on the presence and quality of the information presented in the files.
+- [ReadMe](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/README.md)  
+- [Contributing ](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/CONTRIBUTING.md) 
+- [Code of Conduct](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/CODE_OF_CONDUCT.md)
+- [License](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/main/LICENSE)
 
 ## UX Design
 
@@ -141,18 +195,16 @@ The project management interface will implement a structured submission and appr
 
 ### Screencaps of current project
 
-Describe the approach you adopted to design your user interface. Include some screenshots.
 
-Grading criteria (3 points): This section will be graded based on the appearance (aesthetics) and usability (ease of use) of the system.
 
 ## Lessons Learned
 
-In retrospective, describe what your team learned during this first release and what you are planning to change for the second release. 
+Improve Communication: Throughout this project, we discovered that clear and consistent communication is key to avoiding delays and misundersandings. Implimenting more structired communication methods, such as regualr check-ins and better alignment on task dependencies, will ensure that everyone is on the same page and help keep the project moving forward.
 
-Grading criteria (2 points): Adequate reflection about problems and solutions, clear description with adequate use of language. 
+Documentation and Sharaing: Another learning point was the need for better documentation. As the project progressed it became clear that having a centralized place for important information could help avoid confusion. 
+
+Understand Django: Throughout the first release, it became clear that a deeper understanding of Django's core components was essential for this project. While most team members had a general grasp of the framework, we faced challenges in leveraging Django's built-in tools and features effectively. This led to some inefficiencies and delays when implementing certain features. 
 
 ## Demo
 
-Include a link to a video showing the system working.
-
-Grading criteria (5 points): This section will be graded based on the quality of the video and on the evidence that the features are running as expected. Additional criteria are the relevance of the demonstrated functionalities, the correctness of the functionalities, and the quality of the developed system from the external point of view (user interface).
+[Demo video zoom link](https://nau.zoom.us/rec/share/ihvsrqC8_ld7zPJaDMbHHVfRLmQtQ14wuIvbbEDsy8WSO4buUeUxPk1DE6M86914.zWiHu_OmQPWz8cYy)  

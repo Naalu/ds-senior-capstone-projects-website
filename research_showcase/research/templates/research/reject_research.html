@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Reject Research Project{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card shadow-lg">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0">Reject Research Project</h2>
+        </div>
+        <div class="card-body">
+            <h5>You are rejecting the following research project:</h5>
+            
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4>{{ project.title }}</h4>
+                    <p><strong>Student Author:</strong> {{ project.student_author_name }}</p>
+                    <p><strong>Submitted by:</strong> {{ project.author.username }}</p>
+                    <p><strong>Submission Date:</strong> {{ project.submission_date|date:"F d, Y" }}</p>
+                </div>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="rejection_reason" class="form-label">Rejection Reason (Optional)</label>
+                    <textarea name="rejection_reason" id="rejection_reason" rows="4" class="form-control"
+                        placeholder="Provide a reason for rejecting this research project"></textarea>
+                    <div class="form-text">This reason will be shared with the faculty member who submitted the project.</div>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'review_research' %}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-danger">Confirm Rejection</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

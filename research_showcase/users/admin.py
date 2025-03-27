@@ -1,17 +1,25 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import User  # Import the custom user model
+from .models import User
 
 
-# Extend UserAdmin to use Django's built-in admin features for Users
 class CustomUserAdmin(UserAdmin):
     model = User
-    list_display = ("username", "email", "role", "is_staff", "is_active")
-    list_filter = ("role", "is_staff", "is_active")
+    list_display = (
+        "username",
+        "email",
+        "role",
+        "department",
+        "profile_complete",
+        "is_staff",
+        "is_active",
+    )
+    list_filter = ("role", "profile_complete", "is_staff", "is_active")
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        ("Personal Info", {"fields": ("email",)}),
+        ("Personal Info", {"fields": ("email", "department")}),
+        ("Status", {"fields": ("profile_complete", "last_activity")}),
         ("Permissions", {"fields": ("is_staff", "is_active", "role")}),
     )
     add_fieldsets = (
@@ -22,6 +30,7 @@ class CustomUserAdmin(UserAdmin):
                 "fields": (
                     "username",
                     "email",
+                    "department",
                     "role",
                     "password1",
                     "password2",
@@ -31,9 +40,9 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
-    search_fields = ("username", "email")
+    search_fields = ("username", "email", "department")
     ordering = ("username",)
+    readonly_fields = ("last_activity",)
 
 
-# Register the custom User model with Django Admin
 admin.site.register(User, CustomUserAdmin)

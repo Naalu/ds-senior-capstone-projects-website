@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}Submit Research Project{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
@@ -7,20 +10,323 @@
             <h2 class="mb-0">Submit Your Research Project</h2>
         </div>
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <ul class="nav nav-pills mb-4" id="formSteps" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="basic-info-tab" data-bs-toggle="pill" data-bs-target="#basic-info" type="button" role="tab">
+                        <i class="bi bi-1-circle"></i> Basic Information
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="project-details-tab" data-bs-toggle="pill" data-bs-target="#project-details" type="button" role="tab">
+                        <i class="bi bi-2-circle"></i> Project Details
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="uploads-tab" data-bs-toggle="pill" data-bs-target="#uploads" type="button" role="tab">
+                        <i class="bi bi-3-circle"></i> Research Materials
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="review-tab" data-bs-toggle="pill" data-bs-target="#review" type="button" role="tab">
+                        <i class="bi bi-4-circle"></i> Review & Submit
+                    </button>
+                </li>
+            </ul>
+            
+            <form method="post" enctype="multipart/form-data" id="researchForm" class="needs-validation" novalidate>
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-success w-100">Submit Research</button>
+                
+                <div class="tab-content" id="formContent">
+                    <!-- Step 1: Basic Information -->
+                    <div class="tab-pane fade show active" id="basic-info" role="tabpanel">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Please provide the basic information about the research project.
+                        </div>
+                        
+                        <!-- Title Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.title.id_for_label }}" class="form-label">Project Title *</label>
+                            {{ form.title }}
+                            {% if form.title.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.title.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">A clear, descriptive title for the research project.</div>
+                        </div>
+                        <!-- Student Author Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.student_author_name.id_for_label }}" class="form-label">Student Author *</label>
+                            {{ form.student_author_name }}
+                            {% if form.student_author_name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.student_author_name.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">The student who conducted this research.</div>
+                        </div>
+                        <!-- Abstract Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.abstract.id_for_label }}" class="form-label">Abstract *</label>
+                            {{ form.abstract }}
+                            {% if form.abstract.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.abstract.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">A concise summary of the research project (250-500 words recommended).</div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button" class="btn btn-primary" onclick="nextStep('project-details-tab')">
+                                Next <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Project Details -->
+                    <div class="tab-pane fade" id="project-details" role="tabpanel">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Please provide additional details about the research project.
+                        </div>
+                        <!-- Collaborators Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.collaborator_names.id_for_label }}" class="form-label">Collaborators</label>
+                            {{ form.collaborator_names }}
+                            {% if form.collaborator_names.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.collaborator_names.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Names of people who collaborated on this project (comma-separated).</div>
+                        </div>
+                        <!-- Date Presented Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.date_presented.id_for_label }}" class="form-label">Date Presented</label>
+                            {{ form.date_presented }}
+                            {% if form.date_presented.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.date_presented.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Date when this research was presented (if applicable).</div>
+                        </div>
+                        <!-- GitHub Link Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.github_link.id_for_label }}" class="form-label">GitHub Repository (Optional)</label>
+                            {{ form.github_link }}
+                            {% if form.github_link.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.github_link.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Link to GitHub repository containing project code or materials.</div>
+                        </div>
+                        
+                        <!-- Project Sponsor Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.project_sponsor.id_for_label }}" class="form-label">Project Sponsor (Optional)</label>
+                            {{ form.project_sponsor }}
+                            {% if form.project_sponsor.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.project_sponsor.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Name of any organization that sponsored or funded this research.</div>
+                        </div>
+                        
+                        <!-- Video Link Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.video_link.id_for_label }}" class="form-label">Video Link (Optional)</label>
+                            {{ form.video_link }}
+                            {% if form.video_link.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.video_link.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Link to a video presentation of the research (YouTube, Vimeo, etc.).</div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary" onclick="nextStep('basic-info-tab')">
+                                <i class="bi bi-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep('uploads-tab')">
+                                Next <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Research Materials -->
+                    <div class="tab-pane fade" id="uploads" role="tabpanel">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Upload research materials such as papers, presentations, and posters.
+                        </div>
+                        
+                        <!-- PDF File Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.pdf_file.id_for_label }}" class="form-label">Research Paper (PDF)</label>
+                            {{ form.pdf_file }}
+                            {% if form.pdf_file.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.pdf_file.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Upload the research paper PDF (max 10MB).</div>
+                            <div id="pdfPreview" class="mt-2"></div>
+                        </div>
+                        
+                        <!-- Presentation File Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.presentation_file.id_for_label }}" class="form-label">Presentation Slides</label>
+                            {{ form.presentation_file }}
+                            {% if form.presentation_file.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.presentation_file.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Upload presentation slides in PDF, PPT, or PPTX format (max 10MB).</div>
+                            <div id="presentationPreview" class="mt-2"></div>
+                        </div>
+                        
+                        <!-- Poster Image Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.poster_image.id_for_label }}" class="form-label">Research Poster</label>
+                            {{ form.poster_image }}
+                            {% if form.poster_image.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.poster_image.errors }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">Upload a research poster image in JPG, PNG, or PDF format (max 5MB).</div>
+                            <div id="posterPreview" class="mt-2"></div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary" onclick="nextStep('project-details-tab')">
+                                <i class="bi bi-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="nextStep('review-tab')">
+                                Next <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Review & Submit -->
+                    <div class="tab-pane fade" id="review" role="tabpanel">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Please review your submission before submitting.
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Project Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>Title:</strong> <span id="review-title"></span></p>
+                                <p><strong>Student Author:</strong> <span id="review-student-author"></span></p>
+                                <p><strong>Abstract:</strong> <span id="review-abstract"></span></p>
+                                <p><strong>Collaborators:</strong> <span id="review-collaborators"></span></p>
+                                <p><strong>Date Presented:</strong> <span id="review-date-presented"></span></p>
+                                <p><strong>GitHub:</strong> <span id="review-github"></span></p>
+                                <p><strong>Sponsor:</strong> <span id="review-sponsor"></span></p>
+                                <p><strong>Video Link:</strong> <span id="review-video"></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h5>Uploaded Materials</h5>
+                            </div>
+                            <div class="card-body">
+                                <p><strong>PDF Paper:</strong> <span id="review-pdf"></span></p>
+                                <p><strong>Presentation:</strong> <span id="review-presentation"></span></p>
+                                <p><strong>Poster:</strong> <span id="review-poster"></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary" onclick="nextStep('uploads-tab')">
+                                <i class="bi bi-arrow-left"></i> Previous
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-check-circle"></i> Submit Research
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
-
+    
     {% if messages %}
     <div class="mt-4">
         {% for message in messages %}
-            <div class="alert alert-info">{{ message }}</div>
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
         {% endfor %}
     </div>
     {% endif %}
 </div>
+
+<script>
+// Function to navigate between form steps
+function nextStep(tabId) {
+    document.getElementById(tabId).click();
+    
+    // If going to review tab, populate review fields
+    if (tabId === 'review-tab') {
+        updateReviewPage();
+    }
+}
+
+// Function to update review page with form data
+function updateReviewPage() {
+    document.getElementById('review-title').textContent = document.getElementById('{{ form.title.id_for_label }}').value || 'Not provided';
+    document.getElementById('review-student-author').textContent = document.getElementById('{{ form.student_author_name.id_for_label }}').value || 'Not provided';
+    document.getElementById('review-abstract').textContent = document.getElementById('{{ form.abstract.id_for_label }}').value || 'Not provided';
+    document.getElementById('review-collaborators').textContent = document.getElementById('{{ form.collaborator_names.id_for_label }}').value || 'None';
+    document.getElementById('review-date-presented').textContent = document.getElementById('{{ form.date_presented.id_for_label }}').value || 'Not provided';
+    document.getElementById('review-github').textContent = document.getElementById('{{ form.github_link.id_for_label }}').value || 'Not provided';
+    document.getElementById('review-sponsor').textContent = document.getElementById('{{ form.project_sponsor.id_for_label }}').value || 'Not provided';
+    document.getElementById('review-video').textContent = document.getElementById('{{ form.video_link.id_for_label }}').value || 'Not provided';
+    
+    // File field values
+    const pdfInput = document.getElementById('{{ form.pdf_file.id_for_label }}');
+    document.getElementById('review-pdf').textContent = pdfInput.files.length > 0 ? pdfInput.files[0].name : 'Not uploaded';
+    
+    const presentationInput = document.getElementById('{{ form.presentation_file.id_for_label }}');
+    document.getElementById('review-presentation').textContent = presentationInput.files.length > 0 ? presentationInput.files[0].name : 'Not uploaded';
+    
+    const posterInput = document.getElementById('{{ form.poster_image.id_for_label }}');
+    document.getElementById('review-poster').textContent = posterInput.files.length > 0 ? posterInput.files[0].name : 'Not uploaded';
+}
+
+// File preview functionality
+document.getElementById('{{ form.poster_image.id_for_label }}').addEventListener('change', function(e) {
+    const preview = document.getElementById('posterPreview');
+    preview.innerHTML = '';
+    
+    if (this.files && this.files[0]) {
+        const file = this.files[0];
+        const fileExt = file.name.split('.').pop().toLowerCase();
+        
+        if (['jpg', 'jpeg', 'png'].includes(fileExt)) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.style.maxWidth = '300px';
+            img.style.maxHeight = '200px';
+            img.className = 'img-thumbnail';
+            preview.appendChild(img);
+        } else {
+            preview.innerHTML = '<p class="text-info"><i class="bi bi-file-earmark-pdf"></i> ' + file.name + '</p>';
+        }
+    }
+});
+
+// Enable Bootstrap tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
 {% endblock %}
