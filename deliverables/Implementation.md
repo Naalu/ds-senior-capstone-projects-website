@@ -115,7 +115,7 @@ As a student, I want to search for capstone projects from previous years so that
 
 **Pull Request**: [#Y - Search Page](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/59)  
 **Implemented by**: Ethan Ferguson
-**Approved by**: 
+**Approved by**: Jack Tomlon
 **Print screen**: ![Ethan Reqiuriement]()
 
 
