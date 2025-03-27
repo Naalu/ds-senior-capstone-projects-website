@@ -103,6 +103,21 @@ This implementation aligns with the project's user experience goals by making th
 **Print screen**:    
 ![Research Submission Form](images/research_submission_form.png)   
 
+### Requirement:
+As a student, I want to search for capstone projects from previous years so that I can use them as references or inspiration for my own work.
+
+**Criteria:**
+
+    - Search bar and filter options to explore past projects by year, topic, or project type.
+    - Ability to view project summaries and abstract information.
+**Issue(s):**
+- [#17 User Story 3](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/17)
+
+**Pull Request**: [#Y - Search Page](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/59)  
+**Implemented by**: Ethan Ferguson
+**Approved by**: 
+**Print screen**: ![Ethan Reqiuriement]()
+
 
 ## Tests
 
