@@ -48,18 +48,17 @@ Deliverable extention for Data Fest! Thank god! Busy weeks following spring brea
 
 ## 3. Next Steps
 **Rylan:**
-- Working on the project to get ready for the deliverable and the demo
+- 
 
 **Chris:**
-- Working on the project to get ready for the deliverable and the demo
+- 
 
 **Jack:** 
 - Fix sample data to new class specifications, debugg django loaddata for our 
 system and implement an functions needed. 
 
 **Ethan:** 
-- Working on the project to get ready for the deliverable and the demo
-
+- 
 ---
 
 ## Relevant Links
