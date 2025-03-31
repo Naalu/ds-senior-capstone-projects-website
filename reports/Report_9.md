@@ -58,7 +58,8 @@ Deliverable extention for Data Fest! Thank god! Busy weeks following spring brea
 system and implement an functions needed. 
 
 **Ethan:** 
-- 
+- Fix my version of the search page because it didnt work
+- Work on the home page to make it look better
 ---
 
 ## Relevant Links
