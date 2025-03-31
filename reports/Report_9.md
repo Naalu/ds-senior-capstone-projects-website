@@ -22,24 +22,24 @@ Deliverable extention for Data Fest! Thank god! Busy weeks following spring brea
 - Created Code of Conduct for the project
 - Created Demo Video with Jack
 - Worked on Implimentaion 1 report
-- **GitHub Summary:** 
+- **GitHub Summary:** 5 commits, 1 closed issue, 3 pull requests
 
 **Chris:**
 - Helped to develop "Contact Admin" button
 - Developed documentation (Contributing, etc.) about the project
 - Worked on Implimentaion 1 report
-- **GitHub Summary:**  
+- **GitHub Summary:**  5 commits, 3 pull request
 
 **Jack:**
 - Modified Sample Data to include real examples from Dr.B
 - Created Demo Video w/ Rylan
 - Worked on Implimentaion 1 report
-- **GitHub Summary:** 
+- **GitHub Summary:** 17 commits, 1 pull request
 
 **Ethan:**
 - Developed search page implementation (ran into some bugs)
 - Worked on Implimentaion 1 report
-- **GitHub Summary:** 
+- **GitHub Summary:** 15 commits, 1 closed issue, 1 pull request
 ---
 
 ## 2. Retrospective
