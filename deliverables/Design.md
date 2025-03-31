@@ -1,9 +1,6 @@
 ## Description
 
-Provide 1-2 paragraphs to describe your system. This will help understand the context of your design decisions. You can reuse and update text from the previous deliverables.
-
-Grading criteria (2 points): Completeness; Consistency with the rest of the document; Adequate language.
-
+Northern Arizona University Department of Mathematics & Statistics Research Showcase is dedicated to developing a web-based platform for Northern Arizona University's Department of Mathematics & Statistics. This platform aims to organize, archive, and showcase student research, particularly senior capstone projects, with potential expansions for additional research and other departments.
 
 ## Architecture
 
