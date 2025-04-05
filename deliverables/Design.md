@@ -20,6 +20,10 @@ Links to an external site.
 
 Links to an external site.Provide a brief rationale of your architecture explaining why you designed it that way. 
 
+### UML Package Diagram
+
+![UML Package Diagram](./images/UML-package-diagram.svg)
+
 Grading criteria (5 points): Adequate use of UML; Adequate design of an architecture for the system; Adequate description of the rationale.
 
 
