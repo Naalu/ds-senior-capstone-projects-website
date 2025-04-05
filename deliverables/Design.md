@@ -20,6 +20,10 @@ Links to an external site.
 
 Links to an external site.Provide a brief rationale of your architecture explaining why you designed it that way. 
 
+### UML Package Diagram
+
+![UML Package Diagram](./images/UML-package-diagram.svg)
+
 Grading criteria (5 points): Adequate use of UML; Adequate design of an architecture for the system; Adequate description of the rationale.
 
 
@@ -28,6 +32,10 @@ Grading criteria (5 points): Adequate use of UML; Adequate design of an architec
 Present a refined class diagram of your system, including implementation details such as visibilities, attributes to represent associations, attribute types, return types, parameters, etc. The class diagram should match the code you have produced so far, but not be limited to it (e.g., it can contain classes not implemented yet). 
 
 The difference between this class diagram and the one that you presented in D.3 is that the last focuses on the conceptual model of the domain while the former reflects the implementation. Therefore, the implementation details are relevant in this case. 
+
+### Refined Class Diagram
+
+![UML Class Diagram](./images/Design-UML.drawio.svg) 
 
 Grading criteria (6 points): Adequate use of UML; Adequate choice of classes and relationships; Completeness of the diagram; Adequate presentation of implementation details. 
 
