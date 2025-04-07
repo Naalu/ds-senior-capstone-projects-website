@@ -99,37 +99,10 @@ The diagram accurately reflects the implemented code structure while providing a
 
 ## Design Patterns
 
-> Split this section into 2 subsections. For each subsection, present a UML class diagram showing the application of a design pattern
->
-> Links to an external site. to your system (a different pattern for each section). Each class diagram should contain only the classes involved in the specific pattern (you don’t need to represent the whole system). Choose patterns from two different categories: Behavioral, Structural, and Creational. You are not limited to design patterns studied in class.
->
-> Your system may not be appropriate for any design pattern. In this case, for didactic purposes, be creative and extend a little bit the scope of your system to make the design patterns appropriate.
->
-> Implement each design pattern in your system and provide GitHub links to the corresponding classes. Example (the links are just illustrative):
->
-> ```
-> Car: https://github.com/user/repo/blob/master/src/com/proj/main/Car.java 
-> ```
->
-> Links to an external site. IBreakBehavior: <https://github.com/user/repo/blob/master/src/com/proj/main/IBreakBehavior.java> Links to an external site. BrakeWithABS: <https://github.com/user/repo/blob/master/src/com/proj/main/BrakeWithABS.java> Links to an external site. Brake: <https://github.com/user/repo/blob/master/src/com/proj/main/Brake.java>
->
-> ```
-> Links to an external site.
-> ```
-
 ### Pattern 1: [Decorator Pattern (Structural)](https://sourcemaking.com/design_patterns/decorator)
 
 ![Decorator Pattern Diagram](./images/Decorator_Pattern.drawio.png)
-
-*The diagram should show:*
-
-- Client (View Functions) that need protection
-- Decorator interface (faculty_required, admin_required functions)
-- ConcreteComponent (the original view function)
-- Wrapper function that adds the permission checking behavior
-- Look at [this](https://online.visual-paradigm.com/app/diagrams/#diagram:proj=0&type=ClassDiagram&gallery=/repository/f891d546-e477-4cec-bf64-aafb8c47568f.xml&name=GoF%20Design%20Patterns%20-%20Decorator)
-- Name it `Decorator Pattern.draw.io.svg`
-
+ 
 The Decorator pattern is implemented in the system's access control mechanism through custom view decorators. These decorators dynamically add permission checking behavior to view functions without modifying their core functionality.
 
 #### Decorator Pattern Implementation
@@ -183,15 +156,6 @@ The Decorator pattern adds role-based access control to view functions without m
 
 ![Strategy Pattern Diagram](./images/Strategy_Pattern.drawio.png)
 
-*The diagram should show:*
-
-- Context (ResearchProjectForm class)
-- Strategy interface (Django's form validation mechanism)
-- Concrete Strategies (clean_title, clean_abstract, clean_poster_image methods)
-- Client (Django form processing)
-- Look at [this](https://online.visual-paradigm.com/app/diagrams/#diagram:proj=0&type=ClassDiagram&gallery=/repository/6d5cb415-3fe8-4716-989d-9717235152f8.xml&name=GoF%20Design%20Patterns%20-%20Strategy)
-- Name it `Strategy Pattern.draw.io.svg`
-
 The Strategy pattern is implemented in the system's form validation mechanism, particularly in the `ResearchProjectForm` class. Different validation strategies are encapsulated in separate methods that can be modified independently.
 
 #### Strategy Pattern Implementation
@@ -232,8 +196,6 @@ The Strategy pattern enables different validation rules for each form field whil
 - Independent modification of validation rules
 - Clean separation of validation logic
 - Easy extension with new validation strategies
-
-> Grading criteria (6 points, 3 for each pattern): Correct use of the design pattern as described in the literature; Adequate choice of the design pattern; Adequate implementation of the design pattern.
 
 ## Design Principles
 
