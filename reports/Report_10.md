@@ -2,54 +2,62 @@
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
-**Date:** 2025-03-29
+**Date:** 2025-04-06
 **Location:** Online
-**Present participants:** Rylan, Chris, Jack, Ethan  
+**Present participants:** Rylan (Recorder), Chris (Manager), Jack (Reporter), Ethan (QA)  
 **Missing participants:**  
-**Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website)  
+**Project repo:** [GITHUB REPO URL](https://github.com/Naalu/ds-senior-capstone-projects-website) 
 
 ---
 
-## Executive Summary
-Deliverable extention for Data Fest! Thank god! Busy weeks following spring break. Completed the deliverable and submitted several subprojects related to the implementation. 
+## Executive Summary  
+
+Work this week was focused on the Design Deliverable.  We also managed to get ourselves aligned on the project and get some work done on the search page, setting ourselves for more purposeful coding in the week ahead. We are all set to finish up the deliverable and get it submitted.
 
 ---
 
 ## 1. Activity Summary
 
 **Rylan:**
-- Developed SUPER special button for the website with Chris
-- Created Code of Conduct for the project
-- Created Demo Video with Jack
-- Worked on Implimentaion 1 report
-- **GitHub Summary:** 5 commits, 1 closed issue, 3 pull requests
+
+- Worked on sequencing diagrams for the project
+- Edited the deliverable for consistency and clarity
+- Did QA on all the UML diagrams
+- **GitHub Summary:** 3 commits, 1 pull request
 
 **Chris:**
-- Helped to develop "Contact Admin" button
-- Developed documentation (Contributing, etc.) about the project
-- Worked on Implimentaion 1 report
-- **GitHub Summary:**  5 commits, 3 pull request
+
+- Completed project architecture description
+- Completed Class diagram description
+- Documented the Design Pattern implementations (Decorator and Strategy)
+- Completed the Design Principles section
+- QA on the UML diagrams
+- **GitHub Summary:**  3 commits, 2 pull request
 
 **Jack:**
-- Modified Sample Data to include real examples from Dr.B
-- Created Demo Video w/ Rylan
-- Worked on Implimentaion 1 report
-- **GitHub Summary:** 17 commits, 1 pull request
+- Completed package diagram
+- First version of class diagram
+- UML QA
+- sample data for the project updated
+- **GitHub Summary:** 4 commits, 1 pull request
 
 **Ethan:**
-- Developed search page implementation (ran into some bugs)
-- Worked on Implimentaion 1 report
-- **GitHub Summary:** 15 commits, 1 closed issue, 1 pull request
+- Completed design pattern diagrams
+- QA on all the UML diagrams
+- Continued work on search page
+- Continued work on home page
+- Worked on the deliverable for consistency and clarity
+- **GitHub Summary:** 5 commits, 2 pull request
+---
 ---
 
 ## 2. Retrospective
 
-1. **Appreciations:** Everyone for working on the project and keeping the group in check.
+1. **Appreciations:** Jack for getting to work early and keeping us ahead of schedule.
 2. **Successes:** The team really came together well to complete the Deliverable once we were able to.
-3. **Failures:** Datafest lead to some crunch development that could potentially have been avoided.
-4. **Barriers:** DataFest was a big problem in that it took the weekend away for most the crew.
-5. **What we should try next time:** Getting together for an synchronous collaboration worked well and should be looked at for future dev.
-
+3. **Failures:** Some miscommunication this week led to redundant work being done.
+4. **Barriers:** Not meeting in person (only online this week) probably resulted in more communication failures than has been typical.
+5. **What we should try next time:** Getting together for an synchronous collaboration worked well and should be looked at for future development.
 ---
 
 ## 3. Next Steps
@@ -57,12 +65,12 @@ Deliverable extention for Data Fest! Thank god! Busy weeks following spring brea
 - Work on implementing the formating for a more final version of search page.
 
 **Chris:**
-- Establish standards for coding practices
-- Help assist others in maintaining those standards
+- Work to close issues #38, #41, #45, #46, #48, and #49
+- Help others implement more complete testing
 
 **Jack:** 
-- Fix sample data to new class specifications, debugg django loaddata for our 
-system and implement an functions needed. 
+- Add Users for data specifications
+- close Issues
 
 **Ethan:** 
 - Fix my version of the search page because it didnt work
