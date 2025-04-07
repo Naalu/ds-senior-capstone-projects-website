@@ -119,7 +119,7 @@ The diagram accurately reflects the implemented code structure while providing a
 
 ### Pattern 1: [Decorator Pattern (Structural)](https://sourcemaking.com/design_patterns/decorator)
 
-![Decorator Pattern Diagram](./images/Decorator_Pattern.drawio.svg)
+![Decorator Pattern Diagram](./images/Decorator_Pattern.drawio.png)
 
 *The diagram should show:*
 
@@ -181,7 +181,7 @@ The Decorator pattern adds role-based access control to view functions without m
 
 ### Pattern 2: [Strategy Pattern (Behavioral)](https://sourcemaking.com/design_patterns/strategy)
 
-![Strategy Pattern Diagram](./images/Strategy_Pattern.drawio.svg)
+![Strategy Pattern Diagram](./images/Strategy_Pattern.drawio.png)
 
 *The diagram should show:*
 
