@@ -17,25 +17,10 @@ The system addresses the lack of a centralized platform for storing and showcasi
 
 ## Architecture
 
-> Present a diagram of the high-level architecture
->
-> Links to an external site. of your system. Use a UML package diagram to describe the main modules and how they interrelate. See some examples at:
->
-> <https://www.uml-diagrams.org/package-diagrams-examples.html>
->
-> Links to an external site.
->
-> Make clear the layers of your architecture (if they exist) as described in:
->
-> <https://www.uml-diagrams.org/multi-layered-application-uml-model-diagram-example.html>
->
-> Links to an external site.
->
-> Links to an external site.Provide a brief rationale of your architecture explaining why you designed it that way.
 
 ### UML Package Diagram
 
-![UML Package Diagram](./images/UML-package-diagram.svg)
+![UML Package Diagram](./images/UML-package-diagram.png)
 
 ### Architecture Rationale
 
@@ -52,17 +37,11 @@ The system follows Django's [Model-View-Template (MVT)](https://www.geeksforgeek
 
 This architecture provides a solid foundation for fulfilling the primary requirements of the system: allowing faculty to submit research projects, enabling administrators to review submissions, and providing a searchable repository for visitors.
 
-> Grading criteria (5 points): Adequate use of UML; Adequate design of an architecture for the system; Adequate description of the rationale.
 
 ## Class Diagrams
 
-> Present a refined class diagram of your system, including implementation details such as visibilities, attributes to represent associations, attribute types, return types, parameters, etc. The class diagram should match the code you have produced so far, but not be limited to it (e.g., it can contain classes not implemented yet).
->
-> The difference between this class diagram and the one that you presented in D.3 is that the last focuses on the conceptual model of the domain while the former reflects the implementation. Therefore, the implementation details are relevant in this case.
 
-### Refined Class Diagram
-
-![UML Class Diagram](./images/Design-UML.drawio.svg)
+![UML Class Diagram](./images/Design-UML.png)
 
 The class diagram represents the key models and their relationships in the system. The implementation details include:
 
@@ -87,15 +66,33 @@ The class diagram represents the key models and their relationships in the syste
 
 The diagram accurately reflects the implemented code structure while providing a clear overview of the system's data model. The relationships depicted match the foreign key and many-to-many relationships in the Django models, and the detailed attributes reflect the database fields.
 
-> Grading criteria (6 points): Adequate use of UML; Adequate choice of classes and relationships; Completeness of the diagram; Adequate presentation of implementation details.
-
 ## Sequence Diagrams
 
-> Present a sequence diagram
->
-> Links to an external site. that represents how the objects in your system interact for a specific use case. Also include the use case's description in this section. The sequence diagram should be consistent with the class diagram and architecture.
+![UML Sequence Diagram](images\SequenceDiagram.png)
 
-> Grading criteria (5 points): Adequate use of UML; Adequate design of the sequence diagram; Consistency with the class diagram; Consistency with the use case description; Not including the use case description; Over simplistic diagram.
+Use Case: *Submit Research*
+
+Actor: Faculty
+
+Trigger: Faculty decides to submit a student research project.
+
+Pre-conditions: Faculty is logged in.
+
+Post-condition: Student research submission is recorded and pending admin review.
+
+Success Scenario:
+
+1. Faculty provides student research details (title, studentauthor(s), research category, and faculty advisor).
+2. The faculty uploads the research file(s), which may include PDFs, presentations, or images.
+3. The system validates the submission and stores the files.
+4. The system marks the research as "Pending Review."
+5. The system notifies admins that a new research submission is awaiting approval.
+
+Alternate Scenario:
+
+1. The system detects an invalid file format or missing information.
+2. The system informs the faculty of the issue and requests corrections.
+3. The faculty resubmits the corrected student research.
 
 ## Design Patterns
 
