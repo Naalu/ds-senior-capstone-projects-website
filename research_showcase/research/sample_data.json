@@ -64,5 +64,14 @@
             "presentation_file": null,
             "pdf_file": null
           }
+    },
+    {
+        "model": "research.User", 
+        "pk": "1",
+        "fields": 
+            {
+                "role": "faculty",
+                "department": "Mathmatics and Statistics"
+            }
     }
 ]
