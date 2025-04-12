@@ -3,7 +3,7 @@
 ### Description
 Northern Arizona University Department of Mathematics & Statistics Research Showcase is dedicated to developing a web-based platform for Northern Arizona University's Department of Mathematics & Statistics. This platform aims to organize, archive, and showcase student research, particularly senior capstone projects, with potential expansions for additional research and other departments.
 
-https://github.com/Naalu/ds-senior-capstone-projects-website
+[GitHub Link](https://github.com/Naalu/ds-senior-capstone-projects-website)
 
 ### Value Proposistion: 
 For students, faculty, and external evaluators who need a reliable and structured platform to manage and discover research, the Mathematics & Statistics Research Showcase is a web-based academic repository that streamlines research submission, display, and discovery.
@@ -46,24 +46,26 @@ As a student, I want to my capstone project stored online so that I can share my
 
 # // PLACE NEW DEVELOPMENTS HERE
 
+
 ### Requirement:
-As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
+As a faculty member, I want to browse through capstone projects so that I can review student work and provide feedback.
 
 **Criteria:**
 
-    Functionality for documents (PDF, LaTeX) and supplementary files (data sets, code, etc.).
-    Ability to add a project title, description, and keywords.
-    Option to tag faculty or collaborators related to the project.
+    Search and filter options for browsing projects by topic, student name, year, and keywords.
+    Preview of project summaries and a link to view detailed information.
+    Access to provide feedback or comments for each project.
 
 **Issue(s):**  
  -[ User story 9 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/23)  
  -[ User story 6 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/20)  
+ -[ Rylan begins development ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/4)
  -[ Implement search and filtering system ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/40)
 
-**Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)    
+**Pull Request**: [#65 - Date Range Search](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/65)    
 **Implemented by**: Rylan Harris  
-**Approved by**:  
-**Print screen**: !(Date Range Image)[images\date-range.png] 
+**Approved by**:  Chris Reger
+**Print screen**: ![Date Range Image](images\date-range.png)
 
 
 ## Tests
