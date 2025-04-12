@@ -1,0 +1,12 @@
+Subject: Research Project Rejected: {{ project.title }}
+
+Hi {{ faculty_name }},
+
+We regret to inform you that your research project submission, "{{ project.title }}", has been rejected by the administrator.
+
+Reason provided:
+{{ feedback }}
+
+Please review the feedback. You may need to contact the administrator if you wish to discuss this further.
+
+Thank you. 

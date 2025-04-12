@@ -1,0 +1,12 @@
+Subject: Revisions Requested for Research Project: {{ project.title }}
+
+Hi {{ faculty_name }},
+
+Revisions have been requested for your research project submission, "{{ project.title }}".
+
+Feedback from the administrator:
+{{ feedback }}
+
+Please review the feedback and make the necessary changes. You will need to resubmit the project once the revisions are complete. [Note: Resubmission functionality needs to be added separately]
+
+Thank you. 

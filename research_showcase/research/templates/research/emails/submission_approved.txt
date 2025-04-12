@@ -1,0 +1,9 @@
+Subject: Research Project Approved: {{ project.title }}
+
+Hi {{ faculty_name }},
+
+Your research project submission, "{{ project.title }}", has been approved by the administrator.
+
+It is now visible on the showcase.
+
+Thank you! 
