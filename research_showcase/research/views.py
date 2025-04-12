@@ -9,6 +9,17 @@ from .models import ResearchProject
 from .semester_utils import SEMESTERS, generate_semesters
 from datetime import date
 
+# Define the canonical home view here
+def home_view(request):
+    """Display the home page."""
+    # Fetch some data for the homepage if needed, e.g., recent projects
+    recent_projects = ResearchProject.objects.filter(
+        approval_status="approved"
+    ).order_by("-submission_date")[:5]  # Get latest 5 approved projects
+    context = {"recent_projects": recent_projects}
+    return render(request, "home.html", context)
+
+
 @faculty_required  # Faculty can submit research
 def submit_research(request):
     """

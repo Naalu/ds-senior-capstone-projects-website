@@ -20,12 +20,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-=7ry824w+4lxeadv2lie5t5_vrsit*dhbqud8*st35ac#wcb83"
+# TODO: Generate a secure secret key and place it here or load from environment
+SECRET_KEY = "django-insecure-=7ry824w+4lxeadv2lie5t5_vrsit*dhbqud8*st35ac#wcb83"  # Replace this!
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: list[str] = ["*"]
+# Allow connections only from localhost during development
+ALLOWED_HOSTS: list[str] = ["127.0.0.1", "localhost"]
 
 # Application definition
 INSTALLED_APPS = [
@@ -116,6 +118,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 STATIC_URL = "static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+# Media files (User Uploads)
+# https://docs.djangoproject.com/en/5.1/topics/files/
+MEDIA_URL = "/media/"
+MEDIA_ROOT = (
+    BASE_DIR / "media"
+)  # Store media files in a 'media' directory at the project root
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
