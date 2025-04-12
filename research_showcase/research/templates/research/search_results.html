@@ -7,9 +7,37 @@
     <h2 class="mb-4">Research Project Search</h2>
     
     <form method="get" action="{% url 'search_research' %}" class="mb-4">
-        <div class="input-group">
-            <input type="text" name="q" class="form-control" placeholder="Search by title, abstract, or sponsor..." value="{{ query }}">
-            <button type="submit" class="btn btn-primary">Search</button>
+        <div class="row mb-3">
+            <div class="col-12">
+                <input type="text" name="q" class="form-control" placeholder="Search by title, abstract, or sponsor..." value="{{ query }}">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="start_semester">From:</label>
+                <select name="start_semester" id="start_semester" class="form-select">
+                    {% for semester in semesters %}
+                        <option value="{{ semester }}" {% if semester == start_semester %}selected{% endif %}>
+                            {{ semester }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="end_semester">To:</label>
+                <select name="end_semester" id="end_semester" class="form-select">
+                    {% for semester in semesters %}
+                        <option value="{{ semester }}" {% if semester == end_semester %}selected{% endif %}>
+                            {{ semester }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary w-100">Search</button>
+            </div>
         </div>
     </form>
 
@@ -33,7 +61,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-muted">
-                    Submitted: {{ project.submission_date|date:"F j, Y" }}
+                    Presented: {{ project.date_presented|date:"F j, Y" }}
                 </div>
             </div>
         </div>

@@ -1,11 +1,13 @@
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Min, Max
 from django.shortcuts import get_object_or_404, redirect, render
 from users.decorators import admin_required, faculty_required
 
 from .forms import ResearchProjectForm
 from .models import ResearchProject
 
+from .semester_utils import SEMESTERS, generate_semesters
+from datetime import date
 
 @faculty_required  # Faculty can submit research
 def submit_research(request):
@@ -165,20 +167,104 @@ def search_research(request):
         Rendered template with filtered research projects and the search query
     """
     query = request.GET.get("q", "")
-    projects = None
-
-    if query:
-        projects = ResearchProject.objects.filter(
-            Q(title__icontains=query)
-            | Q(abstract__icontains=query)
-            | Q(project_sponsor__icontains=query),
-            approval_status="approved",
-        ).order_by("-submission_date")
-    else:
-        projects = ResearchProject.objects.filter(approval_status="approved").order_by(
-            "-submission_date"
-        )
-
-    return render(
-        request, "research/search_results.html", {"projects": projects, "query": query}
+    start_semester = request.GET.get("start_semester", "")
+    end_semester = request.GET.get("end_semester", "")
+    
+    # First, determine the date range of all projects in the database
+    date_range = ResearchProject.objects.filter(
+        approval_status="approved"
+    ).aggregate(
+        earliest=Min('date_presented'),
+        latest=Max('date_presented')
     )
+    
+    earliest_date = date_range['earliest']
+    latest_date = date_range['latest']
+    
+    # If no projects exist, use reasonable defaults
+    if not earliest_date or not latest_date:
+        current_year = date.today().year
+        earliest_date = date(current_year - 2, 1, 1)
+        latest_date = date(current_year, 12, 31)
+    
+    # Generate semesters covering our data range, plus a buffer
+    start_year = earliest_date.year - 1  # Add one year buffer before
+    end_year = latest_date.year + 1      # Add one year buffer after
+    
+    # Generate all semesters in this range
+    semesters = generate_semesters(start_year, end_year)
+    
+    # Sort semesters chronologically
+    season_order = {'Spring': 0, 'Summer': 1, 'Fall': 2, 'Winter': 3}
+    sorted_semesters = sorted(
+        semesters.keys(),
+        key=lambda x: (int(x.split()[1]), season_order[x.split()[0]])
+    )
+    
+    # Determine default selections if none provided
+    if not start_semester and sorted_semesters:
+        # Find the first semester that contains or precedes the earliest project
+        for sem in sorted_semesters:
+            if semesters[sem]['end'] >= earliest_date:
+                start_semester = sem
+                break
+        if not start_semester:  # Fallback
+            start_semester = sorted_semesters[0]
+    
+    if not end_semester and sorted_semesters:
+        # Find the last semester that contains or follows the latest project
+        for sem in reversed(sorted_semesters):
+            if semesters[sem]['start'] <= latest_date:
+                end_semester = sem
+                break
+        if not end_semester:  # Fallback
+            end_semester = sorted_semesters[-1]
+
+    if start_semester in semesters and end_semester in semesters:
+        start_idx = sorted_semesters.index(start_semester)
+        end_idx = sorted_semesters.index(end_semester)
+        
+        if start_idx > end_idx:
+            # Swap them
+            start_semester, end_semester = end_semester, start_semester
+    
+    # Convert selected semesters to dates for filtering
+    start_date = None
+    end_date = None
+    
+    if start_semester and start_semester in semesters:
+        start_date = semesters[start_semester]['start']
+    
+    if end_semester and end_semester in semesters:
+        end_date = semesters[end_semester]['end']
+    
+    # Build the query
+    projects_query = ResearchProject.objects.filter(approval_status="approved")
+    
+    # Apply text search if provided
+    if query:
+        projects_query = projects_query.filter(
+            Q(title__icontains=query) |
+            Q(abstract__icontains=query) |
+            Q(project_sponsor__icontains=query)
+        )
+    
+    # Apply date filtering if provided
+    if start_date:
+        projects_query = projects_query.filter(date_presented__gte=start_date)
+    
+    if end_date:
+        projects_query = projects_query.filter(date_presented__lte=end_date)
+    
+    # Order results
+    projects = projects_query.order_by("-date_presented")
+    
+    context = {
+        'projects': projects,
+        'query': query,
+        'semesters': sorted_semesters,
+        'start_semester': start_semester,
+        'end_semester': end_semester
+    }
+    
+    return render(request, 'research\search_results.html', context)
