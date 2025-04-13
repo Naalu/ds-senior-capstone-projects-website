@@ -6,6 +6,8 @@ from django.core.files.uploadedfile import UploadedFile
 
 from .models import ResearchProject
 
+from datetime import date
+
 # Constants for validation with type annotations
 MIN_TITLE_LENGTH: int = 10
 MIN_ABSTRACT_LENGTH: int = 100
@@ -191,3 +193,72 @@ class ResearchProjectForm(forms.ModelForm):
                     f"Unsupported file extension. Use {', '.join(VALID_PRESENTATION_EXTENSIONS)}"
                 )
         return pres
+
+    # Validate the GitHub link          
+    def clean_github_link(self) -> Optional[str]:
+        github_link: Optional[str] = self.cleaned_data.get("github_link")
+        
+        # If the field is empty and not required, return None
+        if not github_link:
+            return github_link
+            
+        # Check if it's a valid GitHub URL
+        if not (github_link.startswith("https://github.com/") or 
+                github_link.startswith("http://github.com/")):
+            raise forms.ValidationError("Please enter a valid GitHub repository URL (https://github.com/...)")
+        
+        # Check if it follows the expected GitHub repo format (github.com/username/repo)
+        parts = github_link.split("/")
+        if len(parts) < 5:  # https:// + empty + github.com + username + repo
+            raise forms.ValidationError("GitHub URL should be in format: https://github.com/username/repository")
+        
+        return github_link       
+    
+    # Video link validation
+    def clean_video_link(self) -> Optional[str]:
+        video_link: Optional[str] = self.cleaned_data.get("video_link")
+        
+        # If the field is empty and not required, return None
+        if not video_link:
+            return video_link
+        
+        # List of common video platforms
+        valid_platforms = [
+            "youtube.com/watch",
+            "youtu.be/",
+            "vimeo.com/",
+        ]
+        
+        # Check if the URL contains any of the valid video platforms
+        is_valid_platform = any(platform in video_link.lower() for platform in valid_platforms)
+        
+        if not is_valid_platform:
+            raise forms.ValidationError(
+                "Please enter a valid video URL:\n"
+                "YouTube(youtube.com/watch, youtu.be/) or Vimeo (vimeo.com/)"
+            )
+        
+        # Check if it's a well-formed URL
+        if not (video_link.startswith("http://") or video_link.startswith("https://")):
+            raise forms.ValidationError("Video link must start with http:// or https://")
+        
+        return video_link
+    
+    # Validate the date presented field
+    # Ensure that the date is not in the future
+    def clean_date_presented(self) -> Optional[date]:
+        date_presented: Optional[date] = self.cleaned_data.get("date_presented")
+        
+        # If the field is empty and not required, return None
+        if not date_presented:
+            return date_presented
+        
+        # Check if the date is in the future
+        today = date.today()
+        if date_presented > today:
+            print(f"DEBUG: Invalid date detected: {date_presented} > {today}")  # Debug print
+            raise forms.ValidationError(
+                f"Date presented ({date_presented}) cannot be in the future (today is {today})"
+            )
+        
+        return date_presented
