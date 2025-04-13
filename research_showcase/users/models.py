@@ -1,3 +1,4 @@
+from django.conf import settings  # To link recipient to User model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
@@ -51,3 +52,22 @@ class User(AbstractUser):
         """Update the last activity timestamp"""
         self.last_activity = timezone.now()
         self.save(update_fields=["last_activity"])
+
+
+# Add the missing Notification model
+class Notification(models.Model):
+    recipient = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="notifications",
+    )
+    message = models.TextField()
+    read = models.BooleanField(default=False)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    link = models.URLField(blank=True, null=True)  # Optional link for the notification
+
+    def __str__(self):
+        return f"Notification for {self.recipient.username}: {self.message[:50]}..."
+
+    class Meta:
+        ordering = ["-timestamp"]  # Show newest first

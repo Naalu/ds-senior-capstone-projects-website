@@ -2,9 +2,12 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.views.decorators.http import require_POST
 
 from .forms import NotificationPreferenceForm
+from .models import Notification
 
 
 def login_view(request):
@@ -59,3 +62,21 @@ def edit_profile(request):
         form = NotificationPreferenceForm(instance=request.user)
 
     return render(request, "users/edit_profile.html", {"form": form})
+
+
+@require_POST
+@login_required
+def mark_notifications_read(request):
+    """Marks all unread notifications for the current user as read."""
+    try:
+        # Update notifications in bulk for efficiency
+        num_updated = Notification.objects.filter(
+            recipient=request.user, read=False
+        ).update(read=True)
+        return JsonResponse({"success": True, "marked_read_count": num_updated})
+    except Exception as e:
+        # Log the error ideally
+        print(
+            f"Error marking notifications as read for user {request.user.username}: {e}"
+        )
+        return JsonResponse({"success": False, "error": str(e)}, status=500)

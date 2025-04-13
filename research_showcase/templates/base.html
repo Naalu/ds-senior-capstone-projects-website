@@ -56,8 +56,37 @@
                 </form>
 
                 {# Right-aligned items: User Menu or Login #}
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center"> {# Use flex for alignment #}
                     {% if user.is_authenticated %}
+                        {# Notification Bell Dropdown #}
+                        <li class="nav-item dropdown me-2"> {# Added margin #}
+                            <a class="nav-link" href="#" id="navbarNotificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-bell-fill"></i>
+                                {% if unread_notifications_count > 0 %}
+                                    <span class="badge rounded-pill bg-danger">{{ unread_notifications_count }}</span>
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarNotificationDropdown" style="min-width: 300px;">
+                                {% if recent_unread_notifications %}
+                                    <li class="dropdown-header">Recent Notifications</li>
+                                    {% for notification in recent_unread_notifications %}
+                                        <li>
+                                            {# TODO: Add link and mark-as-read functionality #}
+                                            <a class="dropdown-item text-wrap" href="#"> {# Add href later #}
+                                                {{ notification.message }}
+                                                <small class="d-block text-muted">{{ notification.timestamp|timesince }} ago</small>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#">View All Notifications</a></li> {# TODO: Create notifications page #}
+                                {% else %}
+                                    <li><p class="dropdown-item text-center mb-0">No new notifications</p></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        
+                        {# User Profile Dropdown #}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ user.get_full_name|default:user.username }}
@@ -110,6 +139,48 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    {# Add custom JavaScript block #}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const notificationDropdown = document.getElementById('navbarNotificationDropdown');
+        const notificationBadge = notificationDropdown ? notificationDropdown.querySelector('.badge') : null;
+
+        if (notificationDropdown) {
+            // Listen for the Bootstrap dropdown 'shown' event
+            notificationDropdown.parentElement.addEventListener('shown.bs.dropdown', function () {
+                // Check if there's a badge indicating unread notifications
+                if (notificationBadge && notificationBadge.textContent !== '0') {
+                    // Send AJAX request to mark notifications as read
+                    fetch('{% url "mark_notifications_read" %}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}', // Include CSRF token
+                            'Content-Type': 'application/json'
+                        },
+                        // No body needed for this specific request
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Marked', data.marked_read_count, 'notifications as read.');
+                            // Remove the badge visually
+                            if (notificationBadge) {
+                                notificationBadge.remove();
+                            }
+                            // Optionally update the styling of items in the dropdown if needed
+                        } else {
+                            console.error('Error marking notifications as read:', data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+                }
+            });
+        }
+    });
+    </script>
 
 </body>
 
