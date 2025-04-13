@@ -61,7 +61,7 @@ Enhance research submission form #38
 
 **Pull Request**: [#Y - Implement link validations](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/67)    
 **Implemented by**: Jack Tomlon  
-**Approved by**:  
+**Approved by**:  Chris Reger
 **Print screen**:  
 ![Date Range Image](images/Enter_valid_link_error.png)
 ![Date Range Image](images/Video_Link_Error.png)
@@ -85,6 +85,34 @@ As a student, I want to my capstone project stored online so that I can share my
 **Implemented by**: Ethan Ferguson  
 **Approved by**:  Chris Reger  
 **Print screen**: N/A as it is documentation
+
+
+### Requirement:
+Enhance the current research approval workflow for administrators.
+
+**Criteria:**
+    
+    Admins should have a clear interface for reviewing submissions
+    The workflow should support approval, rejection, and revision requests
+    Faculty should receive notifications about status changes
+    The system should maintain a history of approval actions
+    The workflow should be efficient and user-friendly
+
+**Issue(s):**  
+ -[ Implement consistent styling across the platform #37 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/37)   
+ -[ Enhance research submission form #38 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/38)    
+ -[ Complete research approval workflow #41 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/41)  
+ -[ Implement notification system #42 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/42)  
+
+... alongside wrapping up various User Story needs
+
+**Pull Request**: [feature: Comprehensive Updates including Homepage, Navbar, Notifications, and Search #68](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/68)    
+**Implemented by**: Chris Reger   
+**Approved by**: Rylan Harris  
+**Print screen**:  
+![Nav Bar Image](images/new-nav-bar.png)  
+![Review Image](images/placeholder.png)  
+![Revision Image](images/placeholder.png)  
 
 
 ## Tests
