@@ -139,11 +139,27 @@ def review_research(request):
 def send_status_change_email(project, template_name, subject_prefix, feedback=None):
     """Sends an email notification to the faculty author about status change."""
     faculty_user = project.author
-    if not faculty_user or not faculty_user.email:
-        messages.warning(
-            request,
-            f"Could not send notification for '{project.title}': Author email missing.",
-        )
+
+    # Check if the user wants email notifications and has an email address
+    if (
+        not faculty_user
+        or not faculty_user.email
+        or not faculty_user.notify_by_email_on_status_change
+    ):
+        if faculty_user and not faculty_user.notify_by_email_on_status_change:
+            print(
+                f"Skipping email for '{project.title}': User {faculty_user.username} opted out."
+            )  # Log skip
+        elif not faculty_user or not faculty_user.email:
+            # Keep the original warning message behavior for missing user/email
+            # We need a request object to use messages.warning, so maybe just print for now
+            print(
+                f"WARNING: Could not send notification for '{project.title}': Author or email missing."
+            )
+        # messages.warning(
+        #     request, # request is not available in this scope
+        #     f"Could not send notification for '{project.title}': Author email missing.",
+        # )
         return
 
     context = {
@@ -400,13 +416,14 @@ def search_research(request):
 
     # Apply text search if provided
     if query:
-        projects_query = projects_query.filter(
-            Q(title__icontains=query)
-            | Q(abstract__icontains=query)
-            | Q(project_sponsor__icontains=query)
+        projects_query = (
+            projects_query.filter(
+                Q(title__icontains=query)
+                | Q(abstract__icontains=query)
+                | Q(project_sponsor__icontains=query)
+            ),
         )
-            approval_status="approved",
-        ).order_by("-submission_date")
+        approval_status = ("approved",)
     else:
         projects = ResearchProject.objects.filter(approval_status="approved").order_by(
             "-submission_date"
@@ -580,7 +597,7 @@ def search_research(request):
             | Q(abstract__icontains=query)
             | Q(project_sponsor__icontains=query),
             approval_status="approved",
-        ).
+        )
     else:
         projects = ResearchProject.objects.filter(approval_status="approved").order_by(
             "-submission_date"

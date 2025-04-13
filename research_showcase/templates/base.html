@@ -70,8 +70,12 @@
                                 {% if user.is_admin %}
                                     <li><a class="dropdown-item" href="{% url 'review_research' %}">Review Submissions</a></li>
                                 {% endif %}
+                                
+                                {# Add Profile Link #}
+                                <li><a class="dropdown-item" href="{% url 'edit_profile' %}">My Profile / Preferences</a></li>
+                                
                                 {# Use the simplified model method check #}
-                                {% if user.can_submit_research %} {# Add divider only if items above exist #}
+                                {% if user.can_submit_research or user.is_admin %} {# Add divider only if items above exist #}
                                     <li><hr class="dropdown-divider"></li>
                                 {% endif %}
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>

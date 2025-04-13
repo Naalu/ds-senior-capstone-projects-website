@@ -1,7 +1,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from .views import login_view, logout_view
+from .views import edit_profile, login_view, logout_view
 
 urlpatterns = [
     # Authentication URLs
@@ -34,4 +34,6 @@ urlpatterns = [
         ),
         name="password_reset_complete",
     ),
+    # Add the URL for editing profile/preferences
+    path("profile/", edit_profile, name="edit_profile"),
 ]
