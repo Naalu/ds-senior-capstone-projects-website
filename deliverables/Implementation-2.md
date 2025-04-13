@@ -65,7 +65,8 @@ As a faculty member, I want to browse through capstone projects so that I can re
 **Pull Request**: [#65 - Date Range Search](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/65)    
 **Implemented by**: Rylan Harris  
 **Approved by**:  Chris Reger  
-**Print screen**: ![Date Range Image](images/date-range.png)  
+**Print screen**:  
+![Date Range Image](images/date-range.png)  
 
 ### Requirement:
 As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
@@ -85,9 +86,9 @@ Enhance research submission form #38
 **Pull Request**: [#Y - Implement link validations](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/67)    
 **Implemented by**: Jack Tomlon  
 **Approved by**:  
-**Print screen**: 
+**Print screen**:  
 ![Date Range Image](images/Enter_valid_link_error.png)
-![Date Range Image](images/Video_link_Error.png)
+![Date Range Image](images/Video_Link_Error.png)
 
 
 ## Tests
