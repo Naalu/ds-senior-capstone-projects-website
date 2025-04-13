@@ -72,7 +72,7 @@ As a student, I want to my capstone project stored online so that I can share my
 
 Enhance research submission form #38
 
-**Criteria:**
+**Criteria:**  
 
     The current research submission form needs improvements for better usability and data validation.  
 
@@ -132,9 +132,21 @@ Given the project's goalsâ€”to organize, archive, and showcase student researchâ
 
 ## Lessons Learned
 
-    In retrospect, describe what your team learned during this second release and what would you change if you would continue developing the project.   
+During our second release of the Mathematics & Statistics Research Showcase platform, we gained valuable insights that would shape future development.
+    
+### Technical Insights 
 
-    Grading criteria (2 points): Adequate reflection about problems and solutions, clear description with adequate use of language.
+- Link validation improved data quality but highlighted the need for standardized validation across all forms
+- Search functionality, particularly date range searching, proved more complex than anticipated
+- Django's testing framework was effective but needs expanded coverage for edge cases
 
+### Process Improvements
+
+- GitHub issue tracking provided good traceability, though requirements sometimes evolved during implementation
+- Pull request reviews worked well but would benefit from more detailed criteria
+- Earlier establishment of comprehensive documentation standards would aid maintenance
+
+### Future Considerations
+With development continued, we will  prioritize the robust search architecture, ensure validation across all forms, and finetune all areas of the project.
 
 
