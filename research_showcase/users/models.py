@@ -33,7 +33,7 @@ class User(AbstractUser):
 
     def can_submit_research(self):
         """Check if user can submit research projects"""
-        return True  # All authenticated users (faculty/admin) can submit research
+        return self.is_faculty() or self.is_admin()
 
     def can_review_research(self):
         """Check if user can review and approve/reject submissions"""

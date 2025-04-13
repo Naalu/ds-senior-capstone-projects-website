@@ -84,6 +84,19 @@ DATABASES = {
 # Use the console backend to print emails to the console during development
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
+# --- PRODUCTION EMAIL SETTINGS --- #
+# TODO: Configure a real email backend for production (e.g., SMTP).
+#       See: https://docs.djangoproject.com/en/stable/topics/email/#smtp-backend
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.example.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-email@example.com' # Load from env var
+# EMAIL_HOST_PASSWORD = 'your-password' # Load from env var
+DEFAULT_FROM_EMAIL = "webmaster@localhost"  # TODO: Set a real sender address
+# SERVER_EMAIL = 'root@localhost' # Address for error emails
+# --- END PRODUCTION EMAIL SETTINGS --- #
+
 # Custom user model
 AUTH_USER_MODEL = "users.User"
 

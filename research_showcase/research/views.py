@@ -405,6 +405,354 @@ def search_research(request):
             | Q(abstract__icontains=query)
             | Q(project_sponsor__icontains=query)
         )
+            approval_status="approved",
+        ).order_by("-submission_date")
+    else:
+        projects = ResearchProject.objects.filter(approval_status="approved").order_by(
+            "-submission_date"
+        )
+
+    return render(
+        request, "research/search_results.html", {"projects": projects, "query": query}
+    )
+
+
+# --- Faculty Workflow Views ---
+
+
+@faculty_required
+def my_submissions(request):
+    """Display a list of research projects submitted by the logged-in faculty user."""
+    projects = ResearchProject.objects.filter(author=request.user).order_by(
+        "-submission_date"
+    )
+    context = {"projects": projects, "page_title": "My Submissions"}
+    return render(request, "research/my_submissions.html", context)
+
+
+@faculty_required
+def edit_submission(request, project_id):
+    """Allow faculty to edit and resubmit a project marked as 'needs_revision'."""
+    project = get_object_or_404(ResearchProject, id=project_id)
+
+    # Security check: Only author can edit, and only if status is 'needs_revision'
+    if project.author != request.user:
+        messages.error(request, "You are not authorized to edit this submission.")
+        return redirect("my_submissions")
+    if project.approval_status != "needs_revision":
+        messages.warning(
+            request, "This submission cannot be edited in its current state."
+        )
+        return redirect("my_submissions")
+
+    if request.method == "POST":
+        # Pass instance=project to pre-populate and update the existing object
+        form = ResearchProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            try:
+                updated_project = form.save(commit=False)
+                # Reset status to pending and clear feedback upon resubmission
+                updated_project.approval_status = "pending"
+                updated_project.admin_feedback = None
+                updated_project.save()
+
+                # Create history record for resubmission
+                _create_status_history(
+                    project=updated_project,
+                    actor=request.user,
+                    status_to="pending",
+                    comment="Project edited and resubmitted after revisions.",
+                )
+
+                messages.success(
+                    request,
+                    f"Project '{updated_project.title}' updated and resubmitted for approval.",
+                )
+                return redirect("my_submissions")
+            except Exception as e:
+                messages.error(request, f"Error saving updated project: {str(e)}")
+        else:
+            messages.warning(request, "Please correct the errors in the form.")
+    else:
+        # Pre-populate the form with existing project data for GET request
+        form = ResearchProjectForm(instance=project)
+
+    context = {
+        "form": form,
+        "project": project,  # Pass project for context if needed in template
+        "page_title": f"Edit Submission: {project.title}",
+    }
+    # Reuse the submission template, or create a dedicated edit template
+    return render(request, "research/edit_submission.html", context)
+
+
+# Removed comment line that might confuse linter
+def search_research(request):
+    """
+    Search for research projects by title, abstract, or project sponsor.
+
+    This view handles searching of approved research projects. When a query
+    is provided, it filters projects containing the search term in their
+    title, abstract, or project sponsor fields. Without a query, it returns
+    all approved projects.
+
+    Args:
+        request: The HTTP request object containing the 'q' query parameter
+
+    Returns:
+        Rendered template with filtered research projects and the search query
+    """
+    query = request.GET.get("q", "")
+    start_semester = request.GET.get("start_semester", "")
+    end_semester = request.GET.get("end_semester", "")
+
+    # First, determine the date range of all projects in the database
+    date_range = ResearchProject.objects.filter(approval_status="approved").aggregate(
+        earliest=Min("date_presented"), latest=Max("date_presented")
+    )
+
+    earliest_date = date_range["earliest"]
+    latest_date = date_range["latest"]
+
+    # If no projects exist, use reasonable defaults
+    if not earliest_date or not latest_date:
+        current_year = date.today().year
+        earliest_date = date(current_year - 2, 1, 1)
+        latest_date = date(current_year, 12, 31)
+
+    # Generate semesters covering our data range, plus a buffer
+    start_year = earliest_date.year - 1  # Add one year buffer before
+    end_year = latest_date.year + 1  # Add one year buffer after
+
+    # Generate all semesters in this range
+    semesters = generate_semesters(start_year, end_year)
+
+    # Sort semesters chronologically
+    season_order = {"Spring": 0, "Summer": 1, "Fall": 2, "Winter": 3}
+    sorted_semesters = sorted(
+        semesters.keys(), key=lambda x: (int(x.split()[1]), season_order[x.split()[0]])
+    )
+
+    # Determine default selections if none provided
+    if not start_semester and sorted_semesters:
+        # Find the first semester that contains or precedes the earliest project
+        for sem in sorted_semesters:
+            if semesters[sem]["end"] >= earliest_date:
+                start_semester = sem
+                break
+        if not start_semester:  # Fallback
+            start_semester = sorted_semesters[0]
+
+    if not end_semester and sorted_semesters:
+        # Find the last semester that contains or follows the latest project
+        for sem in reversed(sorted_semesters):
+            if semesters[sem]["start"] <= latest_date:
+                end_semester = sem
+                break
+        if not end_semester:  # Fallback
+            end_semester = sorted_semesters[-1]
+
+    if start_semester in semesters and end_semester in semesters:
+        start_idx = sorted_semesters.index(start_semester)
+        end_idx = sorted_semesters.index(end_semester)
+
+        if start_idx > end_idx:
+            # Swap them
+            start_semester, end_semester = end_semester, start_semester
+
+    # Convert selected semesters to dates for filtering
+    start_date = None
+    end_date = None
+
+    if start_semester and start_semester in semesters:
+        start_date = semesters[start_semester]["start"]
+
+    if end_semester and end_semester in semesters:
+        end_date = semesters[end_semester]["end"]
+
+    # Build the query
+    projects_query = ResearchProject.objects.filter(approval_status="approved")
+
+    # Apply text search if provided
+    if query:
+        projects_query = projects_query.filter(
+            Q(title__icontains=query)
+            | Q(abstract__icontains=query)
+            | Q(project_sponsor__icontains=query),
+            approval_status="approved",
+        ).
+    else:
+        projects = ResearchProject.objects.filter(approval_status="approved").order_by(
+            "-submission_date"
+        )
+
+    return render(
+        request, "research/search_results.html", {"projects": projects, "query": query}
+    )
+
+
+# --- Faculty Workflow Views ---
+
+
+@faculty_required
+def my_submissions(request):
+    """Display a list of research projects submitted by the logged-in faculty user."""
+    projects = ResearchProject.objects.filter(author=request.user).order_by(
+        "-submission_date"
+    )
+    context = {"projects": projects, "page_title": "My Submissions"}
+    return render(request, "research/my_submissions.html", context)
+
+
+@faculty_required
+def edit_submission(request, project_id):
+    """Allow faculty to edit and resubmit a project marked as 'needs_revision'."""
+    project = get_object_or_404(ResearchProject, id=project_id)
+
+    # Security check: Only author can edit, and only if status is 'needs_revision'
+    if project.author != request.user:
+        messages.error(request, "You are not authorized to edit this submission.")
+        return redirect("my_submissions")
+    if project.approval_status != "needs_revision":
+        messages.warning(
+            request, "This submission cannot be edited in its current state."
+        )
+        return redirect("my_submissions")
+
+    if request.method == "POST":
+        # Pass instance=project to pre-populate and update the existing object
+        form = ResearchProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            try:
+                updated_project = form.save(commit=False)
+                # Reset status to pending and clear feedback upon resubmission
+                updated_project.approval_status = "pending"
+                updated_project.admin_feedback = None
+                updated_project.save()
+
+                # Create history record for resubmission
+                _create_status_history(
+                    project=updated_project,
+                    actor=request.user,
+                    status_to="pending",
+                    comment="Project edited and resubmitted after revisions.",
+                )
+
+                messages.success(
+                    request,
+                    f"Project '{updated_project.title}' updated and resubmitted for approval.",
+                )
+                return redirect("my_submissions")
+            except Exception as e:
+                messages.error(request, f"Error saving updated project: {str(e)}")
+        else:
+            messages.warning(request, "Please correct the errors in the form.")
+    else:
+        # Pre-populate the form with existing project data for GET request
+        form = ResearchProjectForm(instance=project)
+
+    context = {
+        "form": form,
+        "project": project,  # Pass project for context if needed in template
+        "page_title": f"Edit Submission: {project.title}",
+    }
+    # Reuse the submission template, or create a dedicated edit template
+    return render(request, "research/edit_submission.html", context)
+
+
+def search_research(request):
+    """
+    Search for research projects by title, abstract, or project sponsor.
+
+    This view handles searching of approved research projects. When a query
+    is provided, it filters projects containing the search term in their
+    title, abstract, or project sponsor fields. Without a query, it returns
+    all approved projects.
+
+    Args:
+        request: The HTTP request object containing the 'q' query parameter
+
+    Returns:
+        Rendered template with filtered research projects and the search query
+    """
+    query = request.GET.get("q", "")
+    start_semester = request.GET.get("start_semester", "")
+    end_semester = request.GET.get("end_semester", "")
+
+    # First, determine the date range of all projects in the database
+    date_range = ResearchProject.objects.filter(approval_status="approved").aggregate(
+        earliest=Min("date_presented"), latest=Max("date_presented")
+    )
+
+    earliest_date = date_range["earliest"]
+    latest_date = date_range["latest"]
+
+    # If no projects exist, use reasonable defaults
+    if not earliest_date or not latest_date:
+        current_year = date.today().year
+        earliest_date = date(current_year - 2, 1, 1)
+        latest_date = date(current_year, 12, 31)
+
+    # Generate semesters covering our data range, plus a buffer
+    start_year = earliest_date.year - 1  # Add one year buffer before
+    end_year = latest_date.year + 1  # Add one year buffer after
+
+    # Generate all semesters in this range
+    semesters = generate_semesters(start_year, end_year)
+
+    # Sort semesters chronologically
+    season_order = {"Spring": 0, "Summer": 1, "Fall": 2, "Winter": 3}
+    sorted_semesters = sorted(
+        semesters.keys(), key=lambda x: (int(x.split()[1]), season_order[x.split()[0]])
+    )
+
+    # Determine default selections if none provided
+    if not start_semester and sorted_semesters:
+        # Find the first semester that contains or precedes the earliest project
+        for sem in sorted_semesters:
+            if semesters[sem]["end"] >= earliest_date:
+                start_semester = sem
+                break
+        if not start_semester:  # Fallback
+            start_semester = sorted_semesters[0]
+
+    if not end_semester and sorted_semesters:
+        # Find the last semester that contains or follows the latest project
+        for sem in reversed(sorted_semesters):
+            if semesters[sem]["start"] <= latest_date:
+                end_semester = sem
+                break
+        if not end_semester:  # Fallback
+            end_semester = sorted_semesters[-1]
+
+    if start_semester in semesters and end_semester in semesters:
+        start_idx = sorted_semesters.index(start_semester)
+        end_idx = sorted_semesters.index(end_semester)
+
+        if start_idx > end_idx:
+            # Swap them
+            start_semester, end_semester = end_semester, start_semester
+
+    # Convert selected semesters to dates for filtering
+    start_date = None
+    end_date = None
+
+    if start_semester and start_semester in semesters:
+        start_date = semesters[start_semester]["start"]
+
+    if end_semester and end_semester in semesters:
+        end_date = semesters[end_semester]["end"]
+
+    # Build the query
+    projects_query = ResearchProject.objects.filter(approval_status="approved")
+
+    # Apply text search if provided
+    if query:
+        projects_query = projects_query.filter(
+            Q(title__icontains=query)
+            | Q(abstract__icontains=query)
+            | Q(project_sponsor__icontains=query)
+        )
 
     # Apply date filtering if provided
     if start_date:

@@ -2,7 +2,9 @@ from django.urls import path
 
 from .views import (
     approve_research,
+    edit_submission,
     home_view,
+    my_submissions,
     reject_research,
     request_revision,
     review_research,
@@ -14,6 +16,8 @@ from .views import (
 urlpatterns = [
     path("", home_view, name="home"),
     path("submit/", submit_research, name="submit_research"),
+    path("submissions/", my_submissions, name="my_submissions"),
+    path("submissions/edit/<int:project_id>/", edit_submission, name="edit_submission"),
     path("review/", review_research, name="review_research"),
     path("approve/<int:project_id>/", approve_research, name="approve_research"),
     path("reject/<int:project_id>/", reject_research, name="reject_research"),

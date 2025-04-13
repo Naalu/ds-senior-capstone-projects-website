@@ -10,7 +10,7 @@
         <table class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
-                    <th>Title</th>
+                    <th style="width: 50%;">Title</th>
                     <th>Student Author</th>
                     <th>Faculty Submitter</th>
                     <th>Date Presented</th>
@@ -98,9 +98,13 @@
                     </td>
 
                     <td>
-                        <div class="d-flex flex-column gap-2">
+                        {# Arrange buttons horizontally with spacing, using btn-sm #}
+                        <div class="d-flex flex-row gap-2">
                             <a href="{% url 'approve_research' project.id %}" class="btn btn-success btn-sm">
                                 <i class="bi bi-check-circle"></i> Approve
+                            </a>
+                            <a href="{% url 'request_revision' project.id %}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil-square"></i> Request Revision
                             </a>
                             <a href="{% url 'reject_research' project.id %}" class="btn btn-danger btn-sm">
                                 <i class="bi bi-x-circle"></i> Reject

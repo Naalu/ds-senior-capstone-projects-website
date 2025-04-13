@@ -28,37 +28,53 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    {% if user.is_authenticated %}
-                        {% if user.is_faculty or user.is_admin %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'submit_research' %}">Submit Research</a></li>
-                        {% endif %}
-                        {% if user.is_admin %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'review_research' %}">Review Research</a></li>
-                        {% endif %}
-                    {% endif %}
+                {# Left-aligned items #}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <button type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            Interested in sponsoring projects? 
+                        {# Sponsor button - kept on left for now #}
+                        <button type="button" class="btn btn-outline-light btn-sm me-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            Interested in sponsoring projects?
                         </button>
                     </li>
+                    {# Use the simplified model method check #}
+                    {% if user.is_authenticated and user.can_submit_research %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'submit_research' %}">Submit Research</a>
+                        </li>
+                    {% endif %}
                 </ul>
 
-                <!-- Search Form -->
-                <form class="d-flex ms-auto me-2" action="{% url 'search_research' %}" method="get">
+                {# Middle Search Form #}
+                <form class="d-flex me-auto ms-auto" action="{% url 'search_research' %}" method="get"> {# Adjusted margins #}
                     <input class="form-control me-2" type="search" name="q" placeholder="Search projects..." aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
 
-                <!-- Right-aligned navbar items -->
-                <ul class="navbar-nav">
+                {# Right-aligned items: User Menu or Login #}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light btn-sm" href="{% url 'logout' %}">Logout</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.get_full_name|default:user.username }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserDropdown">
+                                {# Use the simplified model method check #}
+                                {% if user.can_submit_research %}
+                                    <li><a class="dropdown-item" href="{% url 'my_submissions' %}">My Submissions</a></li>
+                                {% endif %}
+                                {% if user.is_admin %}
+                                    <li><a class="dropdown-item" href="{% url 'review_research' %}">Review Submissions</a></li>
+                                {% endif %}
+                                {# Use the simplified model method check #}
+                                {% if user.can_submit_research %} {# Add divider only if items above exist #}
+                                    <li><hr class="dropdown-divider"></li>
+                                {% endif %}
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light btn-sm" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
                     {% endif %}
                 </ul>
