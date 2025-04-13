@@ -67,20 +67,28 @@
         <!-- Add a common class for items -->
         <div class="project-item col-md-6 mb-4">
             <div class="card h-100">
+                {# Add Thumbnail Image if available #}
+                {% if project.thumbnail_url %}
+                <a href="{% url 'project_detail' project.id %}">
+                    <img src="{{ project.thumbnail_url }}" class="card-img-top" alt="Thumbnail for {{ project.title }}" style="height: 200px; object-fit: cover;"> {# Added inline style for consistency #}
+                </a>
+                {% endif %}
+                
                 <div class="card-body">
                     <h5 class="card-title">
                         <a href="{% url 'project_detail' project.id %}" class="text-decoration-none">{{ project.title }}</a>
                     </h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ project.author.username }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">By: {{ project.student_author_name|default:'Unknown Student' }}</h6>
                     <p class="card-text">{{ project.abstract|truncatewords:30 }}</p>
                     
-                    <div class="mt-3">
+                    {# Add responsive display classes to hide on small screens #}
+                    <div class="mt-3 d-none d-md-block">
                         {% if project.pdf_file %}
-                        <a href="{{ project.pdf_file.url }}" class="btn btn-sm btn-primary">View Paper</a>
+                        <a href="{{ project.pdf_file.url }}" class="btn btn-sm btn-primary me-1" target="_blank">View Paper</a>
                         {% endif %}
                         
                         {% if project.github_link %}
-                        <a href="{{ project.github_link }}" class="btn btn-sm btn-secondary">GitHub</a>
+                        <a href="{{ project.github_link }}" class="btn btn-sm btn-secondary" target="_blank">GitHub</a>
                         {% endif %}
                     </div>
                 </div>

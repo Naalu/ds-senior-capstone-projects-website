@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.http import require_POST
 
 from .forms import NotificationPreferenceForm
@@ -23,20 +24,38 @@ def login_view(request):
                 login(request, user)
                 messages.success(request, f"Welcome, {user.username}!")
 
-                # Redirect based on user role
+                # Check for 'next' parameter for redirection
+                next_url = request.POST.get("next") or request.GET.get("next")
+                if next_url and url_has_allowed_host_and_scheme(
+                    url=next_url,
+                    allowed_hosts={request.get_host()},
+                    require_https=request.is_secure(),
+                ):
+                    return redirect(next_url)
+
+                # Fallback to role-based redirection if 'next' is invalid or not present
                 if user.is_superuser:
                     return redirect("/admin/")
                 elif user.is_admin():
                     return redirect("review_research")
                 elif user.is_faculty():
                     return redirect("submit_research")
-                return redirect("home")
+                return redirect("home")  # Default fallback
         else:
             messages.error(request, "Invalid username or password. Please try again.")
     else:
         form = AuthenticationForm()
+        # Pass the 'next' parameter from GET to the template context
+        next_url = request.GET.get("next")
 
-    return render(request, "users/login.html", {"form": form})
+    return render(
+        request,
+        "users/login.html",
+        {
+            "form": form,
+            "next": next_url,  # Add next to context for hidden input
+        },
+    )
 
 
 def logout_view(request):

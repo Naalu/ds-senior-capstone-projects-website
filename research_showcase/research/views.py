@@ -466,22 +466,17 @@ def search_research(request):
     if end_semester and end_semester in semesters:
         end_date = semesters[end_semester]["end"]
 
-    # Build the query
-    projects_query = ResearchProject.objects.filter(approval_status="approved")
+    # Build the query with prefetching for efficiency
+    projects_query = ResearchProject.objects.filter(
+        approval_status="approved"
+    ).prefetch_related("images")  # Prefetch related ProjectImage objects
 
     # Apply text search if provided
     if query:
-        projects_query = (
-            projects_query.filter(
-                Q(title__icontains=query)
-                | Q(abstract__icontains=query)
-                | Q(project_sponsor__icontains=query)
-            ),
-        )
-        approval_status = ("approved",)
-    else:
-        projects = ResearchProject.objects.filter(approval_status="approved").order_by(
-            "-submission_date"
+        projects_query = projects_query.filter(
+            Q(title__icontains=query)
+            | Q(abstract__icontains=query)
+            | Q(project_sponsor__icontains=query)
         )
 
     # Apply date filtering if provided
@@ -491,20 +486,34 @@ def search_research(request):
     if end_date:
         projects_query = projects_query.filter(date_presented__lte=end_date)
 
-    # Apply sorting
-    if sort_by == "title":
-        projects = projects_query.order_by("title")
-    else:  # Default to date
-        projects = projects_query.order_by("-date_presented")
-        sort_by = "date"  # Ensure sort_by is 'date' if default or invalid
+    # Apply sorting before final processing
+    sort_order = "title" if sort_by == "title" else "-date_presented"
+    projects_list = list(
+        projects_query.order_by(sort_order)
+    )  # Execute query and get list
+
+    # Process list to add thumbnail URL
+    for project in projects_list:
+        project.thumbnail_url = None  # Default to None
+        first_image = (
+            project.images.first()
+        )  # Get first related image (uses prefetched data)
+        if first_image:
+            project.thumbnail_url = first_image.image.url
+        elif project.poster_image:  # Check poster image if no project images exist
+            project.thumbnail_url = project.poster_image.url
+
+    # Ensure sort_by is correctly set for the template context
+    if sort_by != "title":
+        sort_by = "date"
 
     context = {
-        "projects": projects,
+        "projects": projects_list,  # Pass the processed list
         "query": query,
         "semesters": sorted_semesters,
         "start_semester": start_semester,
         "end_semester": end_semester,
-        "sort_by": sort_by,  # Add sort_by to context
+        "sort_by": sort_by,
     }
 
     return render(request, "research/search_results.html", context)

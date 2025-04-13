@@ -22,9 +22,12 @@
             </thead>
             <tbody>
                 {% for project in projects %}
-                <tr>
+                <tr class="{% if project.approval_status == 'needs_revision' %}table-warning{% endif %}">
                     <td>
                         <strong>{{ project.title }}</strong>
+                        {% if project.approval_status == 'needs_revision' %}
+                            <span class="badge bg-warning text-dark ms-2">Needs Revision</span>
+                        {% endif %}
                         <div class="small text-muted">Submitted: {{ project.submission_date|date:"M d, Y" }}</div>
                         <button type="button" class="btn btn-sm btn-outline-info mt-1" data-bs-toggle="modal" data-bs-target="#abstractModal{{ project.id }}">
                             View Abstract
