@@ -78,7 +78,7 @@ As a student, I want to my capstone project stored online so that I can share my
 
 **Issue(s):**  
  -[ User story 1 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/15)   
- -[ Ethan begins development ](hhttps://github.com/Naalu/ds-senior-capstone-projects-website/issues/7)  
+ -[ Ethan begins development ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/7)  
  -[ Create API documentation ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/47)  
 
 **Pull Request**: [#69 - API Documentation](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/69)    
