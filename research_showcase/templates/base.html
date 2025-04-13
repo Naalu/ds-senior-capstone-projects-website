@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Research Showcase{% endblock %}</title>
 
+    <!-- Google Fonts: Source Sans 3 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" 
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -28,37 +33,85 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    {% if user.is_authenticated %}
-                        {% if user.is_faculty or user.is_admin %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'submit_research' %}">Submit Research</a></li>
-                        {% endif %}
-                        {% if user.is_admin %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'review_research' %}">Review Research</a></li>
-                        {% endif %}
-                    {% endif %}
+                {# Left-aligned items #}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <button type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#contactModal">
-                            Interested in sponsoring projects? 
+                        {# Sponsor button - Apply gold outline style #}
+                        <button type="button" class="btn btn-outline-gold btn-sm me-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+                            Interested in sponsoring projects?
                         </button>
                     </li>
                 </ul>
 
-                <!-- Search Form -->
-                <form class="d-flex ms-auto me-2" action="{% url 'search_research' %}" method="get">
+                {# Middle Search Form - Increased width #}
+                <form class="d-flex me-auto ms-auto w-50" action="{% url 'search_research' %}" method="get"> {# Added w-50 #}
                     <input class="form-control me-2" type="search" name="q" placeholder="Search projects..." aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
 
-                <!-- Right-aligned navbar items -->
-                <ul class="navbar-nav">
+                {# Right-aligned items: User Menu or Login #}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex align-items-center"> {# Use flex for alignment #}
                     {% if user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light btn-sm" href="{% url 'logout' %}">Logout</a>
+                        {# Notification Bell Dropdown #}
+                        <li class="nav-item dropdown me-2"> {# Added margin #}
+                            <a class="nav-link" href="#" id="navbarNotificationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-bell-fill"></i>
+                                {% if unread_notifications_count > 0 %}
+                                    <span class="badge rounded-pill bg-danger">{{ unread_notifications_count }}</span>
+                                {% endif %}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarNotificationDropdown" style="min-width: 300px;">
+                                {% if recent_unread_notifications %}
+                                    <li class="dropdown-header">Recent Notifications</li>
+                                    {% for notification in recent_unread_notifications %}
+                                        <li>
+                                            {# Use notification.link if available, otherwise fallback to '#' #}
+                                            <a class="dropdown-item text-wrap" href="{{ notification.link|default:'#' }}">
+                                                {{ notification.message }}
+                                                <small class="d-block text-muted">{{ notification.timestamp|timesince }} ago</small>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-center" href="#">View All Notifications</a></li> {# TODO: Create notifications page #}
+                                {% else %}
+                                    <li><p class="dropdown-item text-center mb-0">No new notifications</p></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        
+                        {# User Profile Dropdown #}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ user.get_full_name|default:user.username }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserDropdown">
+                                {# ADDED Submit new research link at the top #}
+                                {% if user.can_submit_research %}
+                                    <li><a class="dropdown-item" href="{% url 'submit_research' %}">Submit new research</a></li>
+                                {% endif %}
+                                {# My Submissions Link #}
+                                {% if user.can_submit_research %}
+                                    <li><a class="dropdown-item" href="{% url 'my_submissions' %}">My Submissions</a></li>
+                                {% endif %}
+                                {# Review Submissions Link #}
+                                {% if user.is_admin %}
+                                    <li><a class="dropdown-item" href="{% url 'review_research' %}">Review Submissions</a></li>
+                                {% endif %}
+                                
+                                {# Add Profile Link #}
+                                <li><a class="dropdown-item" href="{% url 'edit_profile' %}">My Profile / Preferences</a></li>
+                                
+                                {# Divider - adjusted condition slightly #}
+                                {% if user.can_submit_research or user.is_admin %}
+                                    <li><hr class="dropdown-divider"></li>
+                                {% endif %}
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light btn-sm" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -74,10 +127,12 @@
 
     <!-- Flash Messages -->
     {% if messages %}
-    <div class="container mt-3">
+    <div class="container mt-3 flash-message-container"> {# Added a container class #}
         {% for message in messages %}
-            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}info{% endif %}">
+            {# Added classes for dismissible alerts and a unique class for JS targeting #}
+            <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}info{% endif %} alert-dismissible fade show auto-dismiss" role="alert">
                 {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endfor %}
     </div>
@@ -85,6 +140,57 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    {# Custom JavaScript for Notification dropdown AJAX and Flash Message Auto-Dismiss #}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Notification Dropdown Logic --- 
+        const notificationDropdown = document.getElementById('navbarNotificationDropdown');
+        const notificationBadge = notificationDropdown ? notificationDropdown.querySelector('.badge') : null;
+
+        if (notificationDropdown) {
+            notificationDropdown.parentElement.addEventListener('shown.bs.dropdown', function () {
+                if (notificationBadge && notificationBadge.textContent !== '0') {
+                    fetch('{% url "mark_notifications_read" %}', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}',
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log('Marked', data.marked_read_count, 'notifications as read.');
+                            if (notificationBadge) {
+                                notificationBadge.remove();
+                            }
+                        } else {
+                            console.error('Error marking notifications as read:', data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+                }
+            });
+        }
+
+        // --- Auto-dismiss Flash Messages --- 
+        const autoDismissAlerts = document.querySelectorAll('.auto-dismiss');
+        autoDismissAlerts.forEach(alert => {
+            // Set timeout to 5 seconds (5000 milliseconds)
+            setTimeout(() => {
+                // Use Bootstrap's Alert instance to dismiss
+                const bootstrapAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                if (bootstrapAlert) {
+                    bootstrapAlert.close(); // Trigger the close method
+                }
+            }, 5000);
+        });
+
+    });
+    </script>
 
 </body>
 

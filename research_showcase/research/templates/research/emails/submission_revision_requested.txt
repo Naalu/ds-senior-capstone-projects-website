@@ -1,0 +1,13 @@
+Subject: Revisions Requested for Research Project: {{ project.title }}
+
+Hi {{ faculty_name }},
+
+Revisions have been requested for your research project submission, "{{ project.title }}".
+
+Feedback from the reviewer:
+{{ feedback }}
+
+Please review the feedback and edit your submission accordingly.
+
+Thank you,
+Research Showcase Administration 

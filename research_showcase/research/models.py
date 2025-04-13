@@ -1,6 +1,7 @@
 from typing import List, Tuple
 
 from django.db import models
+from django.utils import timezone
 from users.models import User
 
 # In research/models.py
@@ -31,6 +32,7 @@ class ResearchProject(models.Model):
         ("pending", "Pending Approval"),
         ("approved", "Approved"),
         ("rejected", "Rejected"),
+        ("needs_revision", "Needs Revision"),
     ]
 
     title: models.CharField = models.CharField(max_length=255)
@@ -63,8 +65,11 @@ class ResearchProject(models.Model):
     date_presented: models.DateField = models.DateField(null=True, blank=True)
 
     approval_status: models.CharField = models.CharField(
-        max_length=10, choices=STATUS_CHOICES, default="pending"
+        max_length=15, choices=STATUS_CHOICES, default="pending"
     )
+
+    # Add field for admin feedback
+    admin_feedback: models.TextField = models.TextField(blank=True, null=True)
 
     # Optional Fields (keep existing fields)
     github_link: models.URLField = models.URLField(null=True, blank=True)
@@ -82,8 +87,66 @@ class ResearchProject(models.Model):
         upload_to="research_papers/", null=True, blank=True
     )
 
+    # Derived properties for semester/year (optional, for easier querying/display)
+    @property
+    def year_presented(self):
+        return self.date_presented.year if self.date_presented else None
+
+    @property
+    def semester_presented(self):
+        if not self.date_presented:
+            return None
+        month = self.date_presented.month
+        if 3 <= month <= 5:
+            return "Spring"
+        if 6 <= month <= 7:
+            return "Summer"  # Approx
+        if 8 <= month <= 11:
+            return "Fall"
+        if month == 12 or month <= 2:
+            return "Winter"  # Approx
+        return None  # Should not happen
+
     def __str__(self) -> str:
         return self.title
+
+
+class ProjectImage(models.Model):
+    """Represents a single image associated with a ResearchProject."""
+
+    project = models.ForeignKey(
+        ResearchProject, on_delete=models.CASCADE, related_name="images"
+    )
+    image = models.ImageField(upload_to="project_images/")
+    caption = models.CharField(max_length=255, blank=True, null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image for {self.project.title} ({self.image.name})"
+
+
+class StatusHistory(models.Model):
+    """Tracks the status changes and feedback for a ResearchProject."""
+
+    project = models.ForeignKey(
+        ResearchProject, on_delete=models.CASCADE, related_name="status_history"
+    )
+    # User who performed the action (can be null if system generated?)
+    actor = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    timestamp = models.DateTimeField(default=timezone.now)
+    status_from = models.CharField(
+        max_length=15, choices=ResearchProject.STATUS_CHOICES, null=True, blank=True
+    )
+    status_to = models.CharField(max_length=15, choices=ResearchProject.STATUS_CHOICES)
+    comment = models.TextField(blank=True, null=True)
+
+    class Meta:
+        ordering = ["-timestamp"]
+        verbose_name_plural = "Status Histories"
+
+    def __str__(self):
+        actor_name = self.actor.username if self.actor else "System"
+        return f"{self.project.title} changed to {self.get_status_to_display()} by {actor_name} at {self.timestamp}"
 
 
 class Colloquium(models.Model):

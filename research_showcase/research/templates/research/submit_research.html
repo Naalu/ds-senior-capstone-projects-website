@@ -162,6 +162,14 @@
                         <div class="alert alert-info">
                             <i class="bi bi-info-circle"></i> Upload research materials such as papers, presentations, and posters.
                         </div>
+
+                        {# Add message about re-uploading files #}
+                        <div class="alert alert-warning">
+                            <i class="bi bi-exclamation-triangle-fill"></i> 
+                            <strong>Important:</strong> If you see validation errors on other steps after submitting,
+                            you may need to re-select your files on this page before submitting again. 
+                            This is standard browser behavior for security.
+                        </div>
                         
                         <!-- PDF File Field -->
                         <div class="mb-3">
@@ -200,6 +208,20 @@
                             {% endif %}
                             <div class="form-text">Upload a research poster image in JPG, PNG, or PDF format (max 5MB).</div>
                             <div id="posterPreview" class="mt-2"></div>
+                        </div>
+
+                        <!-- Project Images Field -->
+                        <div class="mb-3">
+                            <label for="{{ form.project_images.id_for_label }}" class="form-label">Project Images (Optional)</label>
+                            {{ form.project_images }}
+                            {% if form.project_images.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.project_images.errors|striptags }}
+                                </div>
+                            {% endif %}
+                            <div class="form-text">{{ form.project_images.help_text }}</div>
+                            <!-- Optional: Add preview area for multiple images -->
+                            <div id="projectImagesPreview" class="mt-2 d-flex flex-wrap gap-2"></div> 
                         </div>
                         
                         <div class="d-flex justify-content-between mt-4">
@@ -269,9 +291,59 @@
 </div>
 
 <script>
+// Function to validate fields in the current step
+function validateStep(stepId) {
+    const stepPane = document.getElementById(stepId);
+    if (!stepPane) return true; // Should not happen
+
+    const inputs = stepPane.querySelectorAll('input[required], textarea[required], select[required]');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        // Reset custom validity message
+        input.setCustomValidity('');
+        
+        if (!input.value.trim() && input.type !== 'file') { // Check non-file required fields
+            input.setCustomValidity('This field is required.'); // Set a message for the browser's UI
+            isValid = false;
+        } else if (input.type === 'file' && input.required && input.files.length === 0) { // Check required file fields
+             input.setCustomValidity('This file is required.');
+             isValid = false;
+        }
+
+        // Trigger browser's validation UI programmatically if needed, or use custom display
+        // For simplicity, we rely on Bootstrap's feedback display triggered by submit, 
+        // but we prevent moving forward if isValid is false.
+        // To show errors immediately: input.reportValidity(); 
+    });
+
+    if (!isValid) {
+        // Optionally, display a general message or focus the first invalid field
+        alert('Please fill out all required fields in this step before proceeding.'); 
+    }
+
+    return isValid;
+}
+
 // Function to navigate between form steps
 function nextStep(tabId) {
-    document.getElementById(tabId).click();
+    // Find the currently active tab button to determine the current step content ID
+    const currentActiveButton = document.querySelector('#formSteps .nav-link.active');
+    const currentStepContentId = currentActiveButton.getAttribute('data-bs-target').substring(1); // Remove #
+
+    // Validate the current step before moving to the next
+    // Don't validate when moving backwards
+    const targetButton = document.getElementById(tabId);
+    const currentButtonIndex = Array.from(currentActiveButton.parentElement.parentElement.children).indexOf(currentActiveButton.parentElement);
+    const targetButtonIndex = Array.from(targetButton.parentElement.parentElement.children).indexOf(targetButton.parentElement);
+
+    if (targetButtonIndex > currentButtonIndex) { // Only validate when moving forward
+        if (!validateStep(currentStepContentId)) {
+            return; // Stop navigation if validation fails
+        }
+    }
+    
+    targetButton.click(); // Use the button element directly
     
     // If going to review tab, populate review fields
     if (tabId === 'review-tab') {
@@ -320,6 +392,26 @@ document.getElementById('{{ form.poster_image.id_for_label }}').addEventListener
         } else {
             preview.innerHTML = '<p class="text-info"><i class="bi bi-file-earmark-pdf"></i> ' + file.name + '</p>';
         }
+    }
+});
+
+// Add preview for PDF file
+document.getElementById('{{ form.pdf_file.id_for_label }}').addEventListener('change', function(e) {
+    const preview = document.getElementById('pdfPreview');
+    preview.innerHTML = '';
+    if (this.files && this.files[0]) {
+        const file = this.files[0];
+        preview.innerHTML = '<p class="text-info"><i class="bi bi-file-earmark-text"></i> ' + file.name + '</p>';
+    }
+});
+
+// Add preview for Presentation file
+document.getElementById('{{ form.presentation_file.id_for_label }}').addEventListener('change', function(e) {
+    const preview = document.getElementById('presentationPreview');
+    preview.innerHTML = '';
+    if (this.files && this.files[0]) {
+        const file = this.files[0];
+        preview.innerHTML = '<p class="text-info"><i class="bi bi-file-earmark-slides"></i> ' + file.name + '</p>';
     }
 });
 

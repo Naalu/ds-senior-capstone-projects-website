@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container project-detail-container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'search_research' %}">Search</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li>
+        </ol>
+    </nav>
+
+    <h1 class="mb-3">{{ project.title }}</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h4>Abstract</h4>
+            <p>{{ project.abstract|linebreaksbr }}</p>
+            
+            <hr>
+            
+            <div class="project-meta mb-3">
+                <p><strong>Student Author:</strong> {{ project.student_author_name }}</p>
+                <p><strong>Faculty Advisor:</strong> {{ project.author.get_full_name|default:project.author.username }}</p>
+                {% if project.collaborator_names %}
+                <p><strong>Collaborators:</strong> {{ project.collaborator_names }}</p>
+                {% endif %}
+                <p><strong>Project Sponsor:</strong> {{ project.project_sponsor|default:"N/A" }}</p>
+                <p><strong>Semester Presented:</strong> {{ project.semester_presented }} {{ project.year_presented }} ({{ project.date_presented|date:"F j, Y" }})</p>
+            </div>
+            
+            <div class="project-links mb-4">
+                {% if project.pdf_file %}
+                <a href="{{ project.pdf_file.url }}" class="btn btn-primary me-2" target="_blank">
+                    <i class="bi bi-file-earmark-pdf-fill"></i> View Paper (PDF)
+                </a>
+                {% endif %}
+                {% if project.presentation_file %}
+                <a href="{{ project.presentation_file.url }}" class="btn btn-info me-2" target="_blank">
+                    <i class="bi bi-file-earmark-slides-fill"></i> View Presentation
+                </a>
+                {% endif %}
+                {% if project.github_link %}
+                <a href="{{ project.github_link }}" class="btn btn-secondary me-2" target="_blank">
+                    <i class="bi bi-github"></i> GitHub Repository
+                </a>
+                {% endif %}
+                {% if project.video_link %}
+                <a href="{{ project.video_link }}" class="btn btn-danger" target="_blank">
+                    <i class="bi bi-youtube"></i> Watch Video
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Removed Embedded Viewers Section -->
+
+        </div>
+        
+        <div class="col-md-4">
+            {% if project.poster_image %}
+                <h4>Poster</h4>
+                <a href="{{ project.poster_image.url }}" data-bs-toggle="modal" data-bs-target="#posterModal">
+                    <img src="{{ project.poster_image.url }}" alt="Project Poster Preview" class="img-fluid img-thumbnail mb-3">
+                </a>
+                 <!-- Poster Modal -->
+                <div class="modal fade" id="posterModal" tabindex="-1" aria-labelledby="posterModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="posterModalLabel">Poster: {{ project.title }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <img src="{{ project.poster_image.url }}" class="img-fluid" alt="Project Poster">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="text-muted">No poster submitted.</div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Image Gallery Section -->
+    {% if project.images.all %}
+    <div class="project-gallery mt-4 pt-4 border-top">
+        <h4>Project Gallery</h4>
+        <div id="projectImageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                {% for image in project.images.all %}
+                <button type="button" data-bs-target="#projectImageCarousel" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
+            <div class="carousel-inner" style="max-height: 500px; background-color: #f8f9fa;"> <!-- Added max-height and background for better visualization -->
+                {% for image in project.images.all %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}" data-bs-interval="5000"> <!-- Added interval -->
+                    <img src="{{ image.image.url }}" class="d-block w-100" style="object-fit: contain; max-height: 500px;" alt="{{ image.caption|default:'Project image' }}"> <!-- Use contain to prevent cropping -->
+                    {% if image.caption %}
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 p-2 rounded">
+                        <p>{{ image.caption }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#projectImageCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#projectImageCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    {% endif %}
+    <!-- End Image Gallery Section -->
+
+</div> 
+{% endblock %} 
