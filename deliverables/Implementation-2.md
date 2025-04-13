@@ -67,6 +67,28 @@ As a faculty member, I want to browse through capstone projects so that I can re
 **Approved by**:  Chris Reger
 **Print screen**: ![Date Range Image](images\date-range.png)
 
+### Requirement:
+As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
+
+Enhance research submission form #38
+
+**Criteria:**
+
+    The current research submission form needs improvements for better usability and data validation.  
+
+    Implemented: Validation for Github and video links
+
+**Issue(s):**  
+ -[ User story 1 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/15)  
+-[ issue 38 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/38)
+
+**Pull Request**: [#Y - Implement link validations](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/67)    
+**Implemented by**: Jack Tomlon  
+**Approved by**:  
+**Print screen**: 
+![Date Range Image](images\Enter_valid_link_error.png)
+![Date Range Image](images\Video_link_Error.png)
+
 
 ## Tests
 
