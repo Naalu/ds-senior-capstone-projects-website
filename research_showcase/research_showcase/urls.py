@@ -20,22 +20,29 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from research.views import search_research  # Import search_research
 
 # Remove the redundant home_view definition here
 # def home_view(request):
 #     return render(request, "home.html")
 
 urlpatterns = [
-    # Point the root URL to the research app's URLs
-    path("", include("research.urls")),
     path("admin/", admin.site.urls),
-    path("users/", include("users.urls")),
-    # We removed the direct root path here, it's now handled by including research.urls
-    # path("research/", include("research.urls")), # This prefix is removed as research handles the root
+    # Root URL now points to the search/browse view
+    path("", search_research, name="home"),  # Changed this line
+    # Include research app URLs (submit, review, etc.)
+    path("", include("research.urls")),  # Prefix handled in research.urls
+    # Include users app URLs (login, logout, profile)
+    path("accounts/", include("users.urls")),  # Prefix for user accounts
+    # Additional includes or direct paths if needed
 ]
 
 # Add URL pattern for serving media files during development
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += list(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
     # Optionally add static file serving pattern if needed (often handled by runserver automatically)
     # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Custom error handlers (optional)
+# handler404 = 'your_app.views.view_404'
+# handler500 = 'your_app.views.view_500'

@@ -3,8 +3,8 @@ from django.urls import path
 from .views import (
     approve_research,
     edit_submission,
-    home_view,
     my_submissions,
+    project_detail_view,
     reject_research,
     request_revision,
     review_research,
@@ -14,7 +14,6 @@ from .views import (
 )
 
 urlpatterns = [
-    path("", home_view, name="home"),
     path("submit/", submit_research, name="submit_research"),
     path("submissions/", my_submissions, name="my_submissions"),
     path("submissions/edit/<int:project_id>/", edit_submission, name="edit_submission"),
@@ -24,4 +23,5 @@ urlpatterns = [
     path("revise/<int:project_id>/", request_revision, name="request_revision"),
     path("search/", search_research, name="search_research"),
     path("submit/success/", submission_success, name="submission_success"),
+    path("project/<int:project_id>/", project_detail_view, name="project_detail"),
 ]

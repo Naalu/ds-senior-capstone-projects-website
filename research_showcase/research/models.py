@@ -87,8 +87,42 @@ class ResearchProject(models.Model):
         upload_to="research_papers/", null=True, blank=True
     )
 
+    # Derived properties for semester/year (optional, for easier querying/display)
+    @property
+    def year_presented(self):
+        return self.date_presented.year if self.date_presented else None
+
+    @property
+    def semester_presented(self):
+        if not self.date_presented:
+            return None
+        month = self.date_presented.month
+        if 3 <= month <= 5:
+            return "Spring"
+        if 6 <= month <= 7:
+            return "Summer"  # Approx
+        if 8 <= month <= 11:
+            return "Fall"
+        if month == 12 or month <= 2:
+            return "Winter"  # Approx
+        return None  # Should not happen
+
     def __str__(self) -> str:
         return self.title
+
+
+class ProjectImage(models.Model):
+    """Represents a single image associated with a ResearchProject."""
+
+    project = models.ForeignKey(
+        ResearchProject, on_delete=models.CASCADE, related_name="images"
+    )
+    image = models.ImageField(upload_to="project_images/")
+    caption = models.CharField(max_length=255, blank=True, null=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Image for {self.project.title} ({self.image.name})"
 
 
 class StatusHistory(models.Model):

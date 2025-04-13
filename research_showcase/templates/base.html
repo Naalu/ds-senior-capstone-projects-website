@@ -41,16 +41,10 @@
                             Interested in sponsoring projects?
                         </button>
                     </li>
-                    {# Use the simplified model method check #}
-                    {% if user.is_authenticated and user.can_submit_research %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'submit_research' %}">Submit Research</a>
-                        </li>
-                    {% endif %}
                 </ul>
 
-                {# Middle Search Form #}
-                <form class="d-flex me-auto ms-auto" action="{% url 'search_research' %}" method="get"> {# Adjusted margins #}
+                {# Middle Search Form - Increased width #}
+                <form class="d-flex me-auto ms-auto w-50" action="{% url 'search_research' %}" method="get"> {# Added w-50 #}
                     <input class="form-control me-2" type="search" name="q" placeholder="Search projects..." aria-label="Search">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
@@ -71,8 +65,8 @@
                                     <li class="dropdown-header">Recent Notifications</li>
                                     {% for notification in recent_unread_notifications %}
                                         <li>
-                                            {# TODO: Add link and mark-as-read functionality #}
-                                            <a class="dropdown-item text-wrap" href="#"> {# Add href later #}
+                                            {# Use notification.link if available, otherwise fallback to '#' #}
+                                            <a class="dropdown-item text-wrap" href="{{ notification.link|default:'#' }}">
                                                 {{ notification.message }}
                                                 <small class="d-block text-muted">{{ notification.timestamp|timesince }} ago</small>
                                             </a>
@@ -92,10 +86,15 @@
                                 {{ user.get_full_name|default:user.username }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserDropdown">
-                                {# Use the simplified model method check #}
+                                {# ADDED Submit new research link at the top #}
+                                {% if user.can_submit_research %}
+                                    <li><a class="dropdown-item" href="{% url 'submit_research' %}">Submit new research</a></li>
+                                {% endif %}
+                                {# My Submissions Link #}
                                 {% if user.can_submit_research %}
                                     <li><a class="dropdown-item" href="{% url 'my_submissions' %}">My Submissions</a></li>
                                 {% endif %}
+                                {# Review Submissions Link #}
                                 {% if user.is_admin %}
                                     <li><a class="dropdown-item" href="{% url 'review_research' %}">Review Submissions</a></li>
                                 {% endif %}
@@ -103,8 +102,8 @@
                                 {# Add Profile Link #}
                                 <li><a class="dropdown-item" href="{% url 'edit_profile' %}">My Profile / Preferences</a></li>
                                 
-                                {# Use the simplified model method check #}
-                                {% if user.can_submit_research or user.is_admin %} {# Add divider only if items above exist #}
+                                {# Divider - adjusted condition slightly #}
+                                {% if user.can_submit_research or user.is_admin %}
                                     <li><hr class="dropdown-divider"></li>
                                 {% endif %}
                                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>

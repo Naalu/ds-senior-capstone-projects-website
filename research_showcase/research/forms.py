@@ -1,12 +1,11 @@
 import os
+from datetime import date
 from typing import List, Optional
 
 from django import forms
 from django.core.files.uploadedfile import UploadedFile
 
 from .models import ResearchProject
-
-from datetime import date
 
 # Constants for validation with type annotations
 MIN_TITLE_LENGTH: int = 10
@@ -18,9 +17,31 @@ MB_TO_BYTES: int = 1024 * 1024
 VALID_POSTER_EXTENSIONS: List[str] = ["jpg", "jpeg", "png", "pdf"]
 VALID_PRESENTATION_EXTENSIONS: List[str] = ["pdf", "ppt", "pptx"]
 VALID_PDF_EXTENSION: str = "pdf"
+VALID_IMAGE_EXTENSIONS: List[str] = ["jpg", "jpeg", "png", "gif"]  # For project images
+MAX_IMAGE_SIZE_MB: int = 2  # Max size per image file
+MAX_TOTAL_IMAGE_SIZE_MB: int = 10  # Max total size for all images
 
 
 class ResearchProjectForm(forms.ModelForm):
+    # Define field without widget initially
+    project_images = forms.ImageField(
+        # widget=forms.FileInput(attrs={"multiple": True, "class": "form-control"}),
+        required=False,
+        label="Project Images (Optional)",
+        help_text=f"Upload additional project images (e.g., diagrams, results). Allowed: {', '.join(VALID_IMAGE_EXTENSIONS)}. Max {MAX_IMAGE_SIZE_MB}MB per file, {MAX_TOTAL_IMAGE_SIZE_MB}MB total.",
+    )
+
+    # Add __init__ to modify widget attributes after initialization
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the multiple attribute on the widget here
+        self.fields["project_images"].widget.attrs.update(
+            {
+                "multiple": True,
+                "class": "form-control",  # Ensure class is also set here
+            }
+        )
+
     class Meta:
         model = ResearchProject
         fields = [
@@ -35,6 +56,7 @@ class ResearchProjectForm(forms.ModelForm):
             "video_link",
             "presentation_file",
             "pdf_file",
+            "project_images",
         ]
         widgets = {
             "title": forms.TextInput(
@@ -194,71 +216,111 @@ class ResearchProjectForm(forms.ModelForm):
                 )
         return pres
 
-    # Validate the GitHub link          
+    # Validate the GitHub link
     def clean_github_link(self) -> Optional[str]:
         github_link: Optional[str] = self.cleaned_data.get("github_link")
-        
+
         # If the field is empty and not required, return None
         if not github_link:
             return github_link
-            
+
         # Check if it's a valid GitHub URL
-        if not (github_link.startswith("https://github.com/") or 
-                github_link.startswith("http://github.com/")):
-            raise forms.ValidationError("Please enter a valid GitHub repository URL (https://github.com/...)")
-        
+        if not (
+            github_link.startswith("https://github.com/")
+            or github_link.startswith("http://github.com/")
+        ):
+            raise forms.ValidationError(
+                "Please enter a valid GitHub repository URL (https://github.com/...)"
+            )
+
         # Check if it follows the expected GitHub repo format (github.com/username/repo)
         parts = github_link.split("/")
         if len(parts) < 5:  # https:// + empty + github.com + username + repo
-            raise forms.ValidationError("GitHub URL should be in format: https://github.com/username/repository")
-        
-        return github_link       
-    
+            raise forms.ValidationError(
+                "GitHub URL should be in format: https://github.com/username/repository"
+            )
+
+        return github_link
+
     # Video link validation
     def clean_video_link(self) -> Optional[str]:
         video_link: Optional[str] = self.cleaned_data.get("video_link")
-        
+
         # If the field is empty and not required, return None
         if not video_link:
             return video_link
-        
+
         # List of common video platforms
         valid_platforms = [
             "youtube.com/watch",
             "youtu.be/",
             "vimeo.com/",
         ]
-        
+
         # Check if the URL contains any of the valid video platforms
-        is_valid_platform = any(platform in video_link.lower() for platform in valid_platforms)
-        
+        is_valid_platform = any(
+            platform in video_link.lower() for platform in valid_platforms
+        )
+
         if not is_valid_platform:
             raise forms.ValidationError(
                 "Please enter a valid video URL:\n"
                 "YouTube(youtube.com/watch, youtu.be/) or Vimeo (vimeo.com/)"
             )
-        
+
         # Check if it's a well-formed URL
         if not (video_link.startswith("http://") or video_link.startswith("https://")):
-            raise forms.ValidationError("Video link must start with http:// or https://")
-        
+            raise forms.ValidationError(
+                "Video link must start with http:// or https://"
+            )
+
         return video_link
-    
+
     # Validate the date presented field
     # Ensure that the date is not in the future
     def clean_date_presented(self) -> Optional[date]:
         date_presented: Optional[date] = self.cleaned_data.get("date_presented")
-        
+
         # If the field is empty and not required, return None
         if not date_presented:
             return date_presented
-        
+
         # Check if the date is in the future
         today = date.today()
         if date_presented > today:
-            print(f"DEBUG: Invalid date detected: {date_presented} > {today}")  # Debug print
+            print(
+                f"DEBUG: Invalid date detected: {date_presented} > {today}"
+            )  # Debug print
             raise forms.ValidationError(
                 f"Date presented ({date_presented}) cannot be in the future (today is {today})"
             )
-        
+
         return date_presented
+
+    # Add validation for project_images
+    def clean_project_images(self):
+        images = self.files.getlist("project_images")
+        total_size = 0
+        valid_images = []
+
+        for image in images:
+            if image.size > MAX_IMAGE_SIZE_MB * MB_TO_BYTES:
+                raise forms.ValidationError(
+                    f"Image '{image.name}' is too large (max {MAX_IMAGE_SIZE_MB}MB)."
+                )
+
+            ext = os.path.splitext(image.name)[1][1:].lower()
+            if ext not in VALID_IMAGE_EXTENSIONS:
+                raise forms.ValidationError(
+                    f"Image '{image.name}' has an unsupported file type. Allowed: {', '.join(VALID_IMAGE_EXTENSIONS)}."
+                )
+
+            total_size += image.size
+            valid_images.append(image)
+
+        if total_size > MAX_TOTAL_IMAGE_SIZE_MB * MB_TO_BYTES:
+            raise forms.ValidationError(
+                f"Total size of images exceeds the limit ({MAX_TOTAL_IMAGE_SIZE_MB}MB)."
+            )
+
+        return valid_images  # Return the list of validated image files

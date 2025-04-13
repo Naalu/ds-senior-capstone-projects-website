@@ -153,3 +153,36 @@ a:hover {
 .badge.bg-dark { background-color: var(--nau-text-dark) !important; color: var(--nau-text-light); }
 
 /* Add other custom styles below */
+
+/* Add styles for search results list view */
+
+/* Keep styles for the card layout in list view */
+#project-list-container.list-view .project-item .card {
+    flex-direction: row; /* Align card content horizontally */
+    height: auto !important; /* Override fixed height for list view */
+}
+
+#project-list-container.list-view .project-item .card-body {
+    /* Allow body to grow */
+    flex-grow: 1;
+}
+
+/* Remove previous width/flex overrides for .project-item as JS handles column classes now */
+/* #project-list-container.list-view .project-item {
+    width: 100%; 
+    max-width: 100%; 
+    flex: 0 0 100%; 
+    margin-bottom: 1rem; 
+} */
+
+/* Remove grid view overrides as JS handles column classes now */
+/* #project-list-container.grid-view .project-item {
+    width: 50%; 
+    max-width: 50%;
+    flex: 0 0 50%;
+} */
+
+/* Keep card height adjustment for grid view if needed, but might be default */
+#project-list-container.grid-view .project-item .card {
+    height: 100% !important; /* Restore original height behavior if necessary */
+}

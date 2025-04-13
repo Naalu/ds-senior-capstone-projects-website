@@ -71,3 +71,18 @@ class Notification(models.Model):
 
     class Meta:
         ordering = ["-timestamp"]  # Show newest first
+
+
+def create_in_app_notification(user, message, link=None):
+    """
+    Creates an in-app notification for the specified user if they have opted in.
+    """
+    if user and user.notify_in_app_on_status_change:
+        try:
+            Notification.objects.create(recipient=user, message=message, link=link)
+            print(
+                f"In-app notification created for {user.username}: {message[:30]}..."
+            )  # Log creation
+        except Exception as e:
+            # Log the error - replace print with proper logging in production
+            print(f"ERROR creating in-app notification for {user.username}: {e}")
