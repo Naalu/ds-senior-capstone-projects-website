@@ -9,6 +9,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from users.decorators import admin_required, faculty_required
+from users.models import Notification  # Import Notification model
 
 from .forms import ResearchProjectForm
 from .models import ResearchProject, StatusHistory
@@ -211,6 +212,7 @@ def _create_status_history(project, actor, status_to, comment):
 @admin_required  # Only admins can approve research
 def approve_research(request, project_id):
     project = get_object_or_404(ResearchProject, id=project_id)
+    faculty_author = project.author  # Get the author
     old_status = project.approval_status
 
     # Update approval status and clear feedback
@@ -228,6 +230,14 @@ def approve_research(request, project_id):
         subject_prefix="Research Project Approved",
     )
 
+    # Create in-app notification if user opted in
+    if faculty_author and faculty_author.notify_in_app_on_status_change:
+        Notification.objects.create(
+            recipient=faculty_author,
+            message=f'Your research project "{project.title}" has been approved.',
+            # link=reverse('project_detail', args=[project.id])) # Optional link
+        )
+
     messages.success(
         request,
         f"Research project '{project.title}' by {project.student_author_name} has been approved and published.",
@@ -238,6 +248,7 @@ def approve_research(request, project_id):
 @admin_required  # Only admins can reject research
 def reject_research(request, project_id):
     project = get_object_or_404(ResearchProject, id=project_id)
+    faculty_author = project.author  # Get the author
     old_status = project.approval_status
 
     if request.method == "POST":
@@ -266,6 +277,14 @@ def reject_research(request, project_id):
             feedback=rejection_reason,  # Pass feedback explicitly
         )
 
+        # Create in-app notification if user opted in
+        if faculty_author and faculty_author.notify_in_app_on_status_change:
+            Notification.objects.create(
+                recipient=faculty_author,
+                message=f'Your research project "{project.title}" was rejected. Reason: {rejection_reason}',
+                # link=reverse('my_submissions')) # Optional link
+            )
+
         messages.warning(
             request,
             f"Research project '{project.title}' "
@@ -286,6 +305,7 @@ def reject_research(request, project_id):
 @admin_required
 def request_revision(request, project_id):
     project = get_object_or_404(ResearchProject, id=project_id)
+    faculty_author = project.author  # Get the author
     old_status = project.approval_status
 
     if request.method == "POST":
@@ -313,6 +333,14 @@ def request_revision(request, project_id):
             subject_prefix="Revisions Requested for Research Project",
             feedback=revision_feedback,  # Pass feedback explicitly
         )
+
+        # Create in-app notification if user opted in
+        if faculty_author and faculty_author.notify_in_app_on_status_change:
+            Notification.objects.create(
+                recipient=faculty_author,
+                message=f'Revisions requested for your project "{project.title}". Feedback: {revision_feedback}',
+                # link=reverse('edit_submission', args=[project.id])) # Optional link
+            )
 
         messages.info(
             request,

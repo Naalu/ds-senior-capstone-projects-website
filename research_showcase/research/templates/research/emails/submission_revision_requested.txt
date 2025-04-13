@@ -4,9 +4,10 @@ Hi {{ faculty_name }},
 
 Revisions have been requested for your research project submission, "{{ project.title }}".
 
-Feedback from the administrator:
+Feedback from the reviewer:
 {{ feedback }}
 
-Please review the feedback and make the necessary changes. You will need to resubmit the project once the revisions are complete. [Note: Resubmission functionality needs to be added separately]
+Please review the feedback and edit your submission accordingly.
 
-Thank you. 
+Thank you,
+Research Showcase Administration 
