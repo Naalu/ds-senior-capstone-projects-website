@@ -23,30 +23,6 @@ For students, faculty, and external evaluators who need a reliable and structure
 
 ## Requirements
 
-### EXAMPLE
-
-### Requirement:
-As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
-
-**Criteria:**
-
-    Functionality for documents (PDF, LaTeX) and supplementary files (data sets, code, etc.).
-    Ability to add a project title, description, and keywords.
-    Option to tag faculty or collaborators related to the project.
-
-**Issue(s):**  
- -[ User story 1 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/15)  
- -[ Create comprehensive sample data ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/44)
-
-**Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)    
-**Implemented by**: Jack Tomlon  
-**Approved by**: Karl Reager    
-**Print screen**: Back-end no availiable screenshot.  
-
-
-# // PLACE NEW DEVELOPMENTS HERE
-
-
 ### Requirement:
 As a faculty member, I want to browse through capstone projects so that I can review student work and provide feedback.
 

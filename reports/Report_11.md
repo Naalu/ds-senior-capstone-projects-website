@@ -1,4 +1,4 @@
-# Report #10
+# Report #11
 
 **A 'Senior Capstone Projects' Website for the Department of Mathematics and Statistics**  
 **Group:** 14  
@@ -12,7 +12,7 @@
 
 ## Executive Summary  
 
-There wasn't much progress this week because there wasn't class and not really any chance to meet in person. Even with no class we're progressing steadily.
+Large push in work to get features and content in for Implementation deliverable. Website reworks and feature implementation/refinement aplenty. Refer to Implementation-2 and associated PRs for details.
 
 ---
 
@@ -20,23 +20,34 @@ There wasn't much progress this week because there wasn't class and not really a
 
 **Rylan:**
 
-- Contributed to editing and refining the written deliverable
-- Assisted with overall design documentation
-- Provided feedback on UI component alignment
-- **GitHub Summary:** 8 commits
+- Implemented date range searching  
+- QA'd site revision  
+- Created base for deliverable  
+- Recorded demo  
+- **GitHub Summary:**  6 commits, 1 PR
 
 **Chris:**
 
-- **GitHub Summary:**  2 commits
+- Authored site revision  
+    - reframing search to main page  
+    - implemented revision framework  
+    - implemented notification system  
+- Wrote Code Quality Section
+
+- **GitHub Summary:**  17 commits, 1 PR
 
 **Jack:**
-- Assisted with placeholder data generation for demo
-- **GitHub Summary:** 8 commits
+- Improved Validation for submission process
+- Created link validation systems
+- **GitHub Summary:** 3 commits, 1 PR
 
-**Ethan:**
+
+**Ethan:**  
 - Helped finalize and polish the deliverable
-- **GitHub Summary:** 3 commits
----
+- Recorded demo
+- **GitHub Summary:** 
+
+
 ---
 
 ## 2. Retrospective
@@ -50,16 +61,14 @@ There wasn't much progress this week because there wasn't class and not really a
 
 ## 3. Next Steps
 **Rylan:**
-- Double-check internal links and make sure everything routes properly
-- Add basic form validation to any input fields on the site
+- Do final passes on UX/UI design
 
 **Chris:**
 - Add small comments in the codebase to explain key sections
 - Help others implement more complete testing
 
 **Jack:** 
-- Create a simple 404 or error page for broken routes
-- Update metadata (title, description) for each page
+- Prepare seed data for initializing the project
 
 **Ethan:** 
 - Help organize and compress image files to improve load speed
