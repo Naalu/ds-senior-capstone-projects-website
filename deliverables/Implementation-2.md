@@ -90,6 +90,26 @@ Enhance research submission form #38
 ![Date Range Image](images/Enter_valid_link_error.png)
 ![Date Range Image](images/Video_Link_Error.png)
 
+### Requirement:
+As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
+
+**Criteria:**
+- Documentation should cover all models and APIs
+- Examples should illustrate common use cases
+- Authentication and authorization should be clearly explained
+- Documentation should be accessible and well-organized
+- The developer guide should help new contributors get started
+
+**Issue(s):**  
+ -[ User story 1 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/15)   
+ -[ Ethan begins development ](hhttps://github.com/Naalu/ds-senior-capstone-projects-website/issues/7)  
+ -[ Create API documentation ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/47)  
+
+**Pull Request**: [#69 - API Documentation](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/69)    
+**Implemented by**: Ethan Ferguson  
+**Approved by**:  Chris Reger  
+**Print screen**: N/A as it is documentation
+
 
 ## Tests
 
