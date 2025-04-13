@@ -40,7 +40,7 @@ As a student, I want to my capstone project stored online so that I can share my
 
 **Pull Request**: [#Y - Implement refined user roles](link-to-pull-request)    
 **Implemented by**: Jack Tomlon  
-**Approved by**: Karl Reager   
+**Approved by**: Karl Reager    
 **Print screen**: Back-end no availiable screenshot.  
 
 
@@ -57,15 +57,15 @@ As a faculty member, I want to browse through capstone projects so that I can re
     Access to provide feedback or comments for each project.
 
 **Issue(s):**  
- -[ User story 9 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/23)  
- -[ User story 6 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/20)  
- -[ Rylan begins development ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/4)
- -[ Implement search and filtering system ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/40)
+ -[ User story 9 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/23)   
+ -[ User story 6 ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/20)    
+ -[ Rylan begins development ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/4)  
+ -[ Implement search and filtering system ](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/40)  
 
 **Pull Request**: [#65 - Date Range Search](https://github.com/Naalu/ds-senior-capstone-projects-website/pull/65)    
 **Implemented by**: Rylan Harris  
-**Approved by**:  Chris Reger
-**Print screen**: ![Date Range Image](images\date-range.png)
+**Approved by**:  Chris Reger  
+**Print screen**: ![Date Range Image](images/date-range.png)  
 
 ### Requirement:
 As a student, I want to my capstone project stored online so that I can share my work with others in the department and prospective employers.
@@ -86,8 +86,8 @@ Enhance research submission form #38
 **Implemented by**: Jack Tomlon  
 **Approved by**:  
 **Print screen**: 
-![Date Range Image](images\Enter_valid_link_error.png)
-![Date Range Image](images\Video_link_Error.png)
+![Date Range Image](images/Enter_valid_link_error.png)
+![Date Range Image](images/Video_link_Error.png)
 
 
 ## Tests
