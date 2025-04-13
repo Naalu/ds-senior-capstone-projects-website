@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ page_title }}</h2>
+    <p><strong>Project:</strong> {{ project.title }}</p>
+    <p><strong>Student Author:</strong> {{ project.student_author_name }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="revision_feedback" class="form-label">Feedback / Reason for Revision Request:</label>
+            <textarea class="form-control" id="revision_feedback" name="revision_feedback" rows="5" required></textarea>
+            <div class="form-text">Please provide clear feedback for the faculty member outlining the necessary revisions.</div>
+        </div>
+        
+        <div class="d-flex justify-content-end gap-2">
+            <a href="{% url 'review_research' %}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-warning">Request Revisions</button>
+        </div>
+    </form>
+</div>
+{% endblock %} 
