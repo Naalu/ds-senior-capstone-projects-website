@@ -45,7 +45,7 @@ Large push in work to get features and content in for Implementation deliverable
 **Ethan:**  
 - Helped finalize and polish the deliverable
 - Recorded demo
-- **GitHub Summary:** 
+- **GitHub Summary:** 4 commits, 1 PR
 
 
 ---
