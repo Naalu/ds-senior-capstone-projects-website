@@ -791,4 +791,4 @@ def search_research(request):
         "end_semester": end_semester,
     }
 
-    return render(request, "research\search_results.html", context)
+    return render(request, "research/search_results.html", context)
