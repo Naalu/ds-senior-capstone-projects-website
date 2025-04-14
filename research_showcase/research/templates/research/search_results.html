@@ -7,14 +7,13 @@
     <h2 class="mb-4">Research Project Search</h2>
     
     <form method="get" action="{% url 'search_research' %}" class="mb-4">
-        <div class="row mb-3">
-            <div class="col-12">
-                <input type="text" name="q" class="form-control" placeholder="Search by title, abstract, or sponsor..." value="{{ query }}">
+        <div class="row g-3 align-items-end"> 
+            <div class="col-md-5"> 
+                <label for="q" class="form-label">Search Term</label>
+                <input type="text" name="q" id="q" class="form-control" placeholder="Title, abstract, sponsor..." value="{{ query }}">
             </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="start_semester">From:</label>
+            <div class="col-md-3"> 
+                <label for="start_semester" class="form-label">From Semester</label>
                 <select name="start_semester" id="start_semester" class="form-select">
                     {% for semester in semesters %}
                         <option value="{{ semester }}" {% if semester == start_semester %}selected{% endif %}>
@@ -23,8 +22,8 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-6">
-                <label for="end_semester">To:</label>
+            <div class="col-md-3"> 
+                <label for="end_semester" class="form-label">To Semester</label>
                 <select name="end_semester" id="end_semester" class="form-select">
                     {% for semester in semesters %}
                         <option value="{{ semester }}" {% if semester == end_semester %}selected{% endif %}>
@@ -33,30 +32,63 @@
                     {% endfor %}
                 </select>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary w-100">Search</button>
+            <div class="col-auto"> 
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>
+        <input type="hidden" name="sort_by" value="{{ sort_by|default:'date' }}"> 
     </form>
 
-    <div class="row">
+    <!-- Controls: Sorting and View Toggle -->
+    <div class="d-flex justify-content-end align-items-center mb-3">
+        <!-- Sorting Controls -->
+        <div class="me-3">
+            <span class="me-2">Sort by:</span>
+            <a href="?q={{ query }}&start_semester={{ start_semester }}&end_semester={{ end_semester }}&sort_by=date" 
+               class="btn btn-sm {% if sort_by == 'date' %}btn-secondary active{% else %}btn-outline-secondary{% endif %} me-1">Date</a>
+            <a href="?q={{ query }}&start_semester={{ start_semester }}&end_semester={{ end_semester }}&sort_by=title" 
+               class="btn btn-sm {% if sort_by == 'title' %}btn-secondary active{% else %}btn-outline-secondary{% endif %}">Title</a>
+        </div>
+        <!-- View Toggle Buttons -->
+        <div>
+            <button id="grid-view-btn" class="btn btn-sm btn-outline-secondary active" title="Grid View">
+                <i class="bi bi-grid-fill"></i> <!-- Bootstrap grid icon -->
+            </button>
+            <button id="list-view-btn" class="btn btn-sm btn-outline-secondary" title="List View">
+                <i class="bi bi-list"></i> <!-- Bootstrap list icon -->
+            </button>
+        </div>
+    </div>
+    <!-- End Controls -->
+
+    <!-- Add id and initial class for JS targeting -->
+    <div id="project-list-container" class="row grid-view">
         {% for project in projects %}
-        <div class="col-md-6 mb-4">
+        <!-- Add a common class for items -->
+        <div class="project-item col-md-6 mb-4">
             <div class="card h-100">
+                {# Add Thumbnail Image if available #}
+                {% if project.thumbnail_url %}
+                <a href="{% url 'project_detail' project.id %}">
+                    <img src="{{ project.thumbnail_url }}" class="card-img-top" alt="Thumbnail for {{ project.title }}" style="height: 200px; object-fit: cover;"> {# Added inline style for consistency #}
+                </a>
+                {% endif %}
+                
                 <div class="card-body">
-                    <h5 class="card-title">{{ project.title }}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ project.author.username }}</h6>
+                    <h5 class="card-title">
+                        <a href="{% url 'project_detail' project.id %}" class="text-decoration-none">{{ project.title }}</a>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">By: {{ project.student_author_name|default:'Unknown Student' }}</h6>
                     <p class="card-text">{{ project.abstract|truncatewords:30 }}</p>
                     
-                    <div class="mt-3">
+                    {# Add responsive display classes to hide on small screens #}
+                    <div class="mt-3 d-none d-md-block">
                         {% if project.pdf_file %}
-                        <a href="{{ project.pdf_file.url }}" class="btn btn-sm btn-primary">View Paper</a>
+                        <a href="{{ project.pdf_file.url }}" class="btn btn-sm btn-primary me-1" target="_blank">View Paper</a>
                         {% endif %}
                         
                         {% if project.github_link %}
-                        <a href="{{ project.github_link }}" class="btn btn-sm btn-secondary">GitHub</a>
+                        <a href="{{ project.github_link }}" class="btn btn-sm btn-secondary" target="_blank">GitHub</a>
                         {% endif %}
                     </div>
                 </div>
@@ -72,4 +104,53 @@
         {% endfor %}
     </div>
 </div>
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('project-list-container');
+    const gridBtn = document.getElementById('grid-view-btn');
+    const listBtn = document.getElementById('list-view-btn');
+    const storedView = localStorage.getItem('researchViewPreference');
+    const projectItems = container.querySelectorAll('.project-item'); // Get all items
+
+    function setView(viewType) {
+        if (viewType === 'list') {
+            container.classList.remove('grid-view');
+            container.classList.add('list-view');
+            gridBtn.classList.remove('active');
+            listBtn.classList.add('active');
+            // Change column classes for list view
+            projectItems.forEach(item => {
+                item.classList.remove('col-md-6');
+                item.classList.add('col-12');
+            });
+            localStorage.setItem('researchViewPreference', 'list');
+        } else { // Default to grid
+            container.classList.remove('list-view');
+            container.classList.add('grid-view');
+            listBtn.classList.remove('active');
+            gridBtn.classList.add('active');
+            // Change column classes for grid view
+            projectItems.forEach(item => {
+                item.classList.remove('col-12');
+                item.classList.add('col-md-6');
+            });
+            localStorage.setItem('researchViewPreference', 'grid');
+        }
+    }
+
+    // Apply stored preference on load
+    if (storedView) {
+        setView(storedView);
+    }
+    // else it defaults to grid via initial HTML class
+
+    // Button listeners
+    gridBtn.addEventListener('click', () => setView('grid'));
+    listBtn.addEventListener('click', () => setView('list'));
+});
+</script>
+{% endblock %}
+
 {% endblock %}

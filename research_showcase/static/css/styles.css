@@ -1,5 +1,188 @@
+:root {
+    --nau-true-blue: #002454;
+    --nau-gold: #FAC01A;
+    --nau-monsoon: #C3B8B2;
+    --nau-sunset: #F68300;
+    --nau-summer-shade: #007A33;
+    --nau-red-rock: #CF4527;
+    --nau-supai: #00ADB5;
+    --nau-sky: #41B6E6;
+    --nau-twilight: #0066B2;
+    --nau-text-dark: #212529; /* Standard dark text */
+    --nau-text-light: #f8f9fa; /* Standard light text */
+}
+
 /* Example: Custom Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Source Sans 3', sans-serif;
+    background-color: #ffffff; /* Change to white for cleaner look */
+    color: var(--nau-text-dark); /* Default text color */
+}
+
+/* --- Navbar --- */
+.navbar.bg-dark {
+    background-color: var(--nau-true-blue) !important; /* Override Bootstrap default */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.85); /* Slightly softer white for links */
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: #ffffff;
+}
+
+.navbar-dark .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- Headings & Links --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--nau-true-blue);
+}
+
+a {
+    color: var(--nau-twilight); /* Use Twilight for links */
+}
+
+a:hover {
+    color: var(--nau-true-blue); /* Darken links on hover */
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    background-color: var(--nau-true-blue);
+    border-color: var(--nau-true-blue);
+    color: var(--nau-text-light);
+}
+
+.btn-primary:hover {
+    background-color: #001a3a; /* Darken True Blue slightly */
+    border-color: #001a3a;
+    color: var(--nau-text-light);
+}
+
+.btn-secondary {
+    background-color: var(--nau-monsoon);
+    border-color: var(--nau-monsoon);
+    color: var(--nau-text-dark);
+}
+
+.btn-secondary:hover {
+    background-color: #a89d96; /* Darken Monsoon */
+    border-color: #a89d96;
+    color: var(--nau-text-dark);
+}
+
+.btn-success {
+    background-color: var(--nau-summer-shade);
+    border-color: var(--nau-summer-shade);
+    color: var(--nau-text-light);
+}
+.btn-success:hover {
+    background-color: #005223; /* Darken Summer Shade */
+    border-color: #005223;
+    color: var(--nau-text-light);
+}
+
+.btn-danger {
+    background-color: var(--nau-red-rock);
+    border-color: var(--nau-red-rock);
+    color: var(--nau-text-light);
+}
+.btn-danger:hover {
+    background-color: #a7361d; /* Darken Red Rock */
+    border-color: #a7361d;
+    color: var(--nau-text-light);
+}
+
+.btn-warning {
+    background-color: var(--nau-sunset);
+    border-color: var(--nau-sunset);
+    color: var(--nau-text-dark); /* Dark text needed for contrast */
+}
+.btn-warning:hover {
+    background-color: #d06a00; /* Darken Sunset */
+    border-color: #d06a00;
+    color: var(--nau-text-dark);
+}
+
+.btn-info {
+    background-color: var(--nau-supai);
+    border-color: var(--nau-supai);
+    color: var(--nau-text-light);
+}
+.btn-info:hover {
+    background-color: #008088; /* Darken Supai */
+    border-color: #008088;
+    color: var(--nau-text-light);
+}
+
+/* Gold Accent Button */
+.btn-outline-gold {
+    color: var(--nau-gold);
+    border-color: var(--nau-gold);
+}
+
+.btn-outline-gold:hover {
+    color: var(--nau-true-blue);
+    background-color: var(--nau-gold);
+    border-color: var(--nau-gold);
+}
+
+/* --- Alerts & Badges (Example Mapping) --- */
+.alert-primary { background-color: var(--nau-true-blue); color: var(--nau-text-light); border-color: #001a3a; }
+.alert-secondary { background-color: var(--nau-monsoon); color: var(--nau-text-dark); border-color: #a89d96; }
+.alert-success { background-color: var(--nau-summer-shade); color: var(--nau-text-light); border-color: #005223; }
+.alert-danger { background-color: var(--nau-red-rock); color: var(--nau-text-light); border-color: #a7361d; }
+.alert-warning { background-color: var(--nau-sunset); color: var(--nau-text-dark); border-color: #d06a00; } /* Dark text for contrast */
+.alert-info { background-color: var(--nau-supai); color: var(--nau-text-light); border-color: #008088; }
+
+.badge.bg-primary { background-color: var(--nau-true-blue) !important; color: var(--nau-text-light); }
+.badge.bg-secondary { background-color: var(--nau-monsoon) !important; color: var(--nau-text-dark); }
+.badge.bg-success { background-color: var(--nau-summer-shade) !important; color: var(--nau-text-light); }
+.badge.bg-danger { background-color: var(--nau-red-rock) !important; color: var(--nau-text-light); }
+.badge.bg-warning { background-color: var(--nau-sunset) !important; color: var(--nau-text-dark); } /* Dark text for contrast */
+.badge.bg-info { background-color: var(--nau-supai) !important; color: var(--nau-text-light); }
+.badge.bg-light { background-color: #e9ecef !important; color: var(--nau-text-dark); }
+.badge.bg-dark { background-color: var(--nau-text-dark) !important; color: var(--nau-text-light); }
+
+/* Add other custom styles below */
+
+/* Add styles for search results list view */
+
+/* Keep styles for the card layout in list view */
+#project-list-container.list-view .project-item .card {
+    flex-direction: row; /* Align card content horizontally */
+    height: auto !important; /* Override fixed height for list view */
+}
+
+#project-list-container.list-view .project-item .card-body {
+    /* Allow body to grow */
+    flex-grow: 1;
+}
+
+/* Remove previous width/flex overrides for .project-item as JS handles column classes now */
+/* #project-list-container.list-view .project-item {
+    width: 100%; 
+    max-width: 100%; 
+    flex: 0 0 100%; 
+    margin-bottom: 1rem; 
+} */
+
+/* Remove grid view overrides as JS handles column classes now */
+/* #project-list-container.grid-view .project-item {
+    width: 50%; 
+    max-width: 50%;
+    flex: 0 0 50%;
+} */
+
+/* Keep card height adjustment for grid view if needed, but might be default */
+#project-list-container.grid-view .project-item .card {
+    height: 100% !important; /* Restore original height behavior if necessary */
 }

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ page_title }}</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% comment %} Display Admin Feedback {% endcomment %}
+    {% if project.admin_feedback %}
+    <div class="alert alert-warning p-0" role="alert">
+        <div class="p-3 bg-light text-dark rounded-top">
+            <h4 class="alert-heading mb-1">Revisions Requested</h4>
+            <p class="mb-0">The administrator provided the following feedback:</p>
+        </div>
+        <hr class="my-0">
+        <div class="p-3">
+            <p class="mb-0 fst-italic">{{ project.admin_feedback|linebreaksbr }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                    <div id="{{ field.id_for_label }}_help" class="form-text">{{ field.help_text }}</div>
+                {% endif %}
+                {% if field.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ field.errors|striptags }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <!-- Add the new project_images field -->
+        <div class="mb-3">
+            <label for="{{ form.project_images.id_for_label }}" class="form-label">{{ form.project_images.label }}</label>
+            {{ form.project_images }}
+            {% if form.project_images.help_text %}
+                <div id="{{ form.project_images.id_for_label }}_help" class="form-text">{{ form.project_images.help_text }}</div>
+            {% endif %}
+            {% if form.project_images.errors %}
+                <div class="invalid-feedback d-block">
+                    {{ form.project_images.errors|striptags }}
+                </div>
+            {% endif %}
+             <!-- TODO: Display currently uploaded images for management -->
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-lg">Save Changes & Resubmit</button>
+            <a href="{% url 'my_submissions' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+
+</div>
+{% endblock %} 

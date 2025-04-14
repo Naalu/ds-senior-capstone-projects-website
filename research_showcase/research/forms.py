@@ -1,4 +1,5 @@
 import os
+from datetime import date
 from typing import List, Optional
 
 from django import forms
@@ -16,9 +17,31 @@ MB_TO_BYTES: int = 1024 * 1024
 VALID_POSTER_EXTENSIONS: List[str] = ["jpg", "jpeg", "png", "pdf"]
 VALID_PRESENTATION_EXTENSIONS: List[str] = ["pdf", "ppt", "pptx"]
 VALID_PDF_EXTENSION: str = "pdf"
+VALID_IMAGE_EXTENSIONS: List[str] = ["jpg", "jpeg", "png", "gif"]  # For project images
+MAX_IMAGE_SIZE_MB: int = 2  # Max size per image file
+MAX_TOTAL_IMAGE_SIZE_MB: int = 10  # Max total size for all images
 
 
 class ResearchProjectForm(forms.ModelForm):
+    # Define field without widget initially
+    project_images = forms.ImageField(
+        # widget=forms.FileInput(attrs={"multiple": True, "class": "form-control"}),
+        required=False,
+        label="Project Images (Optional)",
+        help_text=f"Upload additional project images (e.g., diagrams, results). Allowed: {', '.join(VALID_IMAGE_EXTENSIONS)}. Max {MAX_IMAGE_SIZE_MB}MB per file, {MAX_TOTAL_IMAGE_SIZE_MB}MB total.",
+    )
+
+    # Add __init__ to modify widget attributes after initialization
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set the multiple attribute on the widget here
+        self.fields["project_images"].widget.attrs.update(
+            {
+                "multiple": True,
+                "class": "form-control",  # Ensure class is also set here
+            }
+        )
+
     class Meta:
         model = ResearchProject
         fields = [
@@ -33,6 +56,7 @@ class ResearchProjectForm(forms.ModelForm):
             "video_link",
             "presentation_file",
             "pdf_file",
+            "project_images",
         ]
         widgets = {
             "title": forms.TextInput(
@@ -191,3 +215,96 @@ class ResearchProjectForm(forms.ModelForm):
                     f"Unsupported file extension. Use {', '.join(VALID_PRESENTATION_EXTENSIONS)}"
                 )
         return pres
+
+    # Validate the GitHub link
+    def clean_github_link(self) -> Optional[str]:
+        github_link: Optional[str] = self.cleaned_data.get("github_link")
+
+        # If the field is empty and not required, return None
+        if not github_link:
+            return github_link
+
+        # Check if it's a valid GitHub URL
+        if not (
+            github_link.startswith("https://github.com/")
+            or github_link.startswith("http://github.com/")
+        ):
+            raise forms.ValidationError(
+                "Please enter a valid GitHub repository URL (https://github.com/...)"
+            )
+
+        # Check if it follows the expected GitHub repo format (github.com/username/repo)
+        parts = github_link.split("/")
+        if len(parts) < 5:  # https:// + empty + github.com + username + repo
+            raise forms.ValidationError(
+                "GitHub URL should be in format: https://github.com/username/repository"
+            )
+
+        return github_link
+
+    # Video link validation
+    def clean_video_link(self) -> Optional[str]:
+        video_link: Optional[str] = self.cleaned_data.get("video_link")
+
+        # If the field is empty and not required, return None
+        if not video_link:
+            return video_link
+
+        # Check if it's a valid URL (basic check)
+        if not (video_link.startswith("http://") or video_link.startswith("https://")):
+            raise forms.ValidationError("Please enter a valid video URL.")
+
+        # Optionally, add checks for specific video platforms like YouTube or Vimeo
+        # Example: Check for youtube.com or youtu.be
+        # if "youtube.com" not in video_link and "youtu.be" not in video_link:
+        #     raise forms.ValidationError("Only YouTube video links are currently supported.")
+
+        return video_link
+
+    # Validate the date presented field
+    # Ensure that the date is not in the future
+    def clean_date_presented(self) -> Optional[date]:
+        date_presented: Optional[date] = self.cleaned_data.get("date_presented")
+
+        # If the field is empty and not required, return None
+        if not date_presented:
+            return date_presented
+
+        # Check if the date is in the future
+        today = date.today()
+        if date_presented > today:
+            print(
+                f"DEBUG: Invalid date detected: {date_presented} > {today}"
+            )  # Debug print
+            raise forms.ValidationError(
+                f"Date presented ({date_presented}) cannot be in the future (today is {today})"
+            )
+
+        return date_presented
+
+    # Remove clean_project_images - rely on field validation
+    # def clean_project_images(self):
+    #     images = self.files.getlist("project_images")
+    #     total_size = 0
+    #     for image in images:
+    #         # Check individual file size
+    #         if image.size > MAX_IMAGE_SIZE_MB * MB_TO_BYTES:
+    #             raise forms.ValidationError(
+    #                 f"Image '{image.name}' exceeds the max size of {MAX_IMAGE_SIZE_MB}MB."
+    #             )
+    #         total_size += image.size
+    #
+    #         # Check file extension
+    #         ext = os.path.splitext(image.name)[1][1:].lower()
+    #         if ext not in VALID_IMAGE_EXTENSIONS:
+    #             raise forms.ValidationError(
+    #                 f"Unsupported file extension '{ext}' for image '{image.name}'. Use: {VALID_IMAGE_EXTENSIONS}"
+    #             )
+    #
+    #     # Check total file size
+    #     if total_size > MAX_TOTAL_IMAGE_SIZE_MB * MB_TO_BYTES:
+    #         raise forms.ValidationError(
+    #             f"Total size of images exceeds the limit of {MAX_TOTAL_IMAGE_SIZE_MB}MB."
+    #         )
+    #
+    #     return images

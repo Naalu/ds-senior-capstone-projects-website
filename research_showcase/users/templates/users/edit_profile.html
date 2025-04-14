@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile - Notification Preferences{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-secondary text-white">
+            <h2 class="mb-0">Edit Notification Preferences</h2>
+        </div>
+        <div class="card-body">
+            <p>Manage how you receive notifications from the Research Showcase.</p>
+            <hr>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                <div class="mb-3 form-check">
+                    {{ field }}
+                    <label class="form-check-label" for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+                    {% if field.help_text %}
+                    <div class="form-text mt-1">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% if field.errors %}
+                    <div class="invalid-feedback d-block">
+                        {{ field.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                
+                <button type="submit" class="btn btn-primary mt-3">Save Preferences</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

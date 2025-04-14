@@ -150,3 +150,9 @@ pip-cache/
 
 # DS_Store files
 .DS_Store
+
+# Media files
+research_showcase/media/
+research_showcase/presentations/
+research_showcase/posters/
+research_showcase/research_papers/

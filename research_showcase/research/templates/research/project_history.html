@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Status History for: {{ project.title }}</h2>
+    <p>
+        <a href="{% url 'project_detail' project.id %}" class="btn btn-sm btn-outline-secondary">Back to Project</a>
+        {% if request.user == project.author %}
+        <a href="{% url 'my_submissions' %}" class="btn btn-sm btn-outline-primary">Back to My Submissions</a>
+        {% endif %}
+    </p>
+
+    {% if history_entries %}
+    <ul class="list-group">
+        {% for entry in history_entries %}
+        <li class="list-group-item">
+            <h5 class="mb-1">{{ entry.get_status_to_display }}</h5>
+            <small class="text-muted">{{ entry.timestamp|date:"Y-m-d H:i" }} by {{ entry.actor.username|default:"System" }}</small>
+            {% if entry.comment %}
+            <p class="mb-1">Comment: {{ entry.comment }}</p>
+            {% endif %}
+            {% if entry.status_from %}
+            <small class="text-muted">Status changed from: {{ entry.get_status_from_display }}</small>
+            {% else %}
+            <small class="text-muted">Initial status</small>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        No status history found for this project.
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

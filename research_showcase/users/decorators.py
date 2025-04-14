@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
 
 """
@@ -20,11 +21,12 @@ def faculty_required(view_func):
     """
 
     def wrapper(request, *args, **kwargs):
-        if request.user.is_authenticated and (
-            request.user.is_faculty() or request.user.is_admin()
-        ):
+        if not request.user.is_authenticated:
+            return redirect("login")  # Redirect unauthenticated users to login
+        if request.user.is_faculty() or request.user.is_admin():
             return view_func(request, *args, **kwargs)
-        return redirect("login")
+        # Authenticated, but wrong role -> Forbidden
+        raise PermissionDenied
 
     return wrapper
 
@@ -33,12 +35,16 @@ def admin_required(view_func):
     """
     Decorator to restrict access to administrators only.
 
-    Users without the admin role will be redirected to the login page.
+    Users without the admin role will be redirected to the login page if not authenticated,
+    or receive a 403 Forbidden error if authenticated but not an admin.
     """
 
     def wrapper(request, *args, **kwargs):
-        if request.user.is_authenticated and request.user.is_admin():
+        if not request.user.is_authenticated:
+            return redirect("login")  # Redirect unauthenticated users to login
+        if request.user.is_admin():
             return view_func(request, *args, **kwargs)
-        return redirect("login")
+        # Authenticated, but not admin -> Forbidden
+        raise PermissionDenied
 
     return wrapper

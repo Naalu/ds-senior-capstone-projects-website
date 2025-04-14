@@ -13,6 +13,13 @@ Thank you for considering contributing to the NAU Mathematics & Statistics Resea
   - [Pull Request Process](#pull-request-process)
   - [Code Style Guidelines](#code-style-guidelines)
   - [Testing Guidelines](#testing-guidelines)
+    - [Overview](#overview)
+    - [Test Suite Structure](#test-suite-structure)
+    - [Types of Tests](#types-of-tests)
+    - [Running Tests](#running-tests)
+    - [Test Coverage](#test-coverage)
+    - [Continuous Integration (CI)](#continuous-integration-ci)
+    - [Maintainability](#maintainability)
   - [Documentation Guidelines](#documentation-guidelines)
   - [Questions?](#questions)
 
@@ -81,24 +88,83 @@ For frontend code:
 
 ## Testing Guidelines
 
-- Write tests for all new features and bug fixes
-- Aim for at least 70% code coverage
-- Use Django's built-in testing framework
-- Organize tests to mirror the structure of the application
-- Test models, views, forms, and URLs separately
+This section outlines the testing strategy used for the NAU Mathematics & Statistics Research Showcase application.
 
-To run tests:
+### Overview
 
-```bash
-python manage.py test
-```
+We utilize Django's built-in testing framework, which is based on Python's standard `unittest` module. Our goal is to ensure the reliability and correctness of the application through a combination of unit and integration tests.
 
-To run tests with coverage report:
+### Test Suite Structure
 
-```bash
-coverage run --source='.' manage.py test
-coverage report
-```
+Tests are organized within each Django app (`research`, `users`) in their respective `tests.py` files. Each test file contains test classes inheriting from `django.test.TestCase`, which provides useful assertions and a test client for simulating requests.
+
+### Types of Tests
+
+- **Unit Tests:** Focus on testing individual components in isolation, such as:
+  - Model methods and properties (`research/models.py`, `users/models.py`)
+  - Form validation logic (`research/forms.py`, `users/forms.py`)
+  - Decorators (`users/decorators.py`)
+  - Utility functions (e.g., `research/semester_utils.py`)
+- **Integration Tests:** Verify the interaction between different parts of the application, primarily focusing on:
+  - View logic and responses (`research/views.py`, `users/views.py`)
+  - URL routing (`research/urls.py`, `users/urls.py`)
+  - User workflows (e.g., login, logout, research submission, approval process, profile editing)
+- **UI Tests:** *(Currently Not Implemented)* Tests that interact with the application through a web browser (e.g., using Selenium or Playwright) are not yet part of the suite but could be added in the future to test user journeys directly in the frontend.
+
+### Running Tests
+
+Tests can be run from the root of the `research_showcase` directory (the one containing `manage.py`) after activating the virtual environment.
+
+1. **Run all tests:**
+
+    ```bash
+    python manage.py test
+    ```
+
+2. **Run tests for a specific app:**
+
+    ```bash
+    python manage.py test research
+    # or
+    python manage.py test users
+    ```
+
+### Test Coverage
+
+We use the `coverage` package to measure test coverage.
+
+1. **Run tests with coverage:**
+
+    ```bash
+    # Make sure you are in the research_showcase directory
+    python -m coverage run manage.py test
+    ```
+
+2. **View coverage report:**
+
+    ```bash
+    coverage report
+    ```
+
+    *(Generates a summary in the terminal)*
+
+3. **Generate HTML report (for detailed view):**
+
+    ```bash
+    coverage html
+    ```
+
+    *(Creates an `htmlcov/` directory; open `htmlcov/index.html` in a browser)*
+
+**Target Coverage:** The project aims for a minimum of 70% test coverage, with a goal of exceeding 95% where practical. As of APril 13, 2025, the overall coverage is **95%**.
+
+### Continuous Integration (CI)
+
+A GitHub Actions workflow is configured in `.github/workflows/django.yml`. This workflow automatically runs the full test suite (`python manage.py test`) on every push and pull request to the `main` branch, ensuring that code changes do not introduce regressions.
+
+### Maintainability
+
+Tests are written to be clear, understandable, and maintainable. Test methods focus on verifying specific functionalities or behaviors. Test setup uses the `setUp` method within test classes where appropriate to avoid code duplication.
 
 ## Documentation Guidelines
 
