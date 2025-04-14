@@ -250,29 +250,14 @@ class ResearchProjectForm(forms.ModelForm):
         if not video_link:
             return video_link
 
-        # List of common video platforms
-        valid_platforms = [
-            "youtube.com/watch",
-            "youtu.be/",
-            "vimeo.com/",
-        ]
-
-        # Check if the URL contains any of the valid video platforms
-        is_valid_platform = any(
-            platform in video_link.lower() for platform in valid_platforms
-        )
-
-        if not is_valid_platform:
-            raise forms.ValidationError(
-                "Please enter a valid video URL:\n"
-                "YouTube(youtube.com/watch, youtu.be/) or Vimeo (vimeo.com/)"
-            )
-
-        # Check if it's a well-formed URL
+        # Check if it's a valid URL (basic check)
         if not (video_link.startswith("http://") or video_link.startswith("https://")):
-            raise forms.ValidationError(
-                "Video link must start with http:// or https://"
-            )
+            raise forms.ValidationError("Please enter a valid video URL.")
+
+        # Optionally, add checks for specific video platforms like YouTube or Vimeo
+        # Example: Check for youtube.com or youtu.be
+        # if "youtube.com" not in video_link and "youtu.be" not in video_link:
+        #     raise forms.ValidationError("Only YouTube video links are currently supported.")
 
         return video_link
 
@@ -297,30 +282,29 @@ class ResearchProjectForm(forms.ModelForm):
 
         return date_presented
 
-    # Add validation for project_images
-    def clean_project_images(self):
-        images = self.files.getlist("project_images")
-        total_size = 0
-        valid_images = []
-
-        for image in images:
-            if image.size > MAX_IMAGE_SIZE_MB * MB_TO_BYTES:
-                raise forms.ValidationError(
-                    f"Image '{image.name}' is too large (max {MAX_IMAGE_SIZE_MB}MB)."
-                )
-
-            ext = os.path.splitext(image.name)[1][1:].lower()
-            if ext not in VALID_IMAGE_EXTENSIONS:
-                raise forms.ValidationError(
-                    f"Image '{image.name}' has an unsupported file type. Allowed: {', '.join(VALID_IMAGE_EXTENSIONS)}."
-                )
-
-            total_size += image.size
-            valid_images.append(image)
-
-        if total_size > MAX_TOTAL_IMAGE_SIZE_MB * MB_TO_BYTES:
-            raise forms.ValidationError(
-                f"Total size of images exceeds the limit ({MAX_TOTAL_IMAGE_SIZE_MB}MB)."
-            )
-
-        return valid_images  # Return the list of validated image files
+    # Remove clean_project_images - rely on field validation
+    # def clean_project_images(self):
+    #     images = self.files.getlist("project_images")
+    #     total_size = 0
+    #     for image in images:
+    #         # Check individual file size
+    #         if image.size > MAX_IMAGE_SIZE_MB * MB_TO_BYTES:
+    #             raise forms.ValidationError(
+    #                 f"Image '{image.name}' exceeds the max size of {MAX_IMAGE_SIZE_MB}MB."
+    #             )
+    #         total_size += image.size
+    #
+    #         # Check file extension
+    #         ext = os.path.splitext(image.name)[1][1:].lower()
+    #         if ext not in VALID_IMAGE_EXTENSIONS:
+    #             raise forms.ValidationError(
+    #                 f"Unsupported file extension '{ext}' for image '{image.name}'. Use: {VALID_IMAGE_EXTENSIONS}"
+    #             )
+    #
+    #     # Check total file size
+    #     if total_size > MAX_TOTAL_IMAGE_SIZE_MB * MB_TO_BYTES:
+    #         raise forms.ValidationError(
+    #             f"Total size of images exceeds the limit of {MAX_TOTAL_IMAGE_SIZE_MB}MB."
+    #         )
+    #
+    #     return images

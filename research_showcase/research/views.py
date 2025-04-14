@@ -2,12 +2,15 @@ from datetime import date
 
 from django.conf import settings  # To get default from email
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required  # Import login_required
+from django.core.exceptions import PermissionDenied  # Import PermissionDenied
 
 # Import Django's email functions and template loader
 from django.core.mail import send_mail
 
 # Import Q for complex lookups, and Min/Max for aggregates
 from django.db.models import Max, Min, Q
+from django.http import Http404  # Import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse  # Import reverse
@@ -522,14 +525,21 @@ def search_research(request):
 # --- Project Detail View ---
 
 
-def project_detail_view(request, project_id):
-    """Display the details of a single, approved research project."""
-    project = get_object_or_404(
-        ResearchProject, id=project_id, approval_status="approved"
-    )
+def project_detail(request, project_id):
+    """Display details of a single research project."""
+    project = get_object_or_404(ResearchProject, id=project_id)
+
+    # Ensure only approved projects are publicly visible
+    if project.approval_status != "approved":
+        raise Http404("Project not found or not approved.")
+
+    # Prefetch related images for efficiency
+    project_images = project.images.all()
+
     context = {
         "project": project,
-        "page_title": project.title,  # Use project title for page title
+        "project_images": project_images,
+        "page_title": project.title,
     }
     return render(request, "research/project_detail.html", context)
 
@@ -547,61 +557,96 @@ def my_submissions(request):
     return render(request, "research/my_submissions.html", context)
 
 
-@faculty_required
+@login_required  # Keep login required for editing
+@faculty_required  # Ensure user is faculty
 def edit_submission(request, project_id):
-    """Allow faculty to edit and resubmit a project marked as 'needs_revision'."""
+    """Allows faculty to edit their submissions, typically after revision request."""
     project = get_object_or_404(ResearchProject, id=project_id)
 
-    # Security check: Only author can edit, and only if status is 'needs_revision'
+    # --- Permission Checks ---
+    # 1. Check if the logged-in user is the author
     if project.author != request.user:
-        messages.error(request, "You are not authorized to edit this submission.")
-        return redirect("my_submissions")
+        raise PermissionDenied("You do not have permission to edit this project.")
+
+    # 2. Check if the project is actually in 'needs_revision' status
     if project.approval_status != "needs_revision":
-        messages.warning(
-            request, "This submission cannot be edited in its current state."
+        messages.error(
+            request,
+            "This project cannot be edited as it is not currently awaiting revision.",
         )
-        return redirect("my_submissions")
+        return redirect(
+            "my_submissions"
+        )  # Redirect instead of 403 to be more user-friendly here
+    # --- End Permission Checks ---
 
     if request.method == "POST":
         form = ResearchProjectForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             try:
                 updated_project = form.save(commit=False)
+                # Reset status to pending and clear feedback upon successful edit
                 updated_project.approval_status = "pending"
                 updated_project.admin_feedback = None
                 updated_project.save()
 
-                # Handle multiple image uploads (potentially clearing old ones? TBD)
-                # For now, just add new images
+                # Handle updated images (optional: clear old images first?)
+                # For simplicity, this example just adds new images if provided
                 images = request.FILES.getlist("project_images")
-                for img_file in images:
-                    ProjectImage.objects.create(project=updated_project, image=img_file)
+                if images:
+                    # Optional: Clear existing images first if desired
+                    # ProjectImage.objects.filter(project=updated_project).delete()
+                    for img_file in images:
+                        ProjectImage.objects.create(
+                            project=updated_project, image=img_file
+                        )
 
-                # Create history record for resubmission
+                # Create history record for the edit/resubmission
                 _create_status_history(
-                    project=updated_project,
-                    actor=request.user,
-                    status_to="pending",
-                    comment="Project edited and resubmitted after revisions.",
+                    updated_project,
+                    request.user,
+                    "pending",
+                    "Project updated and resubmitted by author.",
                 )
 
+                # Correct flash message
                 messages.success(
                     request,
                     f"Project '{updated_project.title}' updated and resubmitted for approval.",
                 )
                 return redirect("my_submissions")
             except Exception as e:
-                messages.error(request, f"Error saving updated project: {str(e)}")
+                messages.error(request, f"Error updating research project: {str(e)}")
         else:
             messages.warning(request, "Please correct the errors in the form.")
     else:
-        # Pre-populate the form with existing project data for GET request
         form = ResearchProjectForm(instance=project)
 
     context = {
         "form": form,
-        "project": project,  # Pass project for context if needed in template
+        "project": project,  # Pass project to context for template access
         "page_title": f"Edit Submission: {project.title}",
     }
-    # Reuse the submission template, or create a dedicated edit template
     return render(request, "research/edit_submission.html", context)
+
+
+@login_required  # Only logged-in users can view history
+def project_history(request, project_id):
+    """Displays the status history for a specific research project."""
+    project = get_object_or_404(ResearchProject, id=project_id)
+
+    # Permission Check: Only the author or an admin can view history
+    if not (project.author == request.user or request.user.is_admin()):
+        raise PermissionDenied(
+            "You do not have permission to view this project's history."
+        )
+
+    history_entries = (
+        project.status_history.all()
+    )  # Fetches related StatusHistory objects
+
+    context = {
+        "project": project,
+        "history_entries": history_entries,
+        "page_title": f"History for {project.title}",
+    }
+    return render(request, "research/project_history.html", context)

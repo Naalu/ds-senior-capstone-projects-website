@@ -45,8 +45,9 @@ def login_view(request):
             messages.error(request, "Invalid username or password. Please try again.")
     else:
         form = AuthenticationForm()
-        # Pass the 'next' parameter from GET to the template context
-        next_url = request.GET.get("next")
+
+    # Determine next_url consistently after handling POST/GET
+    next_url = request.POST.get("next", request.GET.get("next"))
 
     return render(
         request,

@@ -4,7 +4,8 @@ from .views import (
     approve_research,
     edit_submission,
     my_submissions,
-    project_detail_view,
+    project_detail,
+    project_history,
     reject_research,
     request_revision,
     review_research,
@@ -23,5 +24,6 @@ urlpatterns = [
     path("revise/<int:project_id>/", request_revision, name="request_revision"),
     path("search/", search_research, name="search_research"),
     path("submit/success/", submission_success, name="submission_success"),
-    path("project/<int:project_id>/", project_detail_view, name="project_detail"),
+    path("project/<int:project_id>/", project_detail, name="project_detail"),
+    path("project/<int:project_id>/history/", project_history, name="project_history"),
 ]
