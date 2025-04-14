@@ -117,8 +117,6 @@ Enhance the current research approval workflow for administrators.
 
 ## Tests
 
-## Tests
-
 This section details the automated testing suite implemented for the NAU Research Showcase application.
 
 ### 1. Test Framework Used
@@ -183,13 +181,13 @@ An example integration test verifies that an administrator can successfully appr
 
 The full test suite was executed successfully after implementing fixes and adding new tests. The command `python -m coverage run manage.py test` was run, executing all 64 tests across the `research` and `users` applications. All tests passed without errors or failures. A coverage report was also generated, demonstrating our target of *95%* test coverage is being met.
 
-[!Testing Screenshot](images/Tests_results.png)
+![Testing Screenshot](images/Tests_results.png)
 
 ### 5. Automated Testing Via GitHub Actions
 
 The project uses GitHub Actions to run the test suite and generate a coverage report. The workflow is defined in the `.github/workflows/django.yml` file.
 
-[!GitHub Actions Screenshot](images/GitHub_Actions.png)
+![GitHub Actions Screenshot](images/GitHub_Actions.png)
 
 ## Technology
 
