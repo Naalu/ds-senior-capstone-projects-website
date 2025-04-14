@@ -13,6 +13,13 @@ Thank you for considering contributing to the NAU Mathematics & Statistics Resea
   - [Pull Request Process](#pull-request-process)
   - [Code Style Guidelines](#code-style-guidelines)
   - [Testing Guidelines](#testing-guidelines)
+    - [Overview](#overview)
+    - [Test Suite Structure](#test-suite-structure)
+    - [Types of Tests](#types-of-tests)
+    - [Running Tests](#running-tests)
+    - [Test Coverage](#test-coverage)
+    - [Continuous Integration (CI)](#continuous-integration-ci)
+    - [Maintainability](#maintainability)
   - [Documentation Guidelines](#documentation-guidelines)
   - [Questions?](#questions)
 
@@ -149,7 +156,7 @@ We use the `coverage` package to measure test coverage.
 
     *(Creates an `htmlcov/` directory; open `htmlcov/index.html` in a browser)*
 
-**Target Coverage:** The project aims for a minimum of 70% test coverage, with a goal of exceeding 95% where practical. As of [Date - You can fill this in], the overall coverage is **95%**.
+**Target Coverage:** The project aims for a minimum of 70% test coverage, with a goal of exceeding 95% where practical. As of APril 13, 2025, the overall coverage is **95%**.
 
 ### Continuous Integration (CI)
 
