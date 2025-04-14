@@ -111,8 +111,8 @@ Enhance the current research approval workflow for administrators.
 **Approved by**: Rylan Harris  
 **Print screen**:  
 ![Nav Bar Image](images/new-nav-bar.png)  
-![Review Image](images/placeholder.png)  
-![Revision Image](images/placeholder.png)  
+![Review Image](images/review-admin.png)  
+![Revision Image](images/faculty-panel.png)  
 
 
 ## Tests
@@ -145,9 +145,7 @@ Given the project's goalsâ€”to organize, archive, and showcase student researchâ
 
 ## Demo
 
-# // NEED NEW DEMO VIDEO
-
-[Demo video zoom link]() 
+[Demo video zoom link](https://nau.zoom.us/rec/share/CmlAJC63hYkn50exwaGkVCBJ5cb6A5jL2ZW0qn9vWme7gI3_VaP6J0jDKteAFOV0.AH764y8pLmNSuSoz) 
 
 ## Code Quality
 
