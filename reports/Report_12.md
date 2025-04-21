@@ -12,7 +12,7 @@
 
 ## Executive Summary  
 
-It’s been a relatively slow week with limited progress since last update. Minimal new development or feature changes, and no major shifts in implementation status. Most work remains in review or pending further direction. 
+It’s been a relatively slow week with limited progress since last update. Minimal new development or feature changes, and no major shifts in implementation status. Most work remains in review or pending further direction. Most of the testing lift was completed prior to the last deliverable
 
 ---
 
@@ -30,6 +30,7 @@ It’s been a relatively slow week with limited progress since last update. Mini
 - Did some basic browser checks just to be safe 
 - Looked over dependency versions for anything outdated
 - Compiled a task overview to help organize next steps
+- Organized a couple of interviews for next week for the pending deliverable
 - **GitHub Summary:**  17 commits, 1 PR
 
 **Jack:**
