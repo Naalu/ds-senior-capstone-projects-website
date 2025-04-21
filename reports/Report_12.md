@@ -23,7 +23,7 @@ It’s been a relatively slow week with limited progress since last update. Mini
 - Looked into some light performance stuff
 - Chatted with the team about what testing might look like
 - Tweaked a few UI bits to make things look more consistent  
-- **GitHub Summary:**  6 commits, 1 PR
+- **GitHub Summary:**  0 commits
 
 **Chris:**
 
@@ -31,19 +31,19 @@ It’s been a relatively slow week with limited progress since last update. Mini
 - Looked over dependency versions for anything outdated
 - Compiled a task overview to help organize next steps
 - Organized a couple of interviews for next week for the pending deliverable
-- **GitHub Summary:**  17 commits, 1 PR
+- **GitHub Summary:**  0 commits
 
 **Jack:**
 - Helped sketch a rough idea for maybe refreshing the landing page
 - Provided peer support during minor debugging efforts
 - Reviewed shared documentation and left comments for clarification
-- **GitHub Summary:** 3 commits, 1 PR
+- **GitHub Summary:** 1 commits
 
 
 **Ethan:**  
 - Skimmed through current dependencies for version alignment
 - Reviewed internal documentation for consistency
-- **GitHub Summary:** 4 commits, 1 PR
+- **GitHub Summary:** 2 commits
 
 
 ---
