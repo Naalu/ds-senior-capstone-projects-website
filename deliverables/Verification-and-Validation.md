@@ -30,9 +30,42 @@ Grading criteria (7 points): adequate choice of a test framework, coverage of th
 
 At the beginning of the semester, you talked to the clients/potential users to understand their needs. Now it is time to check if you are on the right track by conducting some user evaluation on the actual system. Include in this deliverable the following information:
 
-Script: The script should have the tasks that you gave to the user, what data you collected, and the questions you asked. In particular, do not forget to add questions about the users’ general impressions. You can ask open questions (e.g., How would you describe the homepage of our app? How do you compare our system to the competitor X?) or closed questions (On a scale of 1 to 10, how would you rate the layout of our application? On the same scale, how likely would you use the system in its current state?). Take a look at the inception and requirements deliverables to help create the script. Design a script to check if you are achieving your initial goals and if the features are implemented in a satisfactory way. 
+Script: The script should have the tasks that you gave to the user, what data you collected, and the questions you asked. 
+In particular, do not forget to add questions about the users’ general impressions. You can ask open questions (e.g., How would you describe the homepage of our app? How do you compare our system to the competitor X?) or closed questions (On a scale of 1 to 10, how would you rate the layout of our application?
+On the same scale, how likely would you use the system in its current state?).
+Take a look at the inception and requirements deliverables to help create the script. 
+Design a script to check if you are achieving your initial goals and if the features are implemented in a satisfactory way. 
 
 Results: Conduct the user evaluation with at least 3 users. Report the data that you collected.
+
+## Robert Buscaglia:
+
+## Questions and Answer
+
+On a scale of 1 to 10, how would you rate the layout of our application?
+
+    "It's a 9"
+
+From our earlier interview one of your biggest requirements was to allow muliple file formats for project. Were we able to sastisfy that requirement?
+
+    "Yes, each project can have a image file for posters, videos not hosted but linked to is perfect, and then links to various sites pertaining to projects. I don't see any problems here."
+
+You suggested a faculty driven submission process which we ended up pursuing. Do you still support thos method?
+
+    "I still think it is the better way to go about this, and I'm glad you made the switch"
+
+Is there any features we didn't mention previously that you are glad to have in place?
+
+    "The notification system is a great feature. Realistically we would have a dedicated department email for it."
+
+Would you use the project in it's current state?
+
+    "I could use it in it's current state as we still do not have a dedicated place for these projects but I would prefer to have the critiques corrected first. It just needs some refinements to be completly accurate."
+
+## Summary and First Impressions
+
+Dr. Robert Buscaglia first impressions were overall approval of the projects state. From the upload, approval, to searching and browsing the framework he only had minor critques and corrections that we could implement that we had described to him earlier. For example project had a student author, author (as in faculty submission) and collorators. Instead, he mentioned in order to be more accurate is should be student author, faculty advisor, and collaborators and having the faculty who submitted the project more in the backround instead of being listed in the open. He needs that information but whats inportant is the student authors and the faculty advisor the saw over the project whether it be a class project or research. He apprciated the search layout and how each project had thumbnails shown at all times. One of his final statments is that the website is "really useful" he helped us outline a real path to getting the project up the chain in the Mathmatic and Statistics department so that it could be thouroughly reviewed for real implementation.
+
 
 Reflections: Reflect on what you observed. Some questions that you can explore: What features worked well? What can be changed? How is the learning curve of your system? Did the users perform the tasks as you expected? Did the users’ actions produce the results they expected? What did the users like the most? Is your value proposition accomplished? 
 
