@@ -145,11 +145,10 @@ There are some minor UI/UX improvements that can be made throughout the system t
 
 From the feedback that we got from professors and faculty, it seems as though we've accomplished the original concept. That said, to make the product truly marketable to the department, some significant changes would need to be made. Most notably, integration with NAU web services via ITS and expanding the system to handle more than undergraduate research/projects.
 
-
-# I'm not sure if this kind of reflection should be included. It's not exactly what they were asking for.
-
+<del>
     Through building the Senior Capstone Projects Website, the undergraduate development team gained real-world experience in full-stack web development, working with Django for the backend and HTML/CSS/ for the frontend. We learned to design a relational database, manage models using Django ORM, and adhere to coding practices and operations effectively.
 
     The team improved their skills in version control with Git, collaborative coding through pull requests and issue tracking, and sees the importance of clear project organization and documentation. We also deepened our understanding of user authentication, form handling, and the challenges of deploying a Django site.
 
     Beyond technical skills, we executed team communication, problem-solving, and adapting to changing project requirements — key parts of professional software development.
+</del>
