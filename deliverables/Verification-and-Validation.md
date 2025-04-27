@@ -78,21 +78,25 @@ Dr. Robert Buscaglia first impressions were overall approval of the projects sta
 Product Task Test   
     When going through the project submission process, Roy mentioned that the fields that were required weren't clearly identified and, as a result, was confused about which fields needed to be completed.  
 
-    He noticed the warnings about needing to resubmit files and recommended only asking for them after the other fields are validated to improve the user experience.  
+    He noticed the warnings about needing to resubmit files and recommended only asking for them after the other fields are validated to improve the user experience.    
 
-    When asked about the breadth of file types being accepted, he said that it would be completely acceptable to require pdfs for all the non-image fields to improve consistency and usability.  
+    When asked about the breadth of file types being accepted, he said that it would be completely acceptable to require pdfs for all the non-image fields to improve consistency and usability.   
 
 How do you like layout of the landing page? Any specific thoughts or feedback?  
+
     Dr. St. Laurent liked the layout and landing page though they came up later as possibly needing to be changed.  There was some talk about colorblind accessibility and we explained that NAU colors were used. He noted that it was a good choice for that.
 
 Do you feel that this design suits the audience and purpose we are trying to address?  
+
     Roy mentioned that the current system suits handling undergraduate research quite well at this point. He did bring up the idea of including other types of research, including colloquia. We had intended to handle various research types with the system and told him as much. He explained that, in order to properly present more than undergraduate research, we would likely have to change our presentation to include some sort of category field as well as a distinct page to present graduate or faculty research. This would likely need to include a change to the landing page so that these different pages could be accessed independently.
 
-Are there any additional features that you feel would improve this system?
+Are there any additional features that you feel would improve this system?  
+
     He also mentioned incorporating Arxiv linking at some level in this part of the conversation.
 
 
-How likely are to use this product? What would it take for it to be usable for the college?
+How likely are to use this product? What would it take for it to be usable for the college?  
+
     Dr. St. Laurent said that he thought the system would be good for a basic system that the department could use as an internal tool but would likely need significant changes to be incorporated into NAU's web systems. Notably, utilizing NAU's sign-in and authentication system and, potentially, making changes to adhere with ADA requirements. Because the website wouldn't be required to complete classwork, ADA compliance isn't necessary but would help sell it.
 
 #### Summary and Reflection
@@ -104,6 +108,7 @@ Dr. St. Laurent gave a lot of really valuable criticism with a very important an
 #### Interview Response  
 
 Product Task Test   
+
     Despite not being faculty that would actual use the backend systems, we still had the student go through the same process for consistency and to get any additional feedback.  
 
     When doing a search in the system, the student mentioned that the ranges on the date selectors was unusually wide despite no projects being in those ranges.
@@ -115,15 +120,19 @@ Product Task Test
     When submitting feedback, they wanted to be able to specify fields that needed to be changed (beyond just in text).
 
 How do you like layout of the landing page? Any specific thoughts or feedback?  
+
     The student explained that they liked that the landing page was simple and clean. 
 
-Do you feel that this design suits the audience and purpose we are trying to address? 
+Do you feel that this design suits the audience and purpose we are trying to address?  
+
     They said that they liked the general design and mentioned that they would like the be able to use it for their current project. They mentioned that it would have been really useful for reviewing past capstone posters (an assignment they had toward the beginning of the semester).
 
 Are there any additional features that you feel would improve this system?  
+
     Aside from ideas mentioned in the Product Test, no additional feature ideas were given.
 
 How likely are to use this product? What would it take for it to be usable for the college?  
+ 
     They would have definitely used it at least once or twice throughout the semester and, when the resumes were brought up, noted that it would be nice to be able to reference it for job applications. The student then wanted to make sure that it was possible to link directly to a specific project, potentially with a QR code.
 
 #### Summary and Reflection
