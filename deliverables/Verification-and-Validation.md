@@ -174,17 +174,17 @@ The processes that we had the users go through were to use the main landing page
 These are the general questions we tried to address in these interviews though the specific responses were subject to the interviewer's communication style, the specificity of notes taken during the interview, and the flow of the interaction.
 
 - How do you like the layout of the landing page? Do you have any specific thoughts or feedback?  
-- Do you feel this design suits the audience and purpose we are trying to address?  
+- Does this design suit the audience and the purpose we are trying to address?    
 - Are there any additional features that you feel would improve this system?  
-- How likely are you to use this product? What would it take for it to be usable for the college?  
+- How likely are you to use this product? What would make it usable for the college?  
 
-## Results
-
-
-### Robert Buscaglia, Professor and Capstone Advisor for Data Science Program
+### Results
 
 
-#### Interview Response
+#### Robert Buscaglia, Professor and Capstone Advisor for Data Science Program
+
+
+##### Interview Response
 
 On a scale of 1 to 10, how would you rate the layout of our application?
 
@@ -206,21 +206,22 @@ Would you use the project in its current state?
 
     "I could use it in its current state as we still do not have a dedicated place for these projects, but I would prefer to have the critiques corrected first. It just needs some refinements to be completely accurate."
 
-#### Summary and Reflection
+##### Summary and Reflection
 
 Dr. Robert Buscaglia's first impression was overall approval, even in the current project's state. From the upload, approval, to searching and browsing the framework, he only had minor critiques and corrections we could implement, which we had described to him earlier. For example, the project had a student author, an author (as in faculty submission), and collaborators. Instead, he mentioned that to be more accurate, it should be student author, faculty advisor, and collaborators, and having the faculty who submitted the project in the background instead of being listed in the open. He needs that information, but what's important is the student authors and the faculty advisor who advised the project, whether it be a class project or research. He appreciated the search layout and how each project had thumbnails shown at all times. One of his final statements is that the website is "really useful." he helped us outline a real path to getting the project up the chain in the Mathematics and Statistics department so that it could be thoroughly reviewed for real implementation.
 
-#### Associated Created Issues
+##### Associated Created Issues
 - [Include Additional Fields in Project Data Model #71](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/71)
 - [Expand Search Capabilities #72](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/72)
 - [Incorporate NAU Authentication and Sign-In #73](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/73)
 - [Incorporate Values Based on Provided Poster or Research Paper #74](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/74)
 
-### Roy St. Laurent, Professor and Chair for the Math & Stats Department 
+#### Roy St. Laurent, Professor and Chair for the Math & Stats Department 
 
-#### Interview Response
+##### Interview Response
 
-Product Task Test   
+Product Task Test  
+  
     When going through the project submission process, Roy mentioned that the required fields weren't clearly identified, and he was confused about which fields needed to be completed.  
 
     He noticed the warnings about needing to resubmit files and recommended only asking for them after the other fields are validated to improve the user experience.    
@@ -244,26 +245,26 @@ How likely are you to use this product? What would make it usable for the colleg
 
     Dr. St. Laurent said that he thought the system would be suitable for a basic system that the department could use as an internal tool, but would likely need significant changes to be incorporated into NAU's web systems. Notably, this would involve utilizing NAU's sign-in and authentication system and potentially making changes to adhere to ADA requirements. Because the website wouldn't be required to complete classwork, ADA compliance isn't necessary, but it would help sell it.
 
-#### Summary and Reflection
+##### Summary and Reflection
 
 Dr. St. Laurent gave a lot of really valuable criticism with a critical and unique perspective. Overall, he liked the project and gave clear avenues for how it could be expanded to fit the department's needs as a whole. His feedback validated this as a method for handling undergraduate projects, specifically capstones, but showed the flaws in applying this to a broader audience without significant changes. That said, he had very few issues with the actual use and implementation of the system. Roy also pointed us to other resources, Dr. Nándor Sieben and Dana Ernst, that could be useful in continuing development and getting more constructive feedback.
 
-#### Associated Created Issues
+##### Associated Created Issues
 - [Include Additional Fields in Project Data Model #71](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/71)
 - [Incorporate NAU Authentication and Sign-In #73](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/73)
 - [ADA Compliance Requirements Definition #75](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/75)
 - [Improvements to Submission Process UI/UX #76](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/76)
 - [Arxiv Paper Linking #77](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/77)
 
-### Data Science Capstone Student (Name kept private by request)
+#### Data Science Capstone Student (Name kept private by request)
 
-#### Interview Response  
+##### Interview Response  
 
 Product Task Test   
 
     Despite not being faculty that would use the backend systems, we still had the student go through the same process for consistency and to get any additional feedback.  
 
-    When searching for the system, the student mentioned that the ranges on the date selectors were unusually wide despite no projects being in those ranges.
+    When searching with the system, the student mentioned that the ranges on the date selectors were unusually wide despite no projects being in those ranges.
 
     They found the sign-in system very easy to use and the menu intuitive.
 
@@ -275,7 +276,7 @@ How do you like the layout of the landing page? Do you have any specific thought
 
     The student explained that they liked the clean and straightforward landing page. 
 
-Does this design suit the audience and the purpose we are trying to address?  
+Does this design suit the audience and the purpose we are trying to address?    
 
     They liked the general design and mentioned that they would like to use it for their current project. They also mentioned that it would have been really useful for reviewing past capstone posters (an assignment they had toward the beginning of the semester).
 
@@ -285,20 +286,20 @@ Are there any additional features that you feel would improve this system?
 
 How likely are you to use this product? What would make it usable for the college?  
 
-    They would have used it at least once or twice throughout the semester, and when the resumes were brought up, they noted that it would be nice to be able to reference it for job applications. The student then wanted to make sure it could link directly to a specific project, potentially with a QR code.
+    They would have used it at least once or twice throughout the semester and, when the resumes were brought up, they noted that it would be nice to be able to reference it for job applications. The student then wanted to make sure it could link directly to a specific project, potentially with a QR code.
 
-#### Summary and Reflection
+##### Summary and Reflection
 
 Getting another student's perspective was quite valuable for some UI/UX testing, but they didn't have much to contribute to making the project more market-ready. Their experience with using the system was somewhat validating, but because they are similar to the developers, they don't give much additional perspective. Ultimately, they gave feedback that was simple and easy to act on, but nothing that would significantly improve the project.
 
-#### Associated Created Issues
+##### Associated Created Issues
 - [Improvements to Submission Process UI/UX #76](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/76)
 - [Improve Feedback System #78](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/78)
 - [QR Code Linking Method #79](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/79)
 
-## Reflection and Refinements 
+### Reflection and Refinements 
 
-Some minor UI/UX improvements can be made throughout the system, which were mentioned throughout these interviews/tests, though the overall system was quite well received. The revamped navigation menus and feedback system went over well, but there were a few complaints. The submission process has some issues that can be iterated on. Our tests had pretty satisfying results; the users could pick up and use the system quite effectively. That said, it's a limited scope, and doing more would likely reveal issues we've missed.
+Some minor UI/UX improvements can be made throughout the system, which were mentioned throughout these interviews/tests, though the overall system was quite well received. The revamped navigation menus and feedback system went over well, with few complaints. The submission process has some issues that can be iterated on. Our tests had pretty satisfying results; the users could pick up and use the system quite effectively. That said, it's a limited scope, and doing more would likely reveal issues we've missed.
 
 From the feedback we received from professors and faculty, it seems as though we've accomplished the original concept. That said, to make the product truly marketable to the department, some significant changes would need to be made. Most notably, integration with NAU web services via ITS and expanding the system to handle more than undergraduate research/projects would be necessary.
 
