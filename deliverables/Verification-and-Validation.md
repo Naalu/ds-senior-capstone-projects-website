@@ -25,7 +25,6 @@ This project used the automated tests developed using **Django's built-in testin
 ( Include in your answer a GitHub link to the test and an explanation about the tested feature.
     A print screen/video showing the acceptance test execution. )
 
-Grading criteria (7 points): adequate choice of a test framework, coverage of the tests, quality of the tests, adequate example of an acceptance test, print screen/video showing successful tests execution.
 
 # Validation
 
