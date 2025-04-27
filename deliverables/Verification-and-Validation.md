@@ -31,9 +31,11 @@ This project used the automated tests developed using **Django's built-in testin
 ## Script
 
 ### Product Task Test  
+
 The processes that we had the users go through were to: use the main landing page to make a keyword search, sign in to the system, submit a project (with given data), and approve the project be added to the database. We observed and noted their impressions to using the system and asked/answered questions throughout the process.
 
-### Questions
+### Questions  
+
 These are the general questions we tried to address in these interviews though the specific responses were subject to the interviewer's communication style, the specificity of notes taken during the interview, and the flow of the interaction.
 
 - How do you like layout of the landing page? Any specific thoughts or feedback?  
@@ -55,7 +57,7 @@ From our earlier interview one of your biggest requirements was to allow muliple
 
     "Yes, each project can have a image file for posters, videos not hosted but linked to is perfect, and then links to various sites pertaining to projects. I don't see any problems here."
 
-You suggested a faculty driven submission process which we ended up pursuing. Do you still support thos method?
+You suggested a faculty driven submission process which we ended up pursuing. Do you still support those method?
 
     "I still think it is the better way to go about this, and I'm glad you made the switch"
 
@@ -70,6 +72,12 @@ Would you use the project in it's current state?
 #### Summary and Reflection
 
 Dr. Robert Buscaglia first impressions were overall approval of the projects state. From the upload, approval, to searching and browsing the framework he only had minor critques and corrections that we could implement that we had described to him earlier. For example project had a student author, author (as in faculty submission) and collorators. Instead, he mentioned in order to be more accurate it should be student author, faculty advisor, and collaborators and having the faculty who submitted the project more in the backround instead of being listed in the open. He needs that information but whats important is the student authors and the faculty advisor that advised the project whether it be a class project or research. He apprciated the search layout and how each project had thumbnails shown at all times. One of his final statments is that the website is "really useful" he helped us outline a real path to getting the project up the chain in the Mathmatic and Statistics department so that it could be thouroughly reviewed for real implementation.
+
+#### Associated Created Issues
+- [Include Additional Fields in Project Data Model #71](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/71)
+- [Expand Search Capabilities #72](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/72)
+- [Incorporate NAU Authentication and Sign-In #73](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/73)
+- [Incorporate Values Based on Provided Poster or Research Paper #74](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/74)
 
 ### Roy St. Laurent, Professor and Chair for the Math & Stats Department 
 
@@ -103,6 +111,13 @@ How likely are to use this product? What would it take for it to be usable for t
 
 Dr. St. Laurent gave a lot of really valuable criticism with a very important and unique perspective. Overall, he liked the project and gave clear avenues for how it could be expanded to fit the needs of the department as a whole. His feedback validated this as a method for handling undergraduate projects, specifically capstones, but showed the flaws in applying this to a wider audience without significant changes. That said, he had very few issues with the actual use and implementation of the system. Roy also pointed us to other resources, Dr. Nándor Sieben and Dana Ernst, that could be useful in continuing development and getting more constructive feedback.
 
+#### Associated Created Issues
+- [Include Additional Fields in Project Data Model #71](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/71)
+- [Incorporate NAU Authentication and Sign-In #73](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/73)
+- [ADA Compliance Requirements Definition #75](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/75)
+- [Improvements to Submission Process UI/UX #76](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/76)
+- [Arxiv Paper Linking #77](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/77)
+
 ### Data Science Capstone Student (Name kept privite by request)
 
 #### Interview Response  
@@ -132,12 +147,17 @@ Are there any additional features that you feel would improve this system?
     Aside from ideas mentioned in the Product Test, no additional feature ideas were given.
 
 How likely are to use this product? What would it take for it to be usable for the college?  
- 
+
     They would have definitely used it at least once or twice throughout the semester and, when the resumes were brought up, noted that it would be nice to be able to reference it for job applications. The student then wanted to make sure that it was possible to link directly to a specific project, potentially with a QR code.
 
 #### Summary and Reflection
 
 Getting another student's perspective was quite useful for some UI/UX testing but they didn't have a lot to contribute for making the project more market-ready. Their experience with using the system was somewhat validating but, because they are fairly similar to the developers, they don't give much additional perspective. In the end, they gave feedback that is very simple and easy to act on but nothing that will make significant improvements to the project.
+
+#### Associated Created Issues
+- [Improvements to Submission Process UI/UX #76](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/76)
+- [Improve Feedback System #78](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/78)
+- [QR Code Linking Method #79](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/79)
 
 ## Reflection and Refinements 
 
@@ -145,10 +165,3 @@ There are some minor UI/UX improvements that can be made throughout the system t
 
 From the feedback that we got from professors and faculty, it seems as though we've accomplished the original concept. That said, to make the product truly marketable to the department, some significant changes would need to be made. Most notably, integration with NAU web services via ITS and expanding the system to handle more than undergraduate research/projects.
 
-<del>
-Through building the Senior Capstone Projects Website, the undergraduate development team gained real-world experience in full-stack web development, working with Django for the backend and HTML/CSS/ for the frontend. We learned to design a relational database, manage models using Django ORM, and adhere to coding practices and operations effectively.
-
-The team improved their skills in version control with Git, collaborative coding through pull requests and issue tracking, and sees the importance of clear project organization and documentation. We also deepened our understanding of user authentication, form handling, and the challenges of deploying a Django site.
-
-Beyond technical skills, we executed team communication, problem-solving, and adapting to changing project requirements — key parts of professional software development.
-</del>
