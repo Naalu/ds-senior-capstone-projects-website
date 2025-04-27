@@ -126,8 +126,8 @@ Northern Arizona University, Department of Mathematics & Statistics
 
 This project includes comprehensive verification and acceptance testing:
 
-- **Verification Tests**: Unit and integration tests using Django's test framework
-- **Acceptance Tests**: UI automation tests using Selenium
+- **Verification Tests**: Unit and integration tests using Django's test framework. Run with `./run_tests.sh` inside the `research_showcase` directory.
+- **Acceptance Tests**: UI automation tests using Selenium and pytest. Run with `./run_acceptance_tests.sh` inside the `research_showcase` directory (add `--visible` to see the browser, add test file name to run specific tests, add `--html` for a report).
 
 For details on running tests and writing new ones, see [research_showcase/TESTING.md](research_showcase/TESTING.md).
 
@@ -140,8 +140,12 @@ cd research_showcase
 # Run verification tests with coverage
 ./run_tests.sh
 
-# Run acceptance tests (add --headless for non-GUI execution)
-./run_acceptance_tests.sh 
-# or
-./run_acceptance_tests.sh --headless 
+# Run ALL acceptance tests headlessly
+./run_acceptance_tests.sh
+
+# Run ALL acceptance tests visibly with HTML report
+./run_acceptance_tests.sh --visible --html
+
+# Run specific acceptance test file (e.g., test_search.py) visibly
+./run_acceptance_tests.sh --visible test_search.py
 ```

@@ -39,50 +39,72 @@ When adding new features, ensure you add appropriate tests that:
 
 ## Acceptance Testing
 
-Acceptance tests use [Selenium WebDriver](https://www.selenium.dev/) and [pytest](https://docs.pytest.org/) to simulate real user interactions with the application's web interface.
+Acceptance tests use Selenium WebDriver (via pytest-selenium) to simulate real user interactions with the application through a web browser.
 
 ### Running Acceptance Tests
 
-To run acceptance tests and generate an HTML report:
+To run acceptance tests from the `research_showcase` directory:
 
 ```bash
-# Ensure you are in the research_showcase directory
-cd research_showcase
+# Run ALL acceptance tests headlessly (no visible browser)
 ./run_acceptance_tests.sh
-```
 
-This will run all tests marked with `@pytest.mark.acceptance` within the `acceptance_tests` directory and generate an HTML report at `acceptance_tests/acceptance_report.html`.
+# Run ALL acceptance tests with a VISIBLE browser (for debugging)
+./run_acceptance_tests.sh --visible
 
-To run in headless mode (without opening a visible browser window), use:
+# Run a SPECIFIC test file (e.g., test_search.py) headlessly
+./run_acceptance_tests.sh test_search.py
 
-```bash
-./run_acceptance_tests.sh --headless
+# Run a SPECIFIC test file with a VISIBLE browser
+./run_acceptance_tests.sh --visible test_search.py
+
+# Run ALL tests and generate an HTML report (acceptance_report.html)
+./run_acceptance_tests.sh --html
+
+# Combine options (e.g., specific test, visible, with report)
+./run_acceptance_tests.sh --visible test_authentication.py --html
 ```
 
 ### Test Organization
 
-Acceptance tests reside in the `research_showcase/acceptance_tests` directory:
+Acceptance tests reside in the `acceptance_tests/` directory and are organized by feature:
 
-- `conftest.py` - Contains shared fixtures (like the browser setup) and hooks (like screenshot on failure).
-- `pages/` - Contains Page Object Model classes representing different application pages.
-- `test_*.py` - Test files containing test scenarios, organized by feature (e.g., `test_submission.py`, `test_authentication.py`).
+- `acceptance_tests/test_authentication.py` - Tests for login/logout functionality
+- `acceptance_tests/test_submission.py` - Tests for the research submission workflow
+- `acceptance_tests/test_search.py` - Tests for search and filtering functionality
 
-### Page Object Model (POM)
+### Page Object Model
 
-The acceptance tests use the Page Object Model pattern. Each class in the `pages/` directory represents a specific page or significant component of the UI. These classes encapsulate the locators (e.g., CSS selectors, IDs) and methods needed to interact with that page's elements.
+The acceptance tests use the Page Object Model (POM) pattern to separate UI interaction logic from test case logic. Page objects are located in `acceptance_tests/pages/`:
 
-This pattern separates page interaction logic from test assertion logic, making tests more readable and maintainable. If the UI structure changes, updates are primarily needed within the relevant page object class, not scattered across multiple test files.
+- `pages/login_page.py` - Interactions with the login page
+- `pages/submission_page.py` - Interactions with the multi-step submission form
+- `pages/search_page.py` - Interactions with the search interface
+
+This pattern makes tests more readable and maintainable by encapsulating page element locators and interaction methods within dedicated classes.
 
 ### Writing New Acceptance Tests
 
-When adding new UI features or testing existing ones:
+When adding new UI features or workflows, create appropriate acceptance tests that:
 
-1. Identify the pages involved in the user workflow.
-2. Create or update the corresponding Page Object classes in the `pages/` directory, adding necessary locators and interaction methods.
-3. Create a new test file (e.g., `test_feature.py`) or add to an existing one.
-4. Write test functions within a test class (e.g., `TestFeatureWorkflow`).
-5. Use the `@pytest.mark.acceptance` marker.
-6. Use the `browser` and `live_server` fixtures provided by `pytest-django` and `conftest.py`.
-7. Instantiate necessary Page Objects and use their methods to drive the browser interactions.
-8. Use `assert` statements to verify expected outcomes (e.g., page content, URL changes, element visibility).
-9. Include clear docstrings explaining the purpose and steps of the test scenario.
+1. Follow the Page Object Model pattern. Create or update page objects as needed.
+2. Include clear scenario descriptions in test method docstrings.
+3. Test both "happy paths" (successful interactions) and common error conditions.
+4. Use explicit waits (`WebDriverWait`) instead of fixed sleeps where possible to ensure stability.
+5. Verify user-visible outcomes (e.g., page content changes, success messages, redirects).
+6. Add appropriate markers (`@pytest.mark.acceptance`, `@pytest.mark.feature_name`) for organization.
+
+### Troubleshooting Acceptance Tests
+
+If acceptance tests fail:
+
+1. **Run with `--visible` flag:** Observe the browser interaction directly (`./run_acceptance_tests.sh --visible test_failing.py`).
+2. **Check Screenshots:** Failed tests automatically save screenshots to the `screenshots/` directory. Examine the screenshot taken at the point of failure.
+3. **Review Logs:** Look at the detailed console output (including `print` statements added for debugging) from the test run.
+4. **Verify Locators:** Ensure element locators (IDs, CSS selectors, XPath) in the page objects still match the actual HTML structure.
+5. **Check Waits:** Ensure appropriate `WebDriverWait` conditions are used before interacting with elements, especially after actions that trigger page changes or AJAX requests.
+6. **Isolate the Failure:** Try running only the failing test file or class.
+
+## Continuous Integration
+
+The project uses GitHub Actions for continuous integration testing. The workflow defined in `.github/workflows/django.yml` automatically runs all verification and acceptance tests (headlessly) on every push and pull request to the main branches.
