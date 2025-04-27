@@ -17,12 +17,13 @@ Grading criteria (5 points): adequate choice of a test framework, coverage of th
 
 # Acceptance Test
 
-An acceptance test is a test that verifies the correct implementation of a feature from the user interface perspective. An acceptance test is a black box test (the system is tested without knowledge about its internal implementation). Provide the following information:
+This project used the automated tests developed using **Django's built-in testing framework**. This framework is based on Python's standard `unittest` module and provides tools specifically tailored for testing Django applications, including:
 
-    Test framework you used to develop your tests (e.g., Selenium, Katalon Studio, Espresso2, Cucumber, etc.)
-    Link to your GitHub folder where your automated acceptance tests are located.
-    An example of an acceptance test. Include in your answer a GitHub link to the test and an explanation about the tested feature.
-    A print screen/video showing the acceptance test execution. 
+- `django.test.TestCase`: A subclass of `unittest.TestCase` that handles database setup/teardown for each test and provides Django-specific assertions.
+- `django.test.Client`: A test client used to simulate user interactions with the application via HTTP requests (GET, POST) without needing a running development server.
+
+( Include in your answer a GitHub link to the test and an explanation about the tested feature.
+    A print screen/video showing the acceptance test execution. )
 
 Grading criteria (7 points): adequate choice of a test framework, coverage of the tests, quality of the tests, adequate example of an acceptance test, print screen/video showing successful tests execution.
 
@@ -82,6 +83,8 @@ Dr. Robert Buscaglia first impressions were overall approval of the projects sta
 
 # Reflection and Refinements 
 
-Reflections: Reflect on what you observed. Some questions that you can explore: What features worked well? What can be changed? How is the learning curve of your system? Did the users perform the tasks as you expected? Did the users’ actions produce the results they expected? What did the users like the most? Is your value proposition accomplished? 
+Through building the Senior Capstone Projects Website, the undergraduate development team gained real-world experience in full-stack web development, working with Django for the backend and HTML/CSS/ for the frontend. We learned to design a relational database, manage models using Django ORM, and adhere to coding practices and operations effectively.
 
-Grading criteria (17 points): adequate script, adequate report of the results, adequate reflection, language.
+The team improved their skills in version control with Git, collaborative coding through pull requests and issue tracking, and sees the importance of clear project organization and documentation. We also deepened our understanding of user authentication, form handling, and the challenges of deploying a Django site.
+
+Beyond technical skills, we executed team communication, problem-solving, and adapting to changing project requirements — key parts of professional software development.
