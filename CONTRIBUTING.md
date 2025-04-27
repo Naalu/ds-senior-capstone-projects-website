@@ -156,7 +156,7 @@ We use the `coverage` package to measure test coverage.
 
     *(Creates an `htmlcov/` directory; open `htmlcov/index.html` in a browser)*
 
-**Target Coverage:** The project aims for a minimum of 70% test coverage, with a goal of exceeding 95% where practical. As of APril 13, 2025, the overall coverage is **95%**.
+**Target Coverage:** The project aims for a minimum of 70% test coverage, with a goal of exceeding 95% where practical. As of April 27, 2025, the overall coverage is **95%**.
 
 ### Continuous Integration (CI)
 
