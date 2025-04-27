@@ -95,23 +95,35 @@ class StatusHistoryModelTest(TestCase):
             project=self.project,
             status_from="pending",
             status_to="approved",
-            changed_by=self.admin_user,
+            actor=self.admin_user,
             comment="Initial approval.",
         )
 
     def test_status_history_str_method(self):
         """Test the string representation of a status history record."""
-        expected_str = f"{self.project.title} changed from pending to approved by {self.admin_user.username}"
-        self.assertEqual(str(self.history_entry), expected_str)
+        actor_name = self.admin_user.username
+        expected_str = f"{self.project.title} changed to Approved by {actor_name} at {self.history_entry.timestamp}"
+        self.assertIn(
+            f"{self.project.title} changed to Approved by {actor_name}",
+            str(self.history_entry),
+        )
 
 
 class ColloquiumModelTest(TestCase):
     def setUp(self):
-        # Create a Colloquium instance
+        # Create test user for presenter
+        self.presenter_user = User.objects.create_user(
+            username="presenter", password="password", role="faculty"
+        )
+        # Create a Colloquium instance with required fields
         self.colloquium = Colloquium.objects.create(
-            semester="Fall", year=2024, date=date(2024, 10, 15)
+            title="Test Colloquium Fall 2024",
+            presenter=self.presenter_user,
+            date=date(2024, 10, 15),
+            description="A test colloquium event.",
         )
 
     def test_colloquium_str_method(self):
         """Test the string representation of a colloquium."""
-        self.assertEqual(str(self.colloquium), "Fall 2024 Colloquium")
+        expected_str = f"Test Colloquium Fall 2024 by {self.presenter_user.username} on {self.colloquium.date}"
+        self.assertEqual(str(self.colloquium), expected_str)

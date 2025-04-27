@@ -122,7 +122,10 @@ class ProjectImage(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Image for {self.project.title} ({self.image.name})"
+        if self.caption:
+            return f"Image for {self.project.title}: {self.caption}"
+        else:
+            return f"Image for {self.project.title} ({self.image.name})"
 
 
 class StatusHistory(models.Model):
