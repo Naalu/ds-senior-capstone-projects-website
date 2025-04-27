@@ -40,7 +40,6 @@ The platform features two primary user roles:
 
 ### Installation
 
-
 1. **Clone the repository**
 
 ```bash
@@ -122,3 +121,27 @@ This project is developed by:
 - Rylan Harris-Small
 
 Northern Arizona University, Department of Mathematics & Statistics
+
+## Testing
+
+This project includes comprehensive verification and acceptance testing:
+
+- **Verification Tests**: Unit and integration tests using Django's test framework
+- **Acceptance Tests**: UI automation tests using Selenium
+
+For details on running tests and writing new ones, see [research_showcase/TESTING.md](research_showcase/TESTING.md).
+
+### Running Tests from Project Root
+
+```bash
+# Navigate to the Django project directory
+cd research_showcase
+
+# Run verification tests with coverage
+./run_tests.sh
+
+# Run acceptance tests (add --headless for non-GUI execution)
+./run_acceptance_tests.sh 
+# or
+./run_acceptance_tests.sh --headless 
+```

@@ -1,5 +1,6 @@
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
+from django.urls import reverse
 
 """
 Role-Based Access Control Decorators
@@ -22,7 +23,9 @@ def faculty_required(view_func):
 
     def wrapper(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect("login")  # Redirect unauthenticated users to login
+            login_url = reverse("login")
+            next_url = request.path
+            return redirect(f"{login_url}?next={next_url}")
         if request.user.is_faculty() or request.user.is_admin():
             return view_func(request, *args, **kwargs)
         # Authenticated, but wrong role -> Forbidden
@@ -41,7 +44,9 @@ def admin_required(view_func):
 
     def wrapper(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect("login")  # Redirect unauthenticated users to login
+            login_url = reverse("login")
+            next_url = request.path
+            return redirect(f"{login_url}?next={next_url}")
         if request.user.is_admin():
             return view_func(request, *args, **kwargs)
         # Authenticated, but not admin -> Forbidden

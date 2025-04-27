@@ -76,15 +76,27 @@ class ResearchProject(models.Model):
     project_sponsor: models.CharField = models.CharField(
         max_length=255, null=True, blank=True
     )
-    poster_image: models.ImageField = models.ImageField(
-        upload_to="posters/", null=True, blank=True
+    poster_image: models.FileField = models.FileField(
+        upload_to="posters/",
+        blank=True,
+        null=True,
+        verbose_name="Research Poster",
+        help_text="Poster image or PDF (max 5MB, allowed: jpg, png, pdf)",
     )
     video_link: models.URLField = models.URLField(null=True, blank=True)
     presentation_file: models.FileField = models.FileField(
-        upload_to="presentations/", null=True, blank=True
+        upload_to="presentations/",
+        blank=True,
+        null=True,
+        verbose_name="Presentation Slides",
+        help_text="Presentation slides (PDF, PPT, PPTX, max 10MB)",
     )
     pdf_file: models.FileField = models.FileField(
-        upload_to="research_papers/", null=True, blank=True
+        upload_to="research_papers/",
+        blank=True,
+        null=True,
+        verbose_name="Research Paper (PDF)",
+        help_text="PDF of the research paper (max 10MB)",
     )
 
     # Derived properties for semester/year (optional, for easier querying/display)
@@ -122,7 +134,10 @@ class ProjectImage(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Image for {self.project.title} ({self.image.name})"
+        if self.caption:
+            return f"Image for {self.project.title}: {self.caption}"
+        else:
+            return f"Image for {self.project.title} ({self.image.name})"
 
 
 class StatusHistory(models.Model):
