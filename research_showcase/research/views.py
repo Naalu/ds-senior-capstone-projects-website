@@ -66,12 +66,12 @@ def submit_research(request):
                     )
 
                 # Create initial status history record
-                StatusHistory.objects.create(
-                    project=research_project,
-                    actor=request.user,
-                    status_from=None,  # Initial state
-                    status_to="pending",
-                    comment="Project submitted.",
+                _create_status_history(
+                    research_project,
+                    request.user,
+                    None,  # Initial state has no 'from'
+                    "pending",
+                    "Project submitted.",
                 )
 
                 messages.success(
@@ -211,11 +211,11 @@ def send_status_change_email(project, template_name, subject_prefix, feedback=No
 
 
 # Helper function to create status history
-def _create_status_history(project, actor, status_to, comment):
+def _create_status_history(project, actor, status_from, status_to, comment):
     StatusHistory.objects.create(
         project=project,
         actor=actor,
-        status_from=project.approval_status,  # The status *before* the change
+        status_from=status_from,
         status_to=status_to,
         comment=comment,
     )
@@ -232,7 +232,9 @@ def approve_research(request, project_id):
     project.save()
 
     # Create history record
-    _create_status_history(project, request.user, "approved", "Project approved.")
+    _create_status_history(
+        project, request.user, old_status, "approved", "Project approved."
+    )
 
     # Send email notification
     send_status_change_email(
@@ -281,6 +283,7 @@ def reject_research(request, project_id):
         _create_status_history(
             project,
             request.user,
+            old_status,
             "rejected",
             f"Project rejected. Reason: {rejection_reason}",
         )
@@ -345,6 +348,7 @@ def request_revision(request, project_id):
         _create_status_history(
             project,
             request.user,
+            old_status,
             "needs_revision",
             f"Revisions requested. Feedback: {revision_feedback}",
         )
@@ -562,6 +566,7 @@ def my_submissions(request):
 def edit_submission(request, project_id):
     """Allows faculty to edit their submissions, typically after revision request."""
     project = get_object_or_404(ResearchProject, id=project_id)
+    old_status = project.approval_status
 
     # --- Permission Checks ---
     # 1. Check if the logged-in user is the author
@@ -604,6 +609,7 @@ def edit_submission(request, project_id):
                 _create_status_history(
                     updated_project,
                     request.user,
+                    old_status,
                     "pending",
                     "Project updated and resubmitted by author.",
                 )
