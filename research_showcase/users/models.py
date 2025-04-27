@@ -64,10 +64,16 @@ class Notification(models.Model):
     message: models.TextField = models.TextField()
     read: models.BooleanField = models.BooleanField(default=False)
     timestamp: models.DateTimeField = models.DateTimeField(auto_now_add=True)
-    link: models.URLField = models.URLField(blank=True, null=True)  # Optional link for the notification
+    link: models.URLField = models.URLField(
+        blank=True, null=True
+    )  # Optional link for the notification
 
     def __str__(self):
-        return f"Notification for {self.recipient.username}: {self.message[:50]}..."
+        if len(self.message) > 50:
+            truncated_message = self.message[:50] + "..."
+        else:
+            truncated_message = self.message
+        return f"Notification for {self.recipient.username}: {truncated_message}"
 
     class Meta:
         ordering = ["-timestamp"]  # Show newest first

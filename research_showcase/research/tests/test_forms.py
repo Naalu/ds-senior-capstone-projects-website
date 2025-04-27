@@ -1,12 +1,23 @@
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 
-from ..forms import VALID_PRESENTATION_EXTENSIONS, ResearchProjectForm
+from ..forms import (
+    MAX_POSTER_SIZE_MB,
+    MB_TO_BYTES,
+    VALID_POSTER_EXTENSIONS,
+    VALID_PRESENTATION_EXTENSIONS,
+    ResearchProjectForm,
+)
 
 User = get_user_model()
+
+# Constants for file size validation (assuming these are defined elsewhere)
+# Need to ensure these match the values used in forms.py
+MB_TO_BYTES = 1024 * 1024
+MAX_POSTER_SIZE_MB = 5
 
 
 class ResearchProjectFormTest(TestCase):
@@ -77,16 +88,16 @@ class ResearchProjectFormTest(TestCase):
         form = ResearchProjectForm(data=form_data, files={"poster_image": invalid_file})
         self.assertFalse(form.is_valid())
         self.assertIn("poster_image", form.errors)
-        # Check for the default ImageField error message, as clean_* might not run
-        self.assertIn("Upload a valid image.", form.errors["poster_image"][0])
+        # Check for the error message from clean_poster_image
+        expected_error = (
+            f"Unsupported file extension. Use {', '.join(VALID_POSTER_EXTENSIONS)}"
+        )
+        self.assertIn(expected_error, form.errors["poster_image"])
 
     def test_form_invalid_poster_file_size(self):
         """Test form with poster file exceeding size limit."""
         # Create a valid but large image file (minimal content)
-        large_content = (
-            b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89"
-            + b"a" * (6 * 1024 * 1024)
-        )
+        large_content = b"a" * (MAX_POSTER_SIZE_MB * MB_TO_BYTES + 1)
         large_file = SimpleUploadedFile(
             "large.png", large_content, content_type="image/png"
         )
@@ -94,10 +105,9 @@ class ResearchProjectFormTest(TestCase):
         form = ResearchProjectForm(data=form_data, files={"poster_image": large_file})
         self.assertFalse(form.is_valid())
         self.assertIn("poster_image", form.errors)
-        # Update expected error message to match the actual default ImageField error
-        # for potentially corrupted/invalid files, which this large file triggers.
-        expected_error = "Upload a valid image. The file you uploaded was either not an image or a corrupted image."
-        self.assertIn(expected_error, form.errors["poster_image"][0])
+        # Check for the error message from clean_poster_image
+        expected_error = f"Image file too large (max {MAX_POSTER_SIZE_MB}MB)"
+        self.assertIn(expected_error, form.errors["poster_image"])
 
     def test_form_invalid_presentation_file_type(self):
         """Test form with invalid file type for presentation."""
@@ -165,3 +175,104 @@ class ResearchProjectFormTest(TestCase):
         form_data["video_link"] = ""
         form = ResearchProjectForm(data=form_data)
         self.assertTrue(form.is_valid(), form.errors.as_text())
+
+    def test_form_invalid_github_link_format_wrong_host(self):
+        """Test clean_github_link rejects valid URL from wrong host."""
+        form_data = self.base_valid_data.copy()
+        form_data["github_link"] = "https://gitlab.com/user/repo"
+        form = ResearchProjectForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("github_link", form.errors)
+        self.assertIn(
+            "Please enter a valid GitHub repository URL",
+            form.errors["github_link"][0],
+        )
+
+    def test_form_invalid_github_link_format_incomplete(self):
+        """Test clean_github_link rejects valid GitHub URL with missing repo path."""
+        form_data = self.base_valid_data.copy()
+        form_data["github_link"] = "https://github.com/usernameonly"
+        form = ResearchProjectForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("github_link", form.errors)
+        self.assertIn("GitHub URL should be in format:", form.errors["github_link"][0])
+
+    def test_form_valid_github_link_format(self):
+        """Test clean_github_link accepts a correctly formatted GitHub URL."""
+        form_data = self.base_valid_data.copy()
+        form_data["github_link"] = "https://github.com/username/repository"
+        form = ResearchProjectForm(data=form_data)
+        # Check if form is valid OR if github_link specifically has no errors
+        if not form.is_valid():
+            self.assertNotIn("github_link", form.errors)
+        else:
+            self.assertTrue(form.is_valid())
+
+    def test_form_invalid_date_presented_future(self):
+        """Test clean_date_presented rejects a date in the future."""
+        future_date = date.today() + timedelta(days=1)
+        form_data = self.base_valid_data.copy()
+        form_data["date_presented"] = future_date.strftime(
+            "%Y-%m-%d"
+        )  # Format as string for form input
+        form = ResearchProjectForm(data=form_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("date_presented", form.errors)
+        self.assertIn("cannot be in the future", form.errors["date_presented"][0])
+
+
+class ResearchProjectFormValidationTest(TestCase):
+    def setUp(self):
+        # Basic valid data (adjust fields as necessary)
+        self.valid_data = {
+            "title": "Valid Title Length",
+            "abstract": "This abstract is definitely long enough to meet the minimum length requirement.",
+            "student_author_name": "Valid Student",
+        }
+
+    def test_poster_image_too_large(self):
+        """Test validation fails if poster image file size exceeds the limit."""
+        # Create a dummy file larger than the limit
+        large_content = b"a" * (MAX_POSTER_SIZE_MB * MB_TO_BYTES + 1)
+        # Use a valid extension that might pass initial checks if any remain
+        large_file = SimpleUploadedFile(
+            "large_poster.jpg", large_content, content_type="image/jpeg"
+        )
+        files_data = {"poster_image": large_file}
+
+        form = ResearchProjectForm(data=self.valid_data, files=files_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("poster_image", form.errors)
+        # Assert the error message from the clean_poster_image method
+        self.assertIn(
+            f"Image file too large (max {MAX_POSTER_SIZE_MB}MB)",
+            form.errors["poster_image"],
+        )
+
+    def test_poster_image_invalid_extension(self):
+        """Test validation fails if poster image file has an unsupported extension."""
+        # Create a dummy file with an invalid extension (e.g., .txt)
+        invalid_file = SimpleUploadedFile(
+            "invalid_poster.txt", b"content", content_type="text/plain"
+        )
+        files_data = {"poster_image": invalid_file}
+
+        form = ResearchProjectForm(data=self.valid_data, files=files_data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("poster_image", form.errors)
+        # Assert the error message from the clean_poster_image method
+        # Need VALID_POSTER_EXTENSIONS imported or defined for the full message
+        # from ..forms import VALID_POSTER_EXTENSIONS # <-- Add this import if needed
+        expected_error_part = "Unsupported file extension."
+        # Check if the specific error message is present in the list of errors for the field
+        self.assertTrue(
+            any(expected_error_part in error for error in form.errors["poster_image"])
+        )
+        # Optional: Assert the full message if VALID_POSTER_EXTENSIONS is available
+        # expected_full_error = f"Unsupported file extension. Use {', '.join(VALID_POSTER_EXTENSIONS)}"
+        # self.assertIn(expected_full_error, form.errors["poster_image"])
+
+    # ... other validation tests will go here ...
+
+
+# ... existing form tests if any ...

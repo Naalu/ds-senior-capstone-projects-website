@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timedelta
 from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
@@ -6,9 +6,10 @@ from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, RequestFactory, TestCase
 from django.urls import reverse
+from django.utils import timezone
 
 from ..models import ResearchProject, StatusHistory
-from ..views import approve_research  # Needed for the mock test
+from ..views import approve_research, submit_research  # Needed for the mock test
 
 User = get_user_model()
 
@@ -103,6 +104,22 @@ class ResearchSubmissionViewTest(TestCase):
             username="admin_sub", password="testpassword", role="admin"
         )
         self.client = Client()
+        self.client.login(
+            username="faculty_sub", password="testpassword"
+        )  # Log in faculty
+        self.submit_url = reverse("submit_research")
+
+        # Minimal valid data for POST
+        self.valid_pdf = SimpleUploadedFile(
+            "valid.pdf", b"pdf content", content_type="application/pdf"
+        )
+        self.valid_data = {
+            "title": "Test Submission",
+            "abstract": "Abstract that is definitely long enough to pass the minimum validation requirements set by the form.",
+            "student_author_name": "Test Student Sub",
+            # Add other required fields if any
+        }
+        self.valid_files = {"pdf_file": self.valid_pdf}
 
     def test_faculty_access(self):
         """Test faculty can access the submission page."""
@@ -119,20 +136,124 @@ class ResearchSubmissionViewTest(TestCase):
 
     def test_unauthorized_access(self):
         """Test anonymous users are redirected to login."""
+        self.client.logout()  # Ensure client is logged out for this test
         response = self.client.get(reverse("submit_research"))
         # Use the updated decorator logic for the expected redirect URL
         expected_url = f"{reverse('login')}?next={reverse('submit_research')}"
         self.assertRedirects(response, expected_url)
+
+    def test_submission_post_invalid_form(self):
+        """Test submitting an invalid form displays a warning message."""
+        # Missing required field 'title'
+        invalid_data = {
+            "abstract": "Abstract",
+            "student_author_name": "Test Student Sub",
+        }
+        response = self.client.post(self.submit_url, invalid_data)
+        self.assertEqual(response.status_code, 200)  # Should re-render the form page
+        self.assertTemplateUsed(response, "research/submit_research.html")
+        self.assertContains(response, "Please correct the errors in the form")
+        self.assertFalse(
+            ResearchProject.objects.exists()
+        )  # Ensure no project was created
+
+    def test_submission_post_success_with_images_factory(self):
+        """Test successful POST via RequestFactory creates project, images, history."""
+        # Create dummy image files
+        image_file1 = SimpleUploadedFile(
+            "image1.jpg", b"jpeg_content1", content_type="image/jpeg"
+        )
+        image_file2 = SimpleUploadedFile(
+            "image2.png", b"png_content2", content_type="image/png"
+        )
+
+        # Construct POST data including files
+        post_data = self.valid_data.copy()
+        post_data["pdf_file"] = self.valid_files["pdf_file"]
+        post_data["project_images"] = [image_file1, image_file2]
+
+        # Create RequestFactory and request object, passing data including files
+        factory = RequestFactory()
+        request = factory.post(self.submit_url, data=post_data)
+
+        # Set user and messages middleware
+        request.user = self.faculty_user
+        setattr(request, "session", "session")
+        messages = FallbackStorage(request)
+        setattr(request, "_messages", messages)
+
+        # Call the view function directly
+        response = submit_research(request)
+
+        # 1. Check response (should be a redirect)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, reverse("submission_success"))
+
+        # 2. Check ResearchProject creation
+        self.assertEqual(ResearchProject.objects.count(), 1)
+        project = ResearchProject.objects.first()
+        self.assertEqual(project.title, self.valid_data["title"])
+        self.assertEqual(project.author, self.faculty_user)
+        self.assertEqual(project.approval_status, "pending")
+        self.assertIsNone(project.admin_feedback)
+
+        # 3. Check ProjectImage creation
+        self.assertEqual(project.images.count(), 2)
+        # image_names = list(project.images.values_list("image__name", flat=True)) # Cannot query name directly
+        # Instead, fetch the objects and check names
+        created_images = project.images.all()
+        found_image1 = False
+        found_image2 = False
+        for proj_image in created_images:
+            if "image1" in proj_image.image.name:
+                found_image1 = True
+            if "image2" in proj_image.image.name:
+                found_image2 = True
+        self.assertTrue(found_image1, "Image 1 not found")
+        self.assertTrue(found_image2, "Image 2 not found")
+
+        # 4. Check StatusHistory creation
+        history_exists = StatusHistory.objects.filter(
+            project=project, actor=self.faculty_user, status_to="pending"
+        ).exists()
+        self.assertTrue(history_exists)
+
+        # Note: Checking flash messages with RequestFactory is less direct
+        # We trust the messages.success call happened if the redirect occurred.
+
+    @patch("research.views.ResearchProjectForm.save")
+    def test_submission_save_exception(self, mock_save):
+        """Test that an exception during form saving shows an error message."""
+        mock_save.side_effect = Exception("Database error simulation")
+
+        response = self.client.post(
+            self.submit_url, self.valid_data, files=self.valid_files
+        )
+
+        self.assertEqual(response.status_code, 200)  # Should re-render form
+        self.assertTemplateUsed(response, "research/submit_research.html")
+        self.assertContains(
+            response, "Error saving research project: Database error simulation"
+        )
+        self.assertFalse(
+            ResearchProject.objects.exists()
+        )  # Ensure no project was created
 
 
 class ResearchReviewProcessTest(TestCase):
     def setUp(self):
         # Create test users
         self.faculty_user = User.objects.create_user(
-            username="faculty_rev", password="password", role="faculty"
+            username="faculty_rev",
+            password="password",
+            role="faculty",
+            email="faculty_rev@example.com",
         )
         self.admin_user = User.objects.create_user(
-            username="admin_rev", password="password", role="admin"
+            username="admin_rev",
+            password="password",
+            role="admin",
+            email="admin_rev@example.com",
         )
 
         # Create project needing review
@@ -153,6 +274,50 @@ class ResearchReviewProcessTest(TestCase):
 
         self.client = Client()
         self.client.login(username="admin_rev", password="password")
+
+        # Additional projects for collaborator display tests
+        long_collaborators = "Collab " * 20  # Longer than 100 chars
+        self.project_long_collab = ResearchProject.objects.create(
+            title="Long Collaborators",
+            author=self.faculty_user,
+            student_author_name="Collab Student Long",
+            approval_status="pending",
+            collaborator_names=long_collaborators,
+        )
+        self.project_short_collab = ResearchProject.objects.create(
+            title="Short Collaborators",
+            author=self.faculty_user,
+            student_author_name="Collab Student Short",
+            approval_status="pending",
+            collaborator_names="A, B, C",
+        )
+        self.project_no_collab = ResearchProject.objects.create(
+            title="No Collaborators",
+            author=self.faculty_user,
+            student_author_name="Collab Student None",
+            approval_status="pending",
+            collaborator_names="",  # Empty string
+        )
+
+    def test_review_page_collaborator_display(self):
+        """Test collaborator display logic (truncation, short, none)."""
+        response = self.client.get(reverse("review_research"))
+        self.assertEqual(response.status_code, 200)
+
+        # Check long collaborators are truncated
+        self.assertContains(response, "Collab Collab Collab")  # Part of the long string
+        self.assertContains(response, "...")  # Check for ellipsis
+        # More specific check might require inspecting context or using html=True
+        # For now, check presence of start and ellipsis
+
+        # Check short collaborators are displayed fully
+        self.assertContains(response, "A, B, C")
+
+        # Check no collaborators displays "None"
+        # Need to be careful not to match other "None" text. Check for the badge.
+        self.assertContains(
+            response, '<span class="badge bg-secondary">None</span>', html=True
+        )
 
     def test_review_page_shows_new_fields(self):
         """Test review page displays new fields like GitHub/video links."""
@@ -186,10 +351,11 @@ class ResearchReviewProcessTest(TestCase):
         # Check for the actual label text in the template
         self.assertContains(response, "Rejection Reason (Optional)")
 
-    def test_reject_project_post(self):
-        """Test rejecting a project updates status and creates history."""
+    @patch("research.views.send_status_change_email")
+    @patch("research.views.create_in_app_notification")
+    def test_reject_project_post(self, mock_notification, mock_email):
+        """Test rejecting a project updates status, creates history, and sends notifications."""
         reject_url = reverse("reject_research", args=[self.project_pending.id])
-        # Use the correct key 'rejection_reason' matching the form field name
         post_data = {"rejection_reason": "Incomplete abstract"}
         response = self.client.post(reject_url, post_data, follow=True)
         self.assertRedirects(response, reverse("review_research"))
@@ -200,9 +366,26 @@ class ResearchReviewProcessTest(TestCase):
             project=self.project_pending, status_to="rejected"
         )
         self.assertTrue(history.exists())
-        # Assert the full comment string created by the view
         expected_comment = f"Project rejected. Reason: {post_data['rejection_reason']}"
         self.assertEqual(history.first().comment, expected_comment)
+
+        # Assert notifications were called
+        mock_email.assert_called_once()
+        mock_notification.assert_called_once()
+
+    @patch("research.views.create_in_app_notification")
+    def test_reject_notification_exception(self, mock_notification):
+        """Test exception during notification creation on reject shows warning."""
+        mock_notification.side_effect = Exception("Notification system down")
+        reject_url = reverse("reject_research", args=[self.project_pending.id])
+        post_data = {"rejection_reason": "Simulate error"}
+        response = self.client.post(reject_url, post_data, follow=True)
+        self.assertRedirects(response, reverse("review_research"))
+        # Check for the warning message about notification failure
+        self.assertContains(response, "Failed to create in-app notification")
+        # Ensure project status was still updated
+        self.project_pending.refresh_from_db()
+        self.assertEqual(self.project_pending.approval_status, "rejected")
 
     def test_request_revision_get_form(self):
         """Test GET request for request revision form shows the form."""
@@ -212,17 +395,18 @@ class ResearchReviewProcessTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Reason for Revision Request")
 
-    def test_request_revision_post(self):
-        """Test requesting revision updates status and creates history."""
+    @patch("research.views.send_status_change_email")
+    @patch("research.views.create_in_app_notification")
+    def test_request_revision_post(self, mock_notification, mock_email):
+        """Test requesting revision updates status, creates history, and sends notifications."""
         revision_url = reverse("request_revision", args=[self.project_pending.id])
         post_data = {"revision_feedback": "Update abstract"}
         response = self.client.post(
             revision_url,
             post_data,
-            follow=True,  # follow=True is needed to check message on redirected page
+            follow=True,
         )
         self.assertRedirects(response, reverse("review_research"))
-        # Check for part of the actual message set by the view
         self.assertContains(response, "Feedback provided")
         self.project_pending.refresh_from_db()
         self.assertEqual(self.project_pending.approval_status, "needs_revision")
@@ -230,11 +414,28 @@ class ResearchReviewProcessTest(TestCase):
             project=self.project_pending, status_to="needs_revision"
         )
         self.assertTrue(history.exists())
-        # Check the actual comment saved in history
         expected_comment = (
             f"Revisions requested. Feedback: {post_data['revision_feedback']}"
         )
         self.assertEqual(history.first().comment, expected_comment)
+
+        # Assert notifications were called
+        mock_email.assert_called_once()
+        mock_notification.assert_called_once()
+
+    @patch("research.views.create_in_app_notification")
+    def test_request_revision_notification_exception(self, mock_notification):
+        """Test exception during notification creation on revision request shows warning."""
+        mock_notification.side_effect = Exception("Notification system down")
+        revision_url = reverse("request_revision", args=[self.project_pending.id])
+        post_data = {"revision_feedback": "Simulate error"}
+        response = self.client.post(revision_url, post_data, follow=True)
+        self.assertRedirects(response, reverse("review_research"))
+        # Check for the warning message about notification failure
+        self.assertContains(response, "Failed to create in-app notification")
+        # Ensure project status was still updated
+        self.project_pending.refresh_from_db()
+        self.assertEqual(self.project_pending.approval_status, "needs_revision")
 
 
 class MultiStepFormTest(TestCase):
@@ -569,3 +770,114 @@ class ApproveResearchViewTest(TestCase):
         self.assertIn(
             "approved", notification_call[0][1]
         )  # Second arg: message content
+
+    @patch("django.core.mail.send_mail")
+    @patch("research.views.create_in_app_notification")
+    def test_approve_research_email_disabled(
+        self, mock_in_app_notification, mock_send_mail
+    ):
+        """Test approve view does not send email if user opted out."""
+        # Disable email notification for the faculty user
+        self.faculty_user.notify_by_email_on_status_change = False
+        self.faculty_user.save()
+
+        # Create request
+        request = self._get_request_with_messages(
+            reverse("approve_research", kwargs={"project_id": self.project.id})
+        )
+
+        # Call the view function
+        # This will call send_status_change_email internally,
+        # which should then NOT call the *actual* django.core.mail.send_mail
+        response = approve_research(request, self.project.id)
+
+        # Verify redirect and status update occurred
+        self.assertEqual(response.status_code, 302)
+        self.project.refresh_from_db()
+        self.assertEqual(self.project.approval_status, "approved")
+
+        # Verify send_mail was NOT called, but in-app notification WAS called
+        mock_send_mail.assert_not_called()
+        mock_in_app_notification.assert_called_once()
+
+
+class HomeViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Create users
+        cls.faculty = User.objects.create_user(
+            username="home_faculty", password="password", role="faculty"
+        )
+
+        # Create multiple approved projects with different dates
+        cls.num_approved = 7
+        cls.project_titles = []
+        today = timezone.now().date()
+        for i in range(cls.num_approved):
+            title = f"Approved Search Project {i + 1}"
+            cls.project_titles.append(title)
+            ResearchProject.objects.create(
+                title=title,
+                abstract=f"Abstract {i + 1}",
+                author=cls.faculty,
+                student_author_name=f"Student {i + 1}",
+                approval_status="approved",
+                submission_date=timezone.now()
+                - timedelta(days=i),  # Keep for ordering if needed
+                date_presented=today - timedelta(days=i),  # Add date_presented
+            )
+
+        # Create a pending project (should not appear)
+        cls.pending_title = "Pending Search Project"
+        ResearchProject.objects.create(
+            title=cls.pending_title,
+            abstract="Pending abstract",
+            author=cls.faculty,
+            student_author_name="Student Pending",
+            approval_status="pending",
+            submission_date=timezone.now() - timedelta(days=8),
+            date_presented=today - timedelta(days=8),  # Add date_presented
+        )
+
+    def test_home_url_uses_search_view_and_template(self):
+        """Test that the 'home' URL (`/`) uses the search view and correct template."""
+        response = self.client.get(reverse("home"))
+        self.assertEqual(response.status_code, 200)
+        # Check that the search results template is used
+        self.assertTemplateUsed(response, "research/search_results.html")
+
+    def test_home_url_displays_all_approved_projects_initially(self):
+        """Test the 'home' URL displays all approved projects when no query is given."""
+        response = self.client.get(reverse("home"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "research/search_results.html")
+
+        # Check context data - assuming 'projects' is the context variable
+        self.assertIn("projects", response.context)
+        displayed_projects = response.context["projects"]
+
+        # Check that all approved projects are present (adjust if pagination is used)
+        # For now, assume no pagination or first page shows all 7
+        self.assertEqual(len(displayed_projects), self.num_approved)
+
+        displayed_titles = [p.title for p in displayed_projects]
+        # Ensure all expected titles are there
+        for title in self.project_titles:
+            self.assertIn(title, displayed_titles)
+            self.assertContains(response, title)  # Check if title is in rendered HTML
+
+        # Check that the pending project is not included
+        self.assertNotIn(self.pending_title, displayed_titles)
+        self.assertNotContains(response, self.pending_title)
+
+    def test_home_url_no_approved_projects(self):
+        """Test 'home' URL view when there are no approved projects."""
+        # Delete all approved projects created in setUpTestData
+        ResearchProject.objects.filter(approval_status="approved").delete()
+        response = self.client.get(reverse("home"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "research/search_results.html")
+        self.assertIn("projects", response.context)
+        self.assertEqual(len(response.context["projects"]), 0)
+        # Check for a message indicating no projects, if applicable in the template
+        # self.assertContains(response, "No projects found matching your criteria.")

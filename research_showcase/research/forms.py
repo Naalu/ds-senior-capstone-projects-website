@@ -24,23 +24,23 @@ MAX_TOTAL_IMAGE_SIZE_MB: int = 10  # Max total size for all images
 
 class ResearchProjectForm(forms.ModelForm):
     # Define field without widget initially
-    project_images = forms.ImageField(
-        # widget=forms.FileInput(attrs={"multiple": True, "class": "form-control"}),
-        required=False,
-        label="Project Images (Optional)",
-        help_text=f"Upload additional project images (e.g., diagrams, results). Allowed: {', '.join(VALID_IMAGE_EXTENSIONS)}. Max {MAX_IMAGE_SIZE_MB}MB per file, {MAX_TOTAL_IMAGE_SIZE_MB}MB total.",
-    )
+    # project_images = forms.ImageField(
+    #     # widget=forms.FileInput(attrs={"multiple": True, "class": "form-control"}),
+    #     required=False,
+    #     label="Project Images (Optional)",
+    #     help_text=f"Upload additional project images (e.g., diagrams, results). Allowed: {', '.join(VALID_IMAGE_EXTENSIONS)}. Max {MAX_IMAGE_SIZE_MB}MB per file, {MAX_TOTAL_IMAGE_SIZE_MB}MB total.",
+    # )
 
     # Add __init__ to modify widget attributes after initialization
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Set the multiple attribute on the widget here
-        self.fields["project_images"].widget.attrs.update(
-            {
-                "multiple": True,
-                "class": "form-control",  # Ensure class is also set here
-            }
-        )
+        # self.fields["project_images"].widget.attrs.update(
+        #     {
+        #         "multiple": True,
+        #         "class": "form-control", # Ensure class is also set here
+        #     }
+        # )
 
     class Meta:
         model = ResearchProject
@@ -56,7 +56,7 @@ class ResearchProjectForm(forms.ModelForm):
             "video_link",
             "presentation_file",
             "pdf_file",
-            "project_images",
+            # "project_images", # Removed: Handled manually in the view
         ]
         widgets = {
             "title": forms.TextInput(
@@ -250,9 +250,10 @@ class ResearchProjectForm(forms.ModelForm):
         if not video_link:
             return video_link
 
-        # Check if it's a valid URL (basic check)
-        if not (video_link.startswith("http://") or video_link.startswith("https://")):
-            raise forms.ValidationError("Please enter a valid video URL.")
+        # The base URLField already ensures http/https prefix if missing www.
+        # So, the startswith check here is redundant.
+        # if not (video_link.startswith("http://") or video_link.startswith("https://")):
+        #     raise forms.ValidationError("Please enter a valid video URL.")
 
         # Optionally, add checks for specific video platforms like YouTube or Vimeo
         # Example: Check for youtube.com or youtu.be
