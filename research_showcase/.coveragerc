@@ -1,0 +1,20 @@
+[run]
+source = research,users
+omit = */migrations/*, */tests/*, */apps.py, manage.py, research_showcase/*, venv/*, acceptance_tests/*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __str__
+    def __repr__
+    # Don't complain about missing debug-only code:
+    if settings.DEBUG
+    # Don't complain if tests don't hit defensive assertion code:
+    raise AssertionError
+    raise NotImplementedError
+    # Don't complain about script hooks
+    if __name__ == "__main__":
+    # Don't complain about abstract methods, they aren't run:
+    @(abc\.)?abstractmethod
+    # Don't complain about Type Checking blocks
+    if TYPE_CHECKING: 
