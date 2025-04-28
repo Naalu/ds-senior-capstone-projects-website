@@ -79,9 +79,19 @@ def submit_research(request):
                 )
                 return redirect("submission_success")
             except Exception as e:
+                # Add more specific error logging
+                print(
+                    f"!!! EXCEPTION during project save/image handling: {type(e).__name__}: {e}"
+                )  # DEBUG
+                import traceback  # DEBUG
+
+                traceback.print_exc()  # DEBUG
                 messages.error(request, f"Error saving research project: {str(e)}")
+                # Fall through to re-render the form with errors
         else:
             messages.warning(request, "Please correct the errors in the form.")
+            # Add print here too
+            print(f"--- Form invalid, errors: {form.errors.as_json()} ---")  # DEBUG
     else:
         form = ResearchProjectForm()
 
