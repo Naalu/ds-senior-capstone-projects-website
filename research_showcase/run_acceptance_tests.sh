@@ -3,8 +3,8 @@
 # Run acceptance tests with options for visibility and reporting
 echo "Running acceptance tests..."
 
-# Default to running in headless mode
-HEADLESS="--headless"
+# Options / Flags
+REQUEST_VISIBLE=false # Default to headless unless --visible is passed
 HTML_REPORT_FLAG=false
 SPECIFIC_TEST=""
 
@@ -12,8 +12,8 @@ SPECIFIC_TEST=""
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --visible)
-            HEADLESS=""
-            echo "Running in visible mode (browser will be displayed)"
+            REQUEST_VISIBLE=true
+            echo "Requesting visible mode (browser should be displayed)"
             shift # past argument
             ;;
         --html)
@@ -40,33 +40,41 @@ done
 # Navigate to the project directory (where the script is located)
 cd "$(dirname "$0")"
 
-PYTEST_CMD="python -m pytest -v $HEADLESS"
+# Build base pytest command arguments
+PYTEST_BASE_ARGS=("-v")
+# Add --headless only if --visible was NOT requested
+if [[ "$REQUEST_VISIBLE" == false ]]; then
+    echo "--visible not specified, adding --headless flag for pytest."
+    PYTEST_BASE_ARGS+=("--headless")
+fi
 
-# Determine what to run
+# Determine target and run tests
 if [[ -n "$SPECIFIC_TEST" ]]; then
     echo "Running specific test file: acceptance_tests/$SPECIFIC_TEST"
     TARGET="acceptance_tests/$SPECIFIC_TEST"
-    $PYTEST_CMD $TARGET
+    python -m pytest "${PYTEST_BASE_ARGS[@]}" "$TARGET"
     EXIT_CODE=$?
 else
     # Run all acceptance tests marked with 'acceptance'
     echo "Running all acceptance tests (marked with 'acceptance')..."
     TARGET="acceptance_tests/"
-    $PYTEST_CMD $TARGET -m acceptance
+    python -m pytest "${PYTEST_BASE_ARGS[@]}" "$TARGET" -m acceptance
     EXIT_CODE=$?
 fi
 
 # Generate an HTML report if requested
 if [[ "$HTML_REPORT_FLAG" == true ]]; then
     echo "Generating HTML report..."
+
+    # Build HTML reporting command arguments
+    HTML_ARGS=("${PYTEST_BASE_ARGS[@]}" "--html=acceptance_report.html" "--self-contained-html")
+
     # Rerun tests with HTML reporting enabled
-    # Note: This reruns the tests. If only report generation is needed after a run,
-    #       a different approach (like pytest-cache) might be explored.
-    HTML_CMD="python -m pytest -v $HEADLESS --html=acceptance_report.html --self-contained-html"
+    # Note: This reruns the tests.
     if [[ -n "$SPECIFIC_TEST" ]]; then
-        $HTML_CMD $TARGET
+        python -m pytest "${HTML_ARGS[@]}" "$TARGET"
     else
-        $HTML_CMD $TARGET -m acceptance
+        python -m pytest "${HTML_ARGS[@]}" "$TARGET" -m acceptance
     fi
     if [[ $? -eq 0 ]]; then
         echo "HTML report available at: acceptance_report.html"

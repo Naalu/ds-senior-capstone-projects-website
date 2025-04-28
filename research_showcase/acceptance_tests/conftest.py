@@ -2,8 +2,6 @@ import datetime  # Import datetime
 import os
 
 import pytest
-
-# from webdriver_manager.chrome import ChromeDriverManager # Not using webdriver-manager
 from django.contrib.auth import get_user_model
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -18,30 +16,51 @@ def browser(request):
     print("Setting up Chrome WebDriver using local driver...")
     chrome_options = Options()
 
-    # Run headless if specified, otherwise in regular mode for debugging
-    if request.config.getoption("--headless"):  # Use --headless, not --visible
+    # Add --headless argument only if the flag is explicitly true
+    if request.config.getoption("--headless"):
+        print("Configuring for headless mode.")
         chrome_options.add_argument("--headless")
     else:
-        print("Running in visible mode.")
+        print("Configuring for visible mode.")
 
     chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
 
-    # Use local ChromeDriver path (relative to conftest.py parent dir)
+    # Dynamically find ChromeDriver in the drivers directory
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    driver_path = os.path.join(base_dir, "drivers", "chromedriver_mac_arm64")
-    print(f"Using local ChromeDriver: {driver_path}")
+    drivers_dir = os.path.join(base_dir, "drivers")
+    driver_filename = None
+    try:
+        # Find the first non-hidden file in the drivers directory
+        for f in os.listdir(drivers_dir):
+            if not f.startswith("."):  # Basic check to ignore hidden files
+                driver_filename = f
+                break  # Use the first one found
+        if driver_filename is None:
+            pytest.fail(f"No ChromeDriver executable found in directory: {drivers_dir}")
 
+        driver_path = os.path.join(drivers_dir, driver_filename)
+        print(f"Using local ChromeDriver found at: {driver_path}")
+
+    except FileNotFoundError:
+        pytest.fail(f"Drivers directory not found at: {drivers_dir}")
+    except Exception as e:
+        pytest.fail(f"Error finding ChromeDriver in {drivers_dir}: {e}")
+
+    # Check existence and permissions
     if not os.path.exists(driver_path):
-        pytest.fail(f"ChromeDriver not found at {driver_path}")
+        pytest.fail(
+            f"ChromeDriver path determined ({driver_path}), but file does not exist."
+        )  # Should not happen if found by listdir
     if not os.access(driver_path, os.X_OK):
         pytest.fail(
-            f"ChromeDriver at {driver_path} is not executable. Run 'chmod +x {driver_path}'."
+            f"ChromeDriver at {driver_path} is not executable. Run 'chmod +x <path_to_driver>'."
         )
 
     # Setup ChromeDriver service
     service = Service(executable_path=driver_path)
+
     driver = None  # Initialize driver to None
     try:
         driver = webdriver.Chrome(service=service, options=chrome_options)
@@ -90,14 +109,8 @@ def pytest_addoption(parser):
     parser.addoption(
         "--headless",
         action="store_true",
-        default=True,
-        help="Run browser in headless mode (default)",
-    )
-    parser.addoption(
-        "--visible",
-        action="store_false",
-        dest="headless",
-        help="Run browser in visible mode (overrides --headless)",
+        default=False,  # Default to visible mode
+        help="Run browser in headless mode (visible is default)",
     )
 
 
