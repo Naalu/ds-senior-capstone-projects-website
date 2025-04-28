@@ -152,14 +152,94 @@ The current test coverage is **95%**, meeting our project goal and demonstrating
 
 ## Acceptance Test
 
-This project used the automated tests developed using **Django's built-in testing framework**. This framework is based on Python's standard `unittest` module and provides tools tailored explicitly for testing Django applications, including:
+Our acceptance testing validates that the application meets user requirements and functions correctly from an end-user perspective. These tests simulate real user interactions with the web interface.
 
-- `django.test.TestCase`: A subclass of `unittest.TestCase` handles database setup/teardown for each test and provides Django-specific assertions.
-- `django.test.Client`: A test client used to simulate user interactions with the application via HTTP requests (GET, POST) without needing a running development server.
+- **Test Framework:** We used a combination of frameworks and tools to develop the automated acceptance tests:
+  - **Selenium:** The core browser automation tool used to interact with web elements.
+  - **pytest:** The test runner used to discover, execute, and report on tests.
+  - **pytest-django:** Provides integration with the Django framework, including database setup and access to the live server during tests.
+  - **pytest-selenium:** Offers fixtures and utilities specifically for Selenium testing within pytest.
+  - **webdriver-manager:** Automatically manages the browser-specific WebDriver executable (ChromeDriver).
 
-( Include in your answer a GitHub link to the test and an explanation about the tested feature.
-    A print screen/video showing the acceptance test execution. )
+- **Automated Tests Location:** The automated acceptance tests are located in the following GitHub folder:
+  - [research_showcase/acceptance_tests/](https://github.com/Naalu/ds-senior-capstone-projects-website/tree/feat/acceptance-testing-fixes/research_showcase/acceptance_tests/)
 
+- **Example Acceptance Test:**
+  - **Test Case:** `test_complete_submission_workflow`
+  - **File Link:** [research_showcase/acceptance_tests/test_submission.py#L14](https://github.com/Naalu/ds-senior-capstone-projects-website/blob/feat/acceptance-testing-fixes/research_showcase/acceptance_tests/test_submission.py#L14)
+  - **Explanation:** This test verifies the entire multi-step research submission process from a faculty user's perspective. It automates the following actions:
+    1. Logging in as a faculty user.
+    2. Navigating to the research submission page.
+    3. Filling out the "Basic Information" step (title, student author, abstract).
+    4. Navigating to the "Project Details" step and filling in collaborators, date, and GitHub link.
+    5. Navigating to the "Research Materials" step and uploading a required PDF file.
+    6. Navigating to the "Review" step and submitting the project.
+    7. Verifying that the submission is successful by checking for redirection to the success page and the presence of a confirmation message.
+  - **Code Snippet:**
+
+    ```python
+    # research_showcase/acceptance_tests/test_submission.py
+
+    # ... imports and class definition ...
+
+    def test_complete_submission_workflow(self, browser, live_server, faculty_user):
+        """
+        Test the complete research submission workflow.
+
+        This test verifies that faculty users can:
+        1. Log in to the system
+        2. Navigate to the submission form
+        3. Complete the multi-step submission process
+        4. Upload research files
+        5. Submit a research project successfully
+        """
+        # 1. Log in as faculty
+        login_page = LoginPage(browser, live_server.url)
+        login_page.navigate().login(faculty_user.username, "password123")
+
+        # 2. Navigate to the submission form
+        submission_page = SubmissionPage(browser, live_server.url)
+        submission_page.navigate()
+
+        # 3. Step 1: Fill out basic information
+        submission_page.fill_basic_info(
+            title="Acceptance Test Research Project",
+            # ... (rest of the implementation) ...
+        )
+        submission_page.go_to_next_step()
+
+        # 4. Step 2: Fill out project details
+        submission_page.fill_project_details(
+            # ... (implementation details) ...
+        )
+        submission_page.go_to_next_step()
+
+        # 5. Step 3: Upload research materials
+        # ... (implementation details) ...
+        submission_page.upload_files(pdf_path=test_pdf_path)
+        submission_page.go_to_next_step()
+
+        # 6. Step 4: Review and submit
+        submission_page.submit_project()
+
+        # 7. Verify successful submission
+        assert "/submit/success/" in browser.current_url
+        success_text = submission_page.get_success_message()
+        assert "successfully submitted" in success_text.lower()
+        assert "pending approval" in success_text.lower()
+
+    ```
+
+- **Test Execution Results:**
+  - The acceptance tests can be run using the `./run_acceptance_tests.sh` script located in the `research_showcase` directory.
+  - By default, tests run headlessly (no visible browser). Use the `--visible` flag to watch the browser interaction (e.g., `./run_acceptance_tests.sh --visible`).
+  - Upon completion, the script outputs the test results (pass/fail) to the console.
+  - If a test fails, a screenshot is automatically saved in the `research_showcase/screenshots/` directory.
+  - An HTML report summarizing the test execution can be generated using the `--html` flag (e.g., `./run_acceptance_tests.sh --html`), which creates `acceptance_report.html`.
+  - **Example Successful Execution Output (from console):**
+    - ![Test Results](images/Tests_results3.png)
+  - **Example HTML Report Screenshot:**
+    - ![Test Results](images/acceptance_report.png)
 
 ## Validation
 
@@ -174,15 +254,13 @@ The processes that we had the users go through were to use the main landing page
 These are the general questions we tried to address in these interviews though the specific responses were subject to the interviewer's communication style, the specificity of notes taken during the interview, and the flow of the interaction.
 
 - How do you like the layout of the landing page? Do you have any specific thoughts or feedback?  
-- Does this design suit the audience and the purpose we are trying to address?    
+- Does this design suit the audience and the purpose we are trying to address?
 - Are there any additional features that you feel would improve this system?  
 - How likely are you to use this product? What would make it usable for the college?  
 
 ### Results
 
-
 #### Robert Buscaglia, Professor and Capstone Advisor for Data Science Program
-
 
 ##### Interview Response
 
@@ -211,18 +289,19 @@ Would you use the project in its current state?
 Dr. Robert Buscaglia's first impression was overall approval, even in the current project's state. From the upload, approval, to searching and browsing the framework, he only had minor critiques and corrections we could implement, which we had described to him earlier. For example, the project had a student author, an author (as in faculty submission), and collaborators. Instead, he mentioned that to be more accurate, it should be student author, faculty advisor, and collaborators, and having the faculty who submitted the project in the background instead of being listed in the open. He needs that information, but what's important is the student authors and the faculty advisor who advised the project, whether it be a class project or research. He appreciated the search layout and how each project had thumbnails shown at all times. One of his final statements is that the website is "really useful." he helped us outline a real path to getting the project up the chain in the Mathematics and Statistics department so that it could be thoroughly reviewed for real implementation.
 
 ##### Associated Created Issues
+
 - [Include Additional Fields in Project Data Model #71](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/71)
 - [Expand Search Capabilities #72](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/72)
 - [Incorporate NAU Authentication and Sign-In #73](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/73)
 - [Incorporate Values Based on Provided Poster or Research Paper #74](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/74)
 
-#### Roy St. Laurent, Professor and Chair for the Math & Stats Department 
+#### Roy St. Laurent, Professor and Chair for the Math & Stats Department
 
 ##### Interview Response
 
 Product Task Test  
   
-    When going through the project submission process, Roy mentioned that the required fields weren't clearly identified, and he was confused about which fields needed to be completed.  
+    When going through the project submission process, Roy mentioned that the required fields weren't clearly identified, and he was confused about which fields needed to be completed.
 
     He noticed the warnings about needing to resubmit files and recommended only asking for them after the other fields are validated to improve the user experience.    
 
@@ -240,7 +319,6 @@ Are there any additional features that would improve this system?
 
     He also mentioned incorporating Arxiv linking in this part of the conversation.
 
-
 How likely are you to use this product? What would make it usable for the college?  
 
     Dr. St. Laurent said that he thought the system would be suitable for a basic system that the department could use as an internal tool, but would likely need significant changes to be incorporated into NAU's web systems. Notably, this would involve utilizing NAU's sign-in and authentication system and potentially making changes to adhere to ADA requirements. Because the website wouldn't be required to complete classwork, ADA compliance isn't necessary, but it would help sell it.
@@ -250,6 +328,7 @@ How likely are you to use this product? What would make it usable for the colleg
 Dr. St. Laurent gave a lot of really valuable criticism with a critical and unique perspective. Overall, he liked the project and gave clear avenues for how it could be expanded to fit the department's needs as a whole. His feedback validated this as a method for handling undergraduate projects, specifically capstones, but showed the flaws in applying this to a broader audience without significant changes. That said, he had very few issues with the actual use and implementation of the system. Roy also pointed us to other resources, Dr. Nándor Sieben and Dana Ernst, that could be useful in continuing development and getting more constructive feedback.
 
 ##### Associated Created Issues
+
 - [Include Additional Fields in Project Data Model #71](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/71)
 - [Incorporate NAU Authentication and Sign-In #73](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/73)
 - [ADA Compliance Requirements Definition #75](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/75)
@@ -258,11 +337,11 @@ Dr. St. Laurent gave a lot of really valuable criticism with a critical and uniq
 
 #### Data Science Capstone Student (Name kept private by request)
 
-##### Interview Response  
+##### Interview Response
 
-Product Task Test   
+Product Task Test
 
-    Despite not being faculty that would use the backend systems, we still had the student go through the same process for consistency and to get any additional feedback.  
+    Despite not being faculty that would use the backend systems, we still had the student go through the same process for consistency and to get any additional feedback.
 
     When searching with the system, the student mentioned that the ranges on the date selectors were unusually wide despite no projects being in those ranges.
 
@@ -274,9 +353,9 @@ Product Task Test
 
 How do you like the layout of the landing page? Do you have any specific thoughts or feedback?  
 
-    The student explained that they liked the clean and straightforward landing page. 
+    The student explained that they liked the clean and straightforward landing page.
 
-Does this design suit the audience and the purpose we are trying to address?    
+Does this design suit the audience and the purpose we are trying to address?
 
     They liked the general design and mentioned that they would like to use it for their current project. They also mentioned that it would have been really useful for reviewing past capstone posters (an assignment they had toward the beginning of the semester).
 
@@ -293,13 +372,13 @@ How likely are you to use this product? What would make it usable for the colleg
 Getting another student's perspective was quite valuable for some UI/UX testing, but they didn't have much to contribute to making the project more market-ready. Their experience with using the system was somewhat validating, but because they are similar to the developers, they don't give much additional perspective. Ultimately, they gave feedback that was simple and easy to act on, but nothing that would significantly improve the project.
 
 ##### Associated Created Issues
+
 - [Improvements to Submission Process UI/UX #76](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/76)
 - [Improve Feedback System #78](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/78)
 - [QR Code Linking Method #79](https://github.com/Naalu/ds-senior-capstone-projects-website/issues/79)
 
-### Reflection and Refinements 
+### Reflection and Refinements
 
 Some minor UI/UX improvements can be made throughout the system, which were mentioned throughout these interviews/tests, though the overall system was quite well received. The revamped navigation menus and feedback system went over well, with few complaints. The submission process has some issues that can be iterated on. Our tests had pretty satisfying results; the users could pick up and use the system quite effectively. That said, it's a limited scope, and doing more would likely reveal issues we've missed.
 
 From the feedback we received from professors and faculty, it seems as though we've accomplished the original concept. That said, to make the product truly marketable to the department, some significant changes would need to be made. Most notably, integration with NAU web services via ITS and expanding the system to handle more than undergraduate research/projects would be necessary.
-
