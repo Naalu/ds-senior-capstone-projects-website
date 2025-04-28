@@ -143,3 +143,6 @@ MEDIA_ROOT = (
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Silence RemovedInDjango60Warning for forms.URLField (REMOVED - Handled in form definition)
+# FORMS_URLFIELD_ASSUME_HTTPS = True

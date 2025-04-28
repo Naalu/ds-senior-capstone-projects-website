@@ -23,6 +23,32 @@ MAX_TOTAL_IMAGE_SIZE_MB: int = 10  # Max total size for all images
 
 
 class ResearchProjectForm(forms.ModelForm):
+    # Explicitly define URLFields to set assume_scheme and silence warning
+    github_link = forms.URLField(
+        required=False,
+        assume_scheme="https",
+        widget=forms.URLInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "GitHub Repository URL (optional)",
+                "data-bs-toggle": "tooltip",
+                "title": "Link to the GitHub repository containing project code or materials",
+            }
+        ),
+    )
+    video_link = forms.URLField(
+        required=False,
+        assume_scheme="https",
+        widget=forms.URLInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Video Presentation URL (optional)",
+                "data-bs-toggle": "tooltip",
+                "title": "Link to a video presentation of the research (YouTube, Vimeo, etc.)",
+            }
+        ),
+    )
+
     # Define field without widget initially
     # project_images = forms.ImageField(
     #     # widget=forms.FileInput(attrs={"multiple": True, "class": "form-control"}),
@@ -101,14 +127,6 @@ class ResearchProjectForm(forms.ModelForm):
                     "title": "Date when this research was presented (if applicable)",
                 }
             ),
-            "github_link": forms.URLInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "GitHub Repository URL (optional)",
-                    "data-bs-toggle": "tooltip",
-                    "title": "Link to the GitHub repository containing project code or materials",
-                }
-            ),
             "project_sponsor": forms.TextInput(
                 attrs={
                     "class": "form-control",
@@ -123,14 +141,6 @@ class ResearchProjectForm(forms.ModelForm):
                     "accept": "image/jpeg,image/png,image/gif,application/pdf",
                     "data-bs-toggle": "tooltip",
                     "title": "Upload a research poster image (JPG, PNG, GIF or PDF format)",
-                }
-            ),
-            "video_link": forms.URLInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "Video Presentation URL (optional)",
-                    "data-bs-toggle": "tooltip",
-                    "title": "Link to a video presentation of the research (YouTube, Vimeo, etc.)",
                 }
             ),
             "presentation_file": forms.ClearableFileInput(
@@ -224,43 +234,29 @@ class ResearchProjectForm(forms.ModelForm):
         if not github_link:
             return github_link
 
-        # Check if it's a valid GitHub URL
+        # Check if it's a valid GitHub URL (already has https assumed by field)
         if not (
             github_link.startswith("https://github.com/")
-            or github_link.startswith("http://github.com/")
+            or github_link.startswith("http://github.com/")  # Keep http check? Maybe.
         ):
             raise forms.ValidationError(
-                "Please enter a valid GitHub repository URL (https://github.com/...)"
+                "Please enter a valid GitHub repository URL (starting with https://github.com/...)"
             )
 
         # Check if it follows the expected GitHub repo format (github.com/username/repo)
         parts = github_link.split("/")
-        if len(parts) < 5:  # https:// + empty + github.com + username + repo
+        # Basic check, allows for trailing slashes, etc.
+        if (
+            len(parts) < 5
+            or parts[2].lower() != "github.com"
+            or not parts[3]
+            or not parts[4]
+        ):
             raise forms.ValidationError(
                 "GitHub URL should be in format: https://github.com/username/repository"
             )
 
         return github_link
-
-    # Video link validation
-    def clean_video_link(self) -> Optional[str]:
-        video_link: Optional[str] = self.cleaned_data.get("video_link")
-
-        # If the field is empty and not required, return None
-        if not video_link:
-            return video_link
-
-        # The base URLField already ensures http/https prefix if missing www.
-        # So, the startswith check here is redundant.
-        # if not (video_link.startswith("http://") or video_link.startswith("https://")):
-        #     raise forms.ValidationError("Please enter a valid video URL.")
-
-        # Optionally, add checks for specific video platforms like YouTube or Vimeo
-        # Example: Check for youtube.com or youtu.be
-        # if "youtube.com" not in video_link and "youtu.be" not in video_link:
-        #     raise forms.ValidationError("Only YouTube video links are currently supported.")
-
-        return video_link
 
     # Validate the date presented field
     # Ensure that the date is not in the future

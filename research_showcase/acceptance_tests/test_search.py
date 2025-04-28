@@ -1,3 +1,4 @@
+import time
 from datetime import date, timedelta
 from urllib.parse import urlencode
 
@@ -120,35 +121,41 @@ class TestSearchFunctionality:
         search_page.navigate()
 
         # Search for "machine learning"
+        print("\n(Test) Searching for 'machine learning'")
         search_page.search_for("machine learning")
+        time.sleep(1)
 
         # Verify results
         titles = search_page.get_result_titles()
         count = search_page.get_result_count()
-        assert count == 1, f"Expected 1 result for 'machine learning', found {count}"
+        assert count == 1, f"FAIL ML: Expected 1, Found {count}, Titles: {titles}"
         assert "Machine Learning Analysis" in titles
         assert "Statistical Methods in Biology" not in titles
         assert "Data Visualization Techniques" not in titles
-        assert "Pending Project" not in titles  # Check pending is excluded
+        assert "Pending Project" not in titles
 
         # Reset and search for "statistics"
+        print("\n(Test) Navigating and searching for 'statistics'")
         search_page.navigate()  # Go back to search page
         search_page.search_for("statistics")
+        time.sleep(1)
 
         # Verify different results
         titles = search_page.get_result_titles()
         count = search_page.get_result_count()
-        assert count == 1, f"Expected 1 result for 'statistics', found {count}"
+        assert count == 1, f"FAIL Stats: Expected 1, Found {count}, Titles: {titles}"
         assert "Statistical Methods in Biology" in titles
         assert "Machine Learning Analysis" not in titles
 
         # Search for term present in multiple projects
+        print("\n(Test) Navigating and searching for 'data'")
         search_page.navigate()
         search_page.search_for("data")  # Should match biology and visualization
+        time.sleep(1)
 
         titles = search_page.get_result_titles()
         count = search_page.get_result_count()
-        assert count == 2, f"Expected 2 results for 'data', found {count}"
+        assert count == 2, f"FAIL Data: Expected 2, Found {count}, Titles: {titles}"
         assert "Statistical Methods in Biology" in titles
         assert "Data Visualization Techniques" in titles
         assert "Machine Learning Analysis" not in titles
