@@ -2,7 +2,9 @@
 
 ## Description
 
-Northern Arizona University Department of Mathematics & Statistics Research Showcase is dedicated to developing a web-based platform for Northern Arizona University's Department of Mathematics & Statistics. This platform aims to organize, archive, and showcase student research, particularly senior capstone projects, with potential expansions for additional research and other departments.
+The Northern Arizona University Department of Mathematics & Statistics Research Showcase is a web-based platform designed to organize, archive, and highlight student research. Its primary focus is on senior capstone projects, providing a professional and accessible space for students to share their work with peers, faculty, and potential employers. The platform serves as both a repository and a showcase, ensuring that important student research is preserved and easily available for future reference.
+
+In addition to supporting senior projects, the system is built with flexibility for future growth. It is designed to accommodate other types of student research and can be expanded to support additional departments within the university. By creating a centralized and dynamic research showcase, this platform aims to celebrate academic achievement and foster a stronger community of scholarship at Northern Arizona University.
 
 ## Verification
 
